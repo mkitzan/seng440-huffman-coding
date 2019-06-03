@@ -4,9 +4,9 @@
 
 int main() {
     unsigned int i, j, n;
-    unsigned char buffer;
+    unsigned int buffer;
     char test[] = "FEAR?IS?THE?MIND?KILLER@";
-    unsigned char result[25];
+    unsigned int result[32];
 
     build();
 
@@ -14,7 +14,7 @@ int main() {
 
     for(i = 0; i < 25; ++i) {
         buffer = test[i];
-        for(j = 0; j < 8; ++j) {
+        for(j = 0; j < LEN; ++j) {
             printf("%c", '0' + (buffer & 1));
             buffer >>= 1;
         }
@@ -24,7 +24,7 @@ int main() {
 
     for(i = 0; i < n; ++i) {
         buffer = result[i];
-        for(j = 0; j < 8; ++j) {
+        for(j = 0; j < LEN; ++j) {
             printf("%c", '0' + (buffer & 1));
             buffer >>= 1;
         }

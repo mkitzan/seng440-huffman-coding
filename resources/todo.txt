@@ -7,5 +7,4 @@ compute frequencies of characters for choosen alphabet
 	- find text documents to pull frequency data from
 	- or find frequency data online
 	
-change code data type from unsigned char to unsigned int
 	

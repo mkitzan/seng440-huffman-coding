@@ -2,6 +2,7 @@
 #define _HUFFMAN_UTILS_H_
 
 #define SIZE 28
+#define LEN  16
 
 typedef struct hcode hcode_t;
 struct __attribute__((__packed__)) hcode {

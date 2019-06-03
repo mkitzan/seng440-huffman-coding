@@ -5,17 +5,17 @@
 extern hnode_t CACHE[8];
 extern hcode_t DICTIONARY[SIZE];
 
-unsigned int encode(const char *text, unsigned char *code) {
-    unsigned int i, loc = 0;
-    unsigned char key, buffer = 0, len = 0;
+unsigned int encode(const char *text, unsigned int *code) {
+    unsigned int i, loc = 0, buffer = 0;
+    unsigned char key, len = 0;
 
     for(i = 0; text[i]; ++i) {
         key = text[i] - '?';
         buffer |= DICTIONARY[key].code << len;
         len += DICTIONARY[key].len;
 
-        if(len >= 8) {
-            len -= 8;
+        if(len >= LEN) {
+            len -= LEN;
             code[loc++] = buffer;
             buffer = DICTIONARY[key].code >> (DICTIONARY[key].len - len);
         }
@@ -27,9 +27,9 @@ unsigned int encode(const char *text, unsigned char *code) {
 }
 
 
-unsigned int decode(const unsigned char *code, char *text) {
-    unsigned int loc = 0, pos = 1;
-    unsigned char buffer = code[0], len = 0, lvl = 0;
+unsigned int decode(const unsigned int *code, char *text) {
+    unsigned int loc = 0, pos = 1, buffer = code[0];
+    unsigned char len = 0, lvl = 0;
     hnode_t curr;
 
     do {
@@ -48,12 +48,12 @@ unsigned int decode(const unsigned char *code, char *text) {
             buffer >>= 1;
         }
 
-        buffer |= (code[pos] >> len) << (8 - lvl);
+        buffer |= (code[pos] >> len) << (LEN - lvl);
         len += lvl;
 
-        if(len >= 8) {
-            len -= 8;
-            buffer |= code[++pos] << (8 - len);
+        if(len >= LEN) {
+            len -= LEN;
+            buffer |= code[++pos] << (LEN - len);
         }        
 
         text[loc++] = curr.letter;
