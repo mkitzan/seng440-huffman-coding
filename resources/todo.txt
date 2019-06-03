@@ -1,0 +1,8 @@
+TODO:
+redo the alphabet to include more characters
+	- all ascii characters?
+	- all printable characters?
+
+compute frequencies of characters for choosen alphabet
+	- find text documents to pull frequency data from
+	- or find frequency data online
