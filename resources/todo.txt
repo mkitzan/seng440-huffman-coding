@@ -1,10 +1,8 @@
 TODO:
-redo the alphabet to include more characters
-	- all ascii characters?
-	- all printable characters?
-
-compute frequencies of characters for choosen alphabet
-	- find text documents to pull frequency data from
-	- or find frequency data online
-	
+	- redo the static alphabet data to include more characters
+	- redo code to accommodate new characters
+	- C level optimizations of encode and decode functions
+	- ASM level optimizations of encode and decode functions
+	- code profile and address bottle neck(s) with hypothetical hardware
+	- write report
 	
