@@ -108,5 +108,5 @@ void build() {
     ROOT = (hnode_t *) malloc(sizeof(hnode_t));
     rebuild(ROOT, pqueue[0]);
     dictionary(ROOT, 0, 0);
-    cache(ROOT, 0, 0);
+    //cache(ROOT, 0, 0);
 }

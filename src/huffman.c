@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include "huffman.h"
 
-extern hnode_t CACHE[8];
+//extern hnode_t CACHE[8];
+extern hnode_t *ROOT;
 extern hcode_t DICTIONARY[SIZE];
 
 unsigned int encode(const char *text, unsigned int *code) {
@@ -30,12 +31,14 @@ unsigned int encode(const char *text, unsigned int *code) {
 unsigned int decode(const unsigned int *code, char *text) {
     unsigned int loc = 0, pos = 1, buffer = code[0];
     unsigned char len = 0, lvl = 0;
-    hnode_t curr;
+    hnode_t curr, root = *ROOT;
 
     do {
-        lvl = 3;
-        curr = CACHE[buffer & 7];
-        buffer >>= lvl;
+        // lvl = 3;
+        // curr = CACHE[buffer & 7];
+        // buffer >>= lvl;
+        lvl = 0;
+        curr = root;
 
         while(curr.left || curr.right) {
             if(buffer & 1) {
