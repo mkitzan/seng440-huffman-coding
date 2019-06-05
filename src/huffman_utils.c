@@ -3,13 +3,16 @@
 #include <string.h>
 #include "huffman_utils.h"
 
-// http://www.data-compression.com/english.html
-// float freq[SIZE] = { 19.1818,      0, 6.5174, 1.2425, 2.1734, 3.4983, 10.4144, 
-                      // 1.9788, 1.5861, 4.9289, 5.5809, 0.0903, 0.5053,  3.3149, 
-                      // 2.0212, 5.6451, 5.9630, 1.3764, 0.0861, 4.9756,  5.1576, 
-                      // 7.2936, 2.2513, 0.8290, 1.7127, 0.1369, 1.4598,  0.0784 };
-unsigned char freq[SIZE] = { 19, 0, 7, 1, 2, 3, 10, 2, 2, 5, 6, 1, 1, 3, 
-                              2, 6, 6, 1, 1, 5,  5, 7, 2, 1, 2, 1, 1, 1 };
+// frequency of ascii characters in the books data (rounded up)
+unsigned char freq[SIZE] = {  0,   0,   0,   0,   0,   0,   0,   0,   0,   0,  21,   0,   0,   0,   0,   0,   
+                              0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+                            176,   1,   1,   1,   1,   1,   1,   2,   1,   1,   1,   1,   1,   1,   9,   1,   
+                              1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   2,   0,   1,   0,   1,   
+                              0,   2,   2,   1,   1,   1,   1,   1,   2,   5,   1,   1,   1,   2,   1,   1,
+                              1,   2,   1,   2,   3,   1,   1,   2,   1,   1,   1,   1,   0,   1,   0,   1,   
+                              0,  60,  11,  17,  33,  96,  17,  16,  50,  49,   1,   6,  31,  19,  52,  59,  
+                             12,   1,  44,  48,  68,  22,   8,  18,   2,  15,   1,   1,   1,   1,   1,   0 };
+
 
 void rebuild(hnode_t *hn, node_t *n) {
     if(n == NULL) {
@@ -32,10 +35,10 @@ void rebuild(hnode_t *hn, node_t *n) {
 }
 
 
-void dictionary(hnode_t *n, unsigned char loc, unsigned char lvl) {
+void dictionary(hnode_t *n, unsigned long long int loc, unsigned char lvl) {
     if(n->left == NULL && n->right == NULL) {
-        DICTIONARY[n->letter - '?'].code = loc >> (8 - lvl);
-        DICTIONARY[n->letter - '?'].len = lvl;
+        DICTIONARY[(unsigned char)n->letter].code = loc >> (CODE - lvl);
+        DICTIONARY[(unsigned char)n->letter].len = lvl;
         return;
     }
     
@@ -44,12 +47,12 @@ void dictionary(hnode_t *n, unsigned char loc, unsigned char lvl) {
         dictionary(n->left, loc, lvl + 1);
     }
     if(n->right) {
-        dictionary(n->right, loc + 128, lvl + 1);
+        dictionary(n->right, loc + 0x8000000000000000, lvl + 1);
     }
 }
 
 
-void cache(hnode_t *n, unsigned char loc, unsigned char lvl) {
+void cache(hnode_t *n, unsigned long long int loc, unsigned char lvl) {
     if(lvl == 3) {
         CACHE[loc] = *n;
     } else {
@@ -74,7 +77,7 @@ void build() {
     
     for(i = 0; i < SIZE; ++i) {
         alphabet[i].freq = freq[i];
-        alphabet[i].letter = i + '?';
+        alphabet[i].letter = i;
     }
     
     qsort(alphabet, SIZE, sizeof(huffman_t), compare);
@@ -103,7 +106,6 @@ void build() {
             pqueue[i-1] = pqueue[i];
         }
     }
-    
     
     ROOT = (hnode_t *) malloc(sizeof(hnode_t));
     rebuild(ROOT, pqueue[0]);

@@ -1,6 +1,4 @@
 TODO:
-	- redo the static alphabet data to include more characters
-	- redo code to accommodate new characters
 	- C level optimizations of encode and decode functions
 	- ASM level optimizations of encode and decode functions
 	- code profile and address bottle neck(s) with hypothetical hardware

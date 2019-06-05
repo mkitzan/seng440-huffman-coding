@@ -4,27 +4,25 @@
 
 int main() {
     unsigned int i, j, n;
-    unsigned int buffer;
-    char test[] = "FEAR?IS?THE?MIND?KILLER@";
-    unsigned int result[32];
+    char test[] = "Fear is the mind killer\x03";
+    unsigned long long int result[4], buffer;
 
     build();
-
-    n = encode(test, result);
-
+    
     for(i = 0; i < 25; ++i) {
         buffer = test[i];
-        for(j = 0; j < LEN; ++j) {
+        for(j = 0; j < TEXT; ++j) {
             printf("%c", '0' + (buffer & 1));
             buffer >>= 1;
         }
     }
 
+    n = encode(test, result);
     printf("\n\n");
 
     for(i = 0; i < n; ++i) {
         buffer = result[i];
-        for(j = 0; j < LEN; ++j) {
+        for(j = 0; j < CODE; ++j) {
             printf("%c", '0' + (buffer & 1));
             buffer >>= 1;
         }
