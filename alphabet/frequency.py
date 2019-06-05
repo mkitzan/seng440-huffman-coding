@@ -24,8 +24,8 @@ def record_stats(data, count, stats):
 def save_data(stats):
     with open(argv[1].replace("/", "_")+"_freq.csv", 'w', encoding='latin-1') as out:
         for i in range(0, len(stats)):
-            print(chr(i) + ",%f" % stats[i])
-            out.write(chr(i) + ",%f\n" % stats[i])
+            print(chr(i) + ",%.8f" % stats[i])
+            out.write(chr(i) + ",%.8f\n" % stats[i])
 
 
 def main():
