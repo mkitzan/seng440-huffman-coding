@@ -16,7 +16,7 @@ unsigned int encode(const char *text, unsigned long long int *code) {
         buffer |= DICTIONARY[key].code << len;
         len += DICTIONARY[key].len;
 
-        if(len >= CODE) {
+        if(len & CODE) {
             len -= CODE;
             code[loc++] = buffer;
             buffer = DICTIONARY[key].code >> (DICTIONARY[key].len - len);
@@ -46,7 +46,7 @@ unsigned int decode(const unsigned long long int *code, char *text) {
             
             buffer >>= 1;
             
-            if(++bit == 64) {
+            if(++bit & CODE) {
                 buffer = code[++pos];
                 bit = 0;
             }

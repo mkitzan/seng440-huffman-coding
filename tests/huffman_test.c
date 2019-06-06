@@ -16,6 +16,9 @@ int main() {
 
     build();
     
+    printf("Base text\n%s\n\nUnencoded text binary\n", test);
+    
+    
     for(i = 0; test[i]; ++i) {
         buffer = test[i];
         for(j = 0; j < TEXT; ++j) {
@@ -25,7 +28,7 @@ int main() {
     }
 
     n = encode(test, result);
-    printf("\n\n");
+    printf("\n\nEncoded text binary\n");
 
     for(i = 0; i < n; ++i) {
         buffer = result[i];
@@ -37,7 +40,7 @@ int main() {
     
     n = decode(result, test);
     test[n] = 0;
-    printf("\n\n%s\n", test);
+    printf("\n\nDecoded text\n%s", test);
 
     return 0;
 }
