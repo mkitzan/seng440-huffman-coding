@@ -8,8 +8,8 @@ extern hcode_t DICTIONARY[SIZE];
 
 unsigned int encode(const char *text, unsigned long long int *code) {
     register unsigned int i = 0, loc = 0, len = 0;
+    register unsigned char key;
     unsigned long long int buffer = 0;
-    unsigned char key;
 
     for(; text[i]; ++i) {
         key = text[i];

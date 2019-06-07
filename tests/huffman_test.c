@@ -3,7 +3,7 @@
 #include "../src/huffman.h"
 
 int main() {
-    unsigned int i, j, n;
+    register unsigned int i, j, n;
     char test[] = "I must not fear.\n"
                   "Fear is the mind-killer.\n"
                   "Fear is the little-death that brings total obliteration.\n"
@@ -21,7 +21,7 @@ int main() {
     
     for(i = 0; test[i]; ++i) {
         buffer = test[i];
-        for(j = 0; j < TEXT; ++j) {
+        for(j = 0; !(j & TEXT); ++j) {
             printf("%c", (char)('0' + (buffer & 1)));
             buffer >>= 1;
         }
@@ -32,7 +32,7 @@ int main() {
 
     for(i = 0; i < n; ++i) {
         buffer = result[i];
-        for(j = 0; j < CODE; ++j) {
+        for(j = 0; !(j & CODE); ++j) {
             printf("%c", (char)('0' + (buffer & 1)));
             buffer >>= 1;
         }

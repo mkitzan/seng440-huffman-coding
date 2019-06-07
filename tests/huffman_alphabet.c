@@ -21,16 +21,17 @@
                        // 11.5496,   0.6788,  43.9027,  47.4977,  67.3901,  21.8746,   7.3035,  17.6350,   
                         // 1.0902,  14.3156,   0.4428,   0.1702,   0.0017,   0.1744,   0.0845,   0.0000 };
                         
-// frequency of ascii characters in the books data (rounded up)
-unsigned char freq[SIZE] = {  0,   0,   0,   0,   0,   0,   0,   0,   0,   0,  21,   0,   0,   0,   0,   0,   
-                              0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
-                            176,   1,   1,   1,   1,   1,   1,   2,   1,   1,   1,   1,   1,   1,   9,   1,   
-                              1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   2,   0,   1,   0,   1,   
-                              0,   2,   2,   1,   1,   1,   1,   1,   2,   5,   1,   1,   1,   2,   1,   1,
-                              1,   2,   1,   2,   3,   1,   1,   2,   1,   1,   1,   1,   0,   1,   0,   1,   
-                              0,  60,  11,  17,  33,  96,  17,  16,  50,  49,   1,   6,  31,  19,  52,  59,  
-                             12,   1,  44,  48,  68,  22,   8,  18,   2,  15,   1,   1,   1,   1,   1,   0 };                        
-
+// frequency of ascii characters in the books data (rounded up) to avoid floating points
+unsigned char freq[SIZE] = {  
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,  21,   0,   0,   0,   0,   0,   
+      0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    176,   1,   1,   1,   1,   1,   1,   2,   1,   1,   1,   1,   1,   1,   9,   1,   
+      1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   2,   0,   1,   0,   1,   
+      0,   2,   2,   1,   1,   1,   1,   1,   2,   5,   1,   1,   1,   2,   1,   1,
+      1,   2,   1,   2,   3,   1,   1,   2,   1,   1,   1,   1,   0,   1,   0,   1,   
+      0,  60,  11,  17,  33,  96,  17,  16,  50,  49,   1,   6,  31,  19,  52,  59,  
+     12,   1,  44,  48,  68,  22,   8,  18,   2,  15,   1,   1,   1,   1,   1,   0 
+};
 
 typedef struct huffman huffman_t;
 struct huffman {
@@ -46,9 +47,7 @@ struct node {
 
 
 int compare(const void *a, const void *b) {
-    if(((huffman_t *)a)->freq < ((huffman_t *)b)->freq) return -1;
-    if(((huffman_t *)a)->freq > ((huffman_t *)b)->freq) return  1;
-    return 0;
+    return ((huffman_t *)a)->freq - ((huffman_t *)b)->freq;
 }
 
 
@@ -110,14 +109,14 @@ int main() {
     huffman_t alphabet[SIZE];
     node_t *pqueue[SIZE];
     
-    for(i = 0; i < SIZE; ++i) {
+    for(i = 0; !(i & SIZE); ++i) {
         alphabet[i].freq = freq[i];
         alphabet[i].letter = i;
     }
     
     qsort(alphabet, SIZE, sizeof(huffman_t), compare);
     
-    for(i = 0; i < SIZE; ++i) {
+    for(i = 0; !(i & SIZE); ++i) {
         pqueue[i] = (node_t *) malloc(sizeof(node_t));
         pqueue[i]->data = alphabet[i];
         pqueue[i]->left = pqueue[i]->right = NULL;
