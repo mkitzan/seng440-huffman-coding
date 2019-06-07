@@ -37,7 +37,7 @@ unsigned int decode(const unsigned long long int *code, char *text) {
     do {
         curr = root;
 
-        while(curr.left || curr.right) {
+        while(curr.letter & SIZE) {
             if(buffer & 1) {
                 curr = *(curr.right);
             } else {
