@@ -2,7 +2,7 @@
 # 05-03-2019
 
 CC=gcc
-CFLAGS=-Wall -g -c -O3
+CFLAGS=-c -O3
 
 all: huffman_test huffman_alphabet huffman_utils.o huffman.o huffman_build.o huffman_alphabet.o huffman_test.o
     
@@ -31,4 +31,4 @@ asm: tests/huffman_build.c tests/huffman_build.h
 	$(CC) -Wall -g -O3 -S src/huffman.c
 
 clean:
-	rm *.o *.s *.exe
+	rm huffman*
