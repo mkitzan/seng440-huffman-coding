@@ -28,7 +28,8 @@ int main() {
     }
 
     n = encode(test, result);
-    printf("\n\nEncoded text binary\n");
+  
+  printf("\n\nEncoded text binary\n");
 
     for(i = 0; i < n; ++i) {
         buffer = result[i];
@@ -39,7 +40,8 @@ int main() {
     }
     
     n = decode(result, test);
-    test[n] = 0;
+    
+test[n] = 0;
     printf("\n\nDecoded text\n%s", test);
 
     return 0;
