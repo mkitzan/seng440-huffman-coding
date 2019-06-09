@@ -1,6 +1,7 @@
 #ifndef _HUFFMAN_UTILS_H_
 #define _HUFFMAN_UTILS_H_
 
+#define HEAP 255
 #define SIZE 128
 #define CODE  64
 #define TEXT   8
@@ -8,7 +9,7 @@
 
 typedef struct huffman huffman_t;
 struct __attribute__((__packed__)) huffman {
-    unsigned char freq;
+    unsigned int freq;
     char letter;
 };
 
@@ -32,9 +33,17 @@ struct __attribute__((__packed__)) hnode {
     hnode_t *left, *right;
 };
 
-hnode_t *ROOT;
-hnode_t CACHE[8];
-hcode_t DICTIONARY[SIZE];
+// pseudo memory heap to build the huffman tree in
+typedef struct hheap hheap_t;
+struct __attribute__((__packed__)) hheap {
+    unsigned char next;
+    hnode_t heap[HEAP];
+};
+
+
+hcode_t ALPHABET[SIZE];
+hheap_t HUFFMAN;
+
 
 void build();
 

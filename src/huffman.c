@@ -3,26 +3,32 @@
 #include "huffman.h"
 
 //extern hnode_t CACHE[8];
-extern hnode_t *ROOT;
-extern hcode_t DICTIONARY[SIZE];
+extern hheap_t HUFFMAN;
+extern hcode_t ALPHABET[SIZE];
 
 unsigned int encode(const char *text, unsigned long long int *code) {
     register unsigned int i = 0, loc = 0, len = 0;
     register unsigned char key;
     unsigned long long int buffer = 0;
-
+    
+    // loop through each character of the plain text
     for(; text[i]; ++i) {
         key = text[i];
-        buffer |= DICTIONARY[key].code << len;
-        len += DICTIONARY[key].len;
+        // write the character's code to buffer shifted by the amount of bits already set
+        buffer |= ALPHABET[key].code << len;
+        // add the amount of bits written to the current length
+        len += ALPHABET[key].len;
 
         if(len & CODE) {
-            len -= CODE;
+            // write full buffer to the encoded text container
             code[loc++] = buffer;
-            buffer = DICTIONARY[key].code >> (DICTIONARY[key].len - len);
+            // determine the number of bits remaining in the current code
+            len -= CODE;
+            // set up buffer with remaining bits of the current code
+            buffer = ALPHABET[key].code >> (ALPHABET[key].len - len);
         }
     }
-
+    // fence post last buffer write
     code[loc++] = buffer;
 
     return loc;
@@ -30,14 +36,20 @@ unsigned int encode(const char *text, unsigned long long int *code) {
 
 
 unsigned int decode(const unsigned long long int *code, char *text) {
-    register unsigned int loc = 0, bit = 0, pos = 0;
-    unsigned long long int buffer = code[0];
-    hnode_t curr, root = *ROOT;
-
+    register unsigned int loc = 0, pos = 1, bits = 0, seen = 0;
+    unsigned long long int buffer = code[0], fill = code[1];
+    hnode_t curr;
+    
     do {
-        curr = root;
-
+        // use next three bits to index the cached third level of the tree
+        curr = HUFFMAN.heap[buffer & 7];
+        buffer >>= 3;
+        bits = 3;
+        
+        // check if current node is not a leaf node 
+        //      (only internal nodes are have the SIZE bit set)
         while(curr.letter & SIZE) {
+            // traverse left or right based on least sig bit in buffer
             if(buffer & 1) {
                 curr = *(curr.right);
             } else {
@@ -45,14 +57,26 @@ unsigned int decode(const unsigned long long int *code, char *text) {
             }
             
             buffer >>= 1;
-            
-            if(++bit & CODE) {
-                buffer = code[++pos];
-                bit = 0;
+            ++bits;
+        }
+        
+        // write character to plain text container
+        text[loc++] = curr.letter;
+        
+        seen += bits;
+        buffer |= fill << (CODE - bits);
+        
+        if(seen & CODE) {
+            fill = code[++pos];
+            bits = seen - CODE;
+            seen = seen - CODE;
+            if(bits) {
+                buffer |= fill << (CODE - bits);
             }
         }
         
-        text[loc++] = curr.letter;
+        fill >>= bits;
+    // check if EOT has just been read
     } while(curr.letter != 0x03);
 
     return loc;
