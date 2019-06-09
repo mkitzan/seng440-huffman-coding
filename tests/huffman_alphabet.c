@@ -53,8 +53,7 @@ void header() {
                    "#define _HUFFMAN_ALPHA_H_\n\n");
                    
     for(i = 0; i < SIZE; ++i) {
-        fprintf(alpha, "#define C%u { .code=%I64u, .len=%u }\n", i, ALPHABET[i].code, ALPHABET[i].len);
-        //fprintf(alpha, "#define C%u { .code=%llu, .len=%u }\n", i, ALPHABET[i].code, ALPHABET[i].len);
+        fprintf(alpha, "#define C%u { .code=%llu, .len=%u }\n", i, ALPHABET[i].code, ALPHABET[i].len);
     }
     
     fprintf(alpha, "\n");

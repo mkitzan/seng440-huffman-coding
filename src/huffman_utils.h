@@ -15,7 +15,7 @@ struct __attribute__((__packed__)) hcode {
     unsigned char len;
 };
 
-// reduced memory version of node_t to minimize memory loads on dereference
+// binary tree node struct to hold letter and child nodes
 typedef struct hnode hnode_t;
 struct __attribute__((__packed__)) hnode {
     char letter;
