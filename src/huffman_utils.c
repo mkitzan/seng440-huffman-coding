@@ -3,128 +3,73 @@
 #include <string.h>
 #include "huffman_utils.h"
 
-// frequency of ascii characters in the books data
-// double freq[SIZE] = {  
-    // 0.0000,   0.0000,   0.0000,   0.0000,   0.0000,   0.0000,   0.0000,   0.0000,
-    // 0.0000,   0.0000,  20.1859,   0.0000,   0.0000,   0.0000,   0.0000,   0.0000,   
-    // 0.0000,   0.0000,   0.0000,   0.0000,   0.0000,   0.0000,   0.0000,   0.0000,
-    // 0.0000,   0.0000,   0.0000,   0.0000,   0.0000,   0.0000,   0.0000,   0.0000,
-    // 175.7153,   0.7112,   0.9102,   0.0001,   0.0024,   0.0003,   0.0158,   1.3435,   
-    // 0.2868,   0.2900,   0.1379,   0.0008,  14.0471,   2.7501,   8.5716,   0.0075,   
-    // 0.1794,   0.2572,   0.1755,   0.1354,   0.1167,   0.1901,   0.0869,   0.0834,   
-    // 0.0929,   0.0639,   0.6536,   1.4282,   0.0000,   0.0138,   0.0000,   0.9060,   
-    // 0.0000,   1.9967,   1.0436,   0.7883,   0.7874,   0.8456,   0.6384,   0.6364,   
-    // 1.9048,   4.3425,   0.1994,   0.2369,   0.6350,   1.0796,   0.7237,   0.9048,
-    // 0.6834,   1.6345,   0.5531,   1.6461,   2.7782,   0.2546,   0.2258,   1.3217,   
-    // 0.0884,   0.4257,   0.0258,   0.1271,   0.0000,   0.1244,   0.0000,   0.9729,   
-    // 0.0000,  59.1208,  10.3735,  16.7134,  32.9357,  95.1197,  16.8439,  15.2353,  
-    // 49.7784,  48.0119,   0.6960,   5.8704,  30.8437,  18.4047,  51.8625,  58.5655,  
-    // 11.5496,   0.6788,  43.9027,  47.4977,  67.3901,  21.8746,   7.3035,  17.6350,   
-    // 1.0902,  14.3156,   0.4428,   0.1702,   0.0017,   0.1744,   0.0845,   0.0000 };
-
-// frequency of ascii characters in the books data (rounded up) to avoid floating points
-unsigned char freq[SIZE] = {  
-    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,  21,   0,   0,   0,   0,   0,   
-      0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
-    176,   1,   1,   1,   1,   1,   1,   2,   1,   1,   1,   1,   1,   1,   9,   1,   
-      1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   2,   0,   1,   0,   1,   
-      0,   2,   2,   1,   1,   1,   1,   1,   2,   5,   1,   1,   1,   2,   1,   1,
-      1,   2,   1,   2,   3,   1,   1,   2,   1,   1,   1,   1,   0,   1,   0,   1,   
-      0,  60,  11,  17,  33,  96,  17,  16,  50,  49,   1,   6,  31,  19,  52,  59,  
-     12,   1,  44,  48,  68,  22,   8,  18,   2,  15,   1,   1,   1,   1,   1,   0 
+hcode_t ALPHABET[SIZE] = {
+      C0,	  C1,	  C2,	  C3,	  C4,	  C5,	  C6,	  C7,
+      C8,	  C9,    C10,	 C11,	 C12,	 C13,	 C14,	 C15,
+     C16,	 C17,	 C18,	 C19,	 C20,	 C21,	 C22,	 C23,
+     C24,	 C25,	 C26,	 C27,	 C28,	 C29,	 C30,	 C31,
+     C32,	 C33,	 C34,	 C35,	 C36,	 C37,	 C38,	 C39,
+     C40,	 C41,	 C42,	 C43,	 C44,	 C45,	 C46,	 C47,
+     C48,	 C49,	 C50,	 C51,	 C52,	 C53,	 C54,	 C55,
+     C56,	 C57,	 C58,	 C59,	 C60,	 C61,	 C62,	 C63,
+     C64,	 C65,	 C66,	 C67,	 C68,	 C69,	 C70,	 C71,
+     C72,	 C73,	 C74,	 C75,	 C76,	 C77,	 C78,	 C79,
+     C80,	 C81,	 C82,	 C83,	 C84,	 C85,	 C86,	 C87,
+     C88,	 C89,	 C90,	 C91,	 C92,	 C93,	 C94,	 C95,
+     C96,	 C97,	 C98,	 C99,	C100,	C101,	C102,	C103,
+    C104,	C105,	C106,	C107,	C108,	C109,	C110,	C111,
+    C112,	C113,	C114,	C115,	C116,	C117,	C118,	C119,
+    C120,	C121,	C122,	C123,	C124,	C125,	C126,	C127,
 };
 
 
-void alphabet(hnode_t *n, unsigned long long int loc, unsigned char lvl) {
-    if(n->letter & SIZE) {
-        loc >>= 1; 
-        ++lvl;
-        alphabet(n->right, loc | MSB, lvl);
-        alphabet(n->left, loc, lvl);
-                
-    } else {
-        ALPHABET[(unsigned char)n->letter].code = loc >> (CODE - lvl);
-        ALPHABET[(unsigned char)n->letter].len = lvl;
-    }
-}
-
-
-void tree(hnode_t *hn, node_t *n, unsigned char lvl) {
-    hn->letter = n->data.letter;
-    
-    if(n->data.letter & SIZE) {
-        hn->left = &HUFFMAN.heap[HUFFMAN.next++];
-        hn->right = &HUFFMAN.heap[HUFFMAN.next++];
-        ++lvl;
-        tree(hn->right, n->right, lvl);
-        tree(hn->left, n->left, lvl);
-    } else {
-        hn->left = hn->right = NULL;
-    }
-    
-    free(n);
-}
-
-
-void rebuild(node_t *n, unsigned long long int loc, unsigned char lvl) {
-    if(lvl == 3) {
-        tree(&HUFFMAN.heap[loc], n, lvl);
-        alphabet(&HUFFMAN.heap[loc], loc << 61, lvl);
-    } else {
-        loc >>= 1;
-        rebuild(n->right, loc | 4, lvl + 1);
-        rebuild(n->left, loc, lvl + 1);
-        free(n);
-    }
-}
-
-
-int compare(const void *a, const void *b) {
-    return ((huffman_t *)a)->freq - ((huffman_t *)b)->freq;
-}
+hnode_t HUFFMAN[HEAP] = {
+      N0,	  N1,	  N2,	  N3,	  N4,	  N5,	  N6,	  N7,
+      N8,	  N9,    N10,	 N11,	 N12,	 N13,	 N14,	 N15,
+     N16,	 N17,	 N18,	 N19,	 N20,	 N21,	 N22,	 N23,
+     N24,	 N25,	 N26,	 N27,	 N28,	 N29,	 N30,	 N31,
+     N32,	 N33,	 N34,	 N35,	 N36,	 N37,	 N38,	 N39,
+     N40,	 N41,	 N42,	 N43,	 N44,	 N45,	 N46,	 N47,
+     N48,	 N49,	 N50,	 N51,	 N52,	 N53,	 N54,	 N55,
+     N56,	 N57,	 N58,	 N59,	 N60,	 N61,	 N62,	 N63,
+     N64,	 N65,	 N66,	 N67,	 N68,	 N69,	 N70,	 N71,
+     N72,	 N73,	 N74,	 N75,	 N76,	 N77,	 N78,	 N79,
+     N80,	 N81,	 N82,	 N83,	 N84,	 N85,	 N86,	 N87,
+     N88,	 N89,	 N90,	 N91,	 N92,	 N93,	 N94,	 N95,
+     N96,	 N97,	 N98,	 N99,	N100,	N101,	N102,	N103,
+    N104,	N105,	N106,	N107,	N108,	N109,	N110,	N111,
+    N112,	N113,	N114,	N115,	N116,	N117,	N118,	N119,
+    N120,	N121,	N122,	N123,	N124,	N125,	N126,	N127,
+    N128,	N129,	N130,	N131,	N132,	N133,	N134,	N135,
+    N136,	N137,	N138,	N139,	N140,	N141,	N142,	N143,
+    N144,	N145,	N146,	N147,	N148,	N149,	N150,	N151,
+    N152,	N153,	N154,	N155,	N156,	N157,	N158,	N159,
+    N160,	N161,	N162,	N163,	N164,	N165,	N166,	N167,
+    N168,	N169,	N170,	N171,	N172,	N173,	N174,	N175,
+    N176,	N177,	N178,	N179,	N180,	N181,	N182,	N183,
+    N184,	N185,	N186,	N187,	N188,	N189,	N190,	N191,
+    N192,	N193,	N194,	N195,	N196,	N197,	N198,	N199,
+    N200,	N201,	N202,	N203,	N204,	N205,	N206,	N207,
+    N208,	N209,	N210,	N211,	N212,	N213,	N214,	N215,
+    N216,	N217,	N218,	N219,	N220,	N221,	N222,	N223,
+    N224,	N225,	N226,	N227,	N228,	N229,	N230,	N231,
+    N232,	N233,	N234,	N235,	N236,	N237,	N238,	N239,
+    N240,	N241,	N242,	N243,	N244,	N245,	N246,	N247
+};
 
 
 void build() {
-    register unsigned int i, len;
-    huffman_t dictionary[SIZE];
-    node_t *pqueue[SIZE], *n1, *n2, *n0;
+    register unsigned int i;
     
-    for(i = 0; !(i & SIZE); ++i) {
-        dictionary[i].freq = freq[i];
-        dictionary[i].letter = i;
-    }
-    
-    qsort(dictionary, SIZE, sizeof(huffman_t), compare);
-    
-    for(i = 0; !(i & SIZE); ++i) {
-        pqueue[i] = (node_t *) malloc(sizeof(node_t));
-        pqueue[i]->data = dictionary[i];
-        pqueue[i]->left = pqueue[i]->right = NULL;
-    }
-    
-    for(len = SIZE; len > 1; --len) {
-        n1 = pqueue[0];
-        n2 = pqueue[1];
-        
-        n0 = (node_t *) malloc(sizeof(node_t));
-        n0->left = n1;
-        n0->right = n2;
-        // set SIZE bit for all internal nodes
-        n0->data.letter = SIZE;
-        n0->data.freq = n1->data.freq + n2->data.freq;
-        
-        for(i = 2; (n0->data.freq > pqueue[i]->data.freq) && i < len; ++i) {
-            pqueue[i-2] = pqueue[i];
-        }
-        // breaking loop prevents an if statement for each loop iteration
-        pqueue[i-2] = n0;
-        for(; i < len; ++i) {
-            pqueue[i-1] = pqueue[i];
+    for(i = 0; i < HEAP; ++i) {
+        if(HUFFMAN[i].letter & SIZE) {
+            HUFFMAN[i].left  = (hnode_t *)((unsigned long long int)HUFFMAN[i].left + 
+                                        (unsigned long long int)HUFFMAN);
+            HUFFMAN[i].right = (hnode_t *)((unsigned long long int)HUFFMAN[i].right +
+                                        (unsigned long long int)HUFFMAN);
         }
     }
     
-    // set aside indexes 0-7 to cache level 3 of the tree
-    HUFFMAN.next = 8;
-    // rebuild the huffman tree in an array
-    rebuild(pqueue[0], 0, 0);
+    DICT = ALPHABET;
+    TREE = HUFFMAN;
 }

@@ -2,10 +2,6 @@
 #include <stdio.h>
 #include "huffman.h"
 
-//extern hnode_t CACHE[8];
-extern hheap_t HUFFMAN;
-extern hcode_t ALPHABET[SIZE];
-
 unsigned int encode(const char *text, unsigned long long int *code) {
     register unsigned int i = 0, loc = 0, len = 0;
     register unsigned char key;
@@ -15,9 +11,9 @@ unsigned int encode(const char *text, unsigned long long int *code) {
     for(; text[i]; ++i) {
         key = text[i];
         // write the character's code to buffer shifted by the amount of bits already set
-        buffer |= ALPHABET[key].code << len;
+        buffer |= DICT[key].code << len;
         // add the amount of bits written to the current length
-        len += ALPHABET[key].len;
+        len += DICT[key].len;
 
         if(len & CODE) {
             // write full buffer to the encoded text container
@@ -25,7 +21,7 @@ unsigned int encode(const char *text, unsigned long long int *code) {
             // determine the number of bits remaining in the current code
             len -= CODE;
             // set up buffer with remaining bits of the current code
-            buffer = ALPHABET[key].code >> (ALPHABET[key].len - len);
+            buffer = DICT[key].code >> (DICT[key].len - len);
         }
     }
     // fence post last buffer write
@@ -41,8 +37,8 @@ unsigned int decode(const unsigned long long int *code, char *text) {
     hnode_t curr;
     
     do {
-        // use next three bits to index the cached third level of the tree
-        curr = HUFFMAN.heap[buffer & 7];
+        // use next three bits to index the cached third level of the TREE
+        curr = TREE[buffer & 7];
         buffer >>= 3;
         bits = 3;
         
