@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "huffman_build.h"
 
 // frequency of ascii characters in the books data

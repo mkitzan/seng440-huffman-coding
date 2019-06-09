@@ -27,5 +27,8 @@ huffman_utils.o: src/huffman_utils.c src/huffman_utils.h
 huffman_build.o: tests/huffman_build.c tests/huffman_build.h
 	$(CC) $(CFLAGS) tests/huffman_build.c
 
+asm: tests/huffman_build.c tests/huffman_build.h
+	$(CC) -Wall -g -O3 -S src/huffman.c
+
 clean:
-	rm *.o *.exe
+	rm *.o *.s *.exe

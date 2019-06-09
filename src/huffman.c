@@ -1,5 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include "huffman.h"
 
 unsigned int encode(const char *text, unsigned long long int *code) {

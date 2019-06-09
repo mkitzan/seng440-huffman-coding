@@ -1,8 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "huffman_build.h"
-
 
 int find(char key) {
     int i;
