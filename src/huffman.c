@@ -57,13 +57,17 @@ unsigned int decode(const unsigned long long int *code, char *text) {
         // write character to plain text container
         text[loc++] = curr.letter;
         
+        // fill the buffer with data to replace what was just removed
         seen += bits;
         buffer |= fill << (CODE - bits);
         
+        // check if fill pre-buffer is has expired
         if(seen & CODE) {
             fill = code[++pos];
+            // adjust control variables 
             bits = seen - CODE;
             seen = seen - CODE;
+            // check if there are hang over bits to write
             if(bits) {
                 buffer |= fill << (CODE - bits);
             }

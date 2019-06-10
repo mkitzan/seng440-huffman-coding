@@ -22,6 +22,7 @@ struct __attribute__((__packed__)) hnode {
     hnode_t *left, *right;
 };
 
+// global references to the statically allocated huffman tree and dictionary
 hcode_t *DICT;
 hnode_t *TREE;
 

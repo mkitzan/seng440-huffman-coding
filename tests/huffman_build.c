@@ -35,12 +35,15 @@ unsigned char freq[SIZE] = {
 
 
 void alphabet(hnode_t *n, unsigned long long int loc, unsigned char lvl) {
+    // internal node check
     if(n->letter & SIZE) {
         loc >>= 1; 
         ++lvl;
+        // traverse with adjusted code
         alphabet(n->left, loc, lvl);
         alphabet(n->right, loc | MSB, lvl);        
     } else {
+        // write code and code length to alphabet
         ALPHABET[(unsigned char)n->letter].code = loc >> (CODE - lvl);
         ALPHABET[(unsigned char)n->letter].len = lvl;
     }
@@ -51,12 +54,14 @@ void tree(hnode_t *hn, node_t *n, unsigned char lvl) {
     hn->letter = n->data.letter;
     
     if(n->data.letter & SIZE) {
+        // pseudo malloc assigning addresses to preallocated data
         hn->left = &HUFFMAN.heap[HUFFMAN.next++];
         hn->right = &HUFFMAN.heap[HUFFMAN.next++];
         ++lvl;
         tree(hn->left, n->left, lvl);
         tree(hn->right, n->right, lvl);
     } else {
+        // leaf node
         hn->left = hn->right = NULL;
     }
     
@@ -66,8 +71,10 @@ void tree(hnode_t *hn, node_t *n, unsigned char lvl) {
 
 void rebuild(node_t *n, unsigned long long int loc, unsigned char lvl, node_t *pqueue[]) {
     if(lvl == 3) {
+        // record level three to build subtrees 
         pqueue[loc] = n;
     } else {
+        // recursive traverse to level three
         loc >>= 1;
         rebuild(n->left, loc, lvl + 1, pqueue);
         rebuild(n->right, loc | 4, lvl + 1, pqueue);
@@ -87,6 +94,7 @@ void build() {
     huffman_t dictionary[SIZE];
     node_t *pqueue[SIZE], *n1, *n2, *n0;
     
+    // pair frequency data with corresponding character
     for(i = 0; !(i & SIZE); ++i) {
         dictionary[i].freq = freq[i];
         dictionary[i].letter = i;
@@ -94,12 +102,14 @@ void build() {
     
     qsort(dictionary, SIZE, sizeof(huffman_t), compare);
     
+    // create leaf nodes for huffman tree
     for(i = 0; !(i & SIZE); ++i) {
         pqueue[i] = (node_t *) malloc(sizeof(node_t));
         pqueue[i]->data = dictionary[i];
         pqueue[i]->left = pqueue[i]->right = NULL;
     }
     
+    // core priority queue huffman tree build loop
     for(len = SIZE; len > 1; --len) {
         n1 = pqueue[0];
         n2 = pqueue[1];
@@ -107,7 +117,7 @@ void build() {
         n0 = (node_t *) malloc(sizeof(node_t));
         n0->left = n1;
         n0->right = n2;
-        // set SIZE bit for all internal nodes
+        // set SIZE bit for all internal nodes (for optimized predicates in traversals)
         n0->data.letter = SIZE;
         n0->data.freq = n1->data.freq + n2->data.freq;
         

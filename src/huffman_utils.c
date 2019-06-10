@@ -58,6 +58,7 @@ hnode_t HUFFMAN[HEAP] = {
 void build() {
     register unsigned int i;
     
+    // add address of array to offset value already stored
     for(i = 0; i < HEAP; ++i) {
         if(HUFFMAN[i].letter & SIZE) {
             HUFFMAN[i].left  = (hnode_t *)((unsigned long long int)HUFFMAN[i].left + 

@@ -13,12 +13,11 @@ int main() {
                   "Where the fear has gone there will be nothing.\n"
                   "Only I will remain.\x03";
     unsigned long long int result[32], buffer;
-
+    
+    // calls hook to build the statically allocated huffman tree
     build();
-    
     printf("Base text\n%s\n\nUnencoded text binary\n", test);
-    
-    
+    // print binary of test string
     for(i = 0; test[i]; ++i) {
         buffer = test[i];
         for(j = 0; !(j & TEXT); ++j) {
@@ -28,9 +27,8 @@ int main() {
     }
 
     n = encode(test, result);
-  
-  printf("\n\nEncoded text binary\n");
-
+    printf("\n\nEncoded text binary\n");
+    // print binary of encoded text
     for(i = 0; i < n; ++i) {
         buffer = result[i];
         for(j = 0; !(j & CODE); ++j) {
@@ -40,9 +38,9 @@ int main() {
     }
     
     n = decode(result, test);
-    
-test[n] = 0;
-    printf("\n\nDecoded text\n%s", test);
+    // print decoded text
+    test[n] = 0;
+    printf("\n\nDecoded text\n%s\n", test);
 
     return 0;
 }
