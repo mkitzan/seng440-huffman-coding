@@ -61,10 +61,10 @@ void build() {
     // add address of array to offset value already stored
     for(i = 0; i < HEAP; ++i) {
         if(HUFFMAN[i].letter & SIZE) {
-            HUFFMAN[i].left  = (hnode_t *)((unsigned long long int)HUFFMAN[i].left + 
-                                        (unsigned long long int)HUFFMAN);
-            HUFFMAN[i].right = (hnode_t *)((unsigned long long int)HUFFMAN[i].right +
-                                        (unsigned long long int)HUFFMAN);
+            HUFFMAN[i].left  = 
+                (hnode_t *)((unsigned long long int)HUFFMAN[i].left + (unsigned long long int)HUFFMAN);
+            HUFFMAN[i].right = 
+                (hnode_t *)((unsigned long long int)HUFFMAN[i].right + (unsigned long long int)HUFFMAN);
         }
     }
     

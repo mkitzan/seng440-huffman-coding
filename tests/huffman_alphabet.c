@@ -44,7 +44,7 @@ int count(hnode_t *n) {
 void header() {
     int i;
     hnode_t curr;
-    FILE *alpha = fopen("src/huffman_alpha.h", "w");
+    FILE *alpha = fopen("src/huffman_data.h", "w");
     
     fprintf(alpha, "#ifndef _HUFFMAN_ALPHA_H_\n"
                    "#define _HUFFMAN_ALPHA_H_\n\n");

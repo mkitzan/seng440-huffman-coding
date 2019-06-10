@@ -1,7 +1,7 @@
 #ifndef _HUFFMAN_UTILS_H_
 #define _HUFFMAN_UTILS_H_
 
-#include "huffman_alpha.h"
+#include "huffman_data.h"
 
 #define HEAP 248
 #define SIZE 128
