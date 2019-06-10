@@ -4,29 +4,39 @@
 
 int main() {
     register unsigned int i, j, n;
-    char test[] = "I must not fear.\n"
-                  "Fear is the mind-killer.\n"
-                  "Fear is the little-death that brings total obliteration.\n"
-                  "I will face my fear.\n" 
-                  "I will permit it to pass over me and through me.\n"
-                  "And when it has gone past I will turn the inner eye to see its path.\n"
-                  "Where the fear has gone there will be nothing.\n"
-                  "Only I will remain.\x03";
-    unsigned long long int result[32], buffer;
+    char zimmermann[] = 
+        "We intend to begin on the first of February unrestricted submarine warfare. "
+        "We shall endeavor in spite of this to keep the United States of America neutral. "
+        "In the event of this not succeeding, we make Mexico a proposal of alliance on the following basis: "
+        "make war together, make peace together, generous financial support and an understanding on our part "
+        "that Mexico is to reconquer the lost territory in Texas, New Mexico, and Arizona. "
+        "The settlement in detail is left to you. "
+        "You will inform the President of the above most secretly as soon as the outbreak of war "
+        "with the United States of America is certain, and add the suggestion that he should, "
+        "on his own initiative, invite Japan to immediate adherence and at the same time mediate between "
+        "Japan and ourselves. Please call the President's attention to the fact that the ruthless employment "
+        "of our submarines now offers the prospect of compelling England in a few months to make peace."
+        "Signed, ZIMMERMANN\x03";
+                  
+                  
+    unsigned long long int result[128], buffer;
     
     // calls hook to build the statically allocated huffman tree
     build();
-    printf("Base text\n%s\n\nUnencoded text binary\n", test);
-    // print binary of test string
-    for(i = 0; test[i]; ++i) {
-        buffer = test[i];
+    printf("Base text\n%s\n\n", zimmermann);
+    
+    printf("Unencoded text binary\n");
+    // print binary of zimmermann telegram
+    for(i = 0; zimmermann[i]; ++i) {
+        buffer = zimmermann[i];
         for(j = 0; !(j & TEXT); ++j) {
             printf("%c", (char)('0' + (buffer & 1)));
             buffer >>= 1;
         }
     }
-
-    n = encode(test, result);
+    
+    n = encode(zimmermann, result);
+    
     printf("\n\nEncoded text binary\n");
     // print binary of encoded text
     for(i = 0; i < n; ++i) {
@@ -37,10 +47,10 @@ int main() {
         }
     }
     
-    n = decode(result, test);
+    n = decode(result, zimmermann);
     // print decoded text
-    test[n] = 0;
-    printf("\n\nDecoded text\n%s\n", test);
+    zimmermann[n] = 0;
+    printf("\n\nDecoded text\n%s\n", zimmermann);
 
     return 0;
 }

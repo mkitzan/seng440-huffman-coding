@@ -71,7 +71,6 @@ void header() {
             fprintf(alpha, "#define N%u { .letter=0x%02x, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }\n", 
                 i, (unsigned char)curr.letter);
         }
-        
     }
         
     fprintf(alpha, "\n#endif\n");
