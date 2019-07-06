@@ -18,8 +18,7 @@ int main() {
         "of our submarines now offers the prospect of compelling England in a few months to make peace."
         "Signed, ZIMMERMANN\x03";
                   
-                  
-    unsigned long long int result[128], buffer;
+    uint16_t result[512], buffer;
     
     // calls hook to build the statically allocated huffman tree
     build();

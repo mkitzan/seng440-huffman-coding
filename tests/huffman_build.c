@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "huffman_lookup.h"
 #include "huffman_build.h"
 
 // frequency of ascii characters in the books data
@@ -24,7 +25,7 @@
 // frequency of ascii characters in the books data (rounded up) to avoid floating points
 // all characters except 30 non-printable characters were given a +1 frequency across the board
 // the 30 non-printable ascii characters excluded have a frequency = 0, everything else has frequency > 0
-unsigned char freq[SIZE] = {  
+uint8_t freq[SIZE] = {  
       0,   0,   0,   1,   0,   0,   0,   0,   0,   0,  22,   0,   0,   0,   0,   0,   
       0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
     177,   2,   2,   2,   2,   2,   2,   3,   2,   2,   2,   2,   2,   2,  10,   2,   
@@ -36,7 +37,7 @@ unsigned char freq[SIZE] = {
 };
 
 
-void alphabet(hnode_t *n, unsigned long long int loc, unsigned char lvl) {
+void alphabet(hnode_t *n, uint16_t loc, uint8_t lvl) {
     // internal node check
     if(n->letter & SIZE) {
         loc >>= 1; 
@@ -46,13 +47,13 @@ void alphabet(hnode_t *n, unsigned long long int loc, unsigned char lvl) {
         alphabet(n->right, loc | MSB, lvl);        
     } else {
         // write code and code length to alphabet
-        ALPHABET[(unsigned char)n->letter].code = loc >> (CODE - lvl);
-        ALPHABET[(unsigned char)n->letter].len = lvl;
+        ALPHABET[(uint8_t)n->letter].code = loc >> (CODE - lvl);
+        ALPHABET[(uint8_t)n->letter].len = lvl;
     }
 }
 
 
-void tree(hnode_t *hn, node_t *n, unsigned char lvl) {
+void tree(hnode_t *hn, node_t *n, uint8_t lvl) {
     hn->letter = n->data.letter;
     
     if(n->data.letter & SIZE) {
@@ -71,7 +72,7 @@ void tree(hnode_t *hn, node_t *n, unsigned char lvl) {
 }
 
 
-void rebuild(node_t *n, unsigned long long int loc, unsigned char lvl, node_t *pqueue[]) {
+void rebuild(node_t *n, uint16_t loc, uint8_t lvl, node_t *pqueue[]) {
     if(lvl == 3) {
         // record level three to build subtrees 
         pqueue[loc] = n;
@@ -92,7 +93,7 @@ int compare(const void *a, const void *b) {
 
 void build() {
     register unsigned int i, len, cap;
-    unsigned long long int order[] = {0, 7, 6, 4, 5, 3, 2, 1};
+    uint16_t order[] = {0, 7, 6, 4, 5, 3, 2, 1};
     huffman_t dictionary[SIZE];
     node_t *pqueue[SIZE], *n1, *n2, *n0;
     
@@ -149,6 +150,9 @@ void build() {
     // build sub trees in order of size of sub tree
     for(i = 0; i < 8; ++i) {
         tree(&HUFFMAN.heap[order[i]], pqueue[order[i]], 3);
-        alphabet(&HUFFMAN.heap[order[i]], order[i] << 61, 3);
+        alphabet(&HUFFMAN.heap[order[i]], order[i] << 13, 3);
     }
+    
+    // call hook to generate lookup tables from the huffman tree
+    //generate();
 }

@@ -1,11 +1,13 @@
 #ifndef _HUFFMAN_BUILD_H_
 #define _HUFFMAN_BUILD_H_
 
+#include <inttypes.h>
+
 #define HEAP 248
 #define SIZE 128
-#define CODE  64
-#define TEXT   8
-#define MSB  0x8000000000000000
+#define CODE (sizeof(uint16_t) * 8)
+#define TEXT (sizeof(uint8_t) * 8)
+#define MSB  0x8000
 
 typedef struct huffman huffman_t;
 struct __attribute__((__packed__)) huffman {
@@ -22,8 +24,8 @@ struct __attribute__((__packed__)) node {
 // dictionary struct to hold code and code length values for each alphabet char
 typedef struct hcode hcode_t;
 struct __attribute__((__packed__)) hcode {
-    unsigned long long int code;
-    unsigned char len;
+    uint16_t code;
+    uint8_t len;
 };
 
 // reduced memory version of node_t to minimize memory loads on dereference
@@ -36,7 +38,7 @@ struct __attribute__((__packed__)) hnode {
 // pseudo memory heap to build the huffman tree in
 typedef struct hheap hheap_t;
 struct __attribute__((__packed__)) hheap {
-    unsigned char next;
+    uint8_t next;
     hnode_t heap[HEAP];
 };
 

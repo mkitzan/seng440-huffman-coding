@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "huffman_lookup.h"
 #include "huffman_build.h"
 
 int find(char key) {
@@ -81,7 +82,7 @@ void header() {
 int main() {
     int i, j;
     char code[CODE];
-    // call hook to build the huffman tree and dictionary 
+    // call hook to build the huffman tree, dictionary, and lookup tables
     build();
     
     // print the info on the array version of the huffman tree
