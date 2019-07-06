@@ -79,14 +79,19 @@ void header() {
 
 
 int main() {
-    int i;
+    int i, j;
     char code[CODE];
     // call hook to build the huffman tree and dictionary 
     build();
     
     // print the info on the array version of the huffman tree
     for(i = 0; i < 8; ++i) {
-        printf("\nBranch: %d\t%d\n", i, count(&HUFFMAN.heap[i]));
+        printf("\nBranch: %d\t\t(", i);
+        for(j = 0; j < 3; ++j) {
+            printf("%d", (i & (1 << (2-j))) >> (2-j));
+        }
+        printf(")\n");
+        
         traverse(&HUFFMAN.heap[i], 0, code);
     }
     printf("\n");

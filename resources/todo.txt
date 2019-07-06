@@ -3,6 +3,7 @@ TODO:
     - Test compression from file for performance stats
 	- C level optimizations of encode and decode functions
 		- type cast code element down to fit into register
+		- loop unrolling/pipeline
         - improve predicates
 	- ASM level optimizations of encode and decode functions
 	- code profile and address bottle neck(s) with hypothetical hardware

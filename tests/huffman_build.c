@@ -22,15 +22,17 @@
     // 1.0902,  14.3156,   0.4428,   0.1702,   0.0017,   0.1744,   0.0845,   0.0000 };
 
 // frequency of ascii characters in the books data (rounded up) to avoid floating points
+// all characters except 30 non-printable characters were given a +1 frequency across the board
+// the 30 non-printable ascii characters excluded have a frequency = 0, everything else has frequency > 0
 unsigned char freq[SIZE] = {  
-      0,   0,   0,   1,   0,   0,   0,   0,   0,   0,  21,   0,   0,   0,   0,   0,   
+      0,   0,   0,   1,   0,   0,   0,   0,   0,   0,  22,   0,   0,   0,   0,   0,   
       0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
-    176,   1,   1,   1,   1,   1,   1,   2,   1,   1,   1,   1,   1,   1,   9,   1,   
-      1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   2,   0,   1,   0,   1,   
-      0,   2,   2,   1,   1,   1,   1,   1,   2,   5,   1,   1,   1,   2,   1,   1,
-      1,   2,   1,   2,   3,   1,   1,   2,   1,   1,   1,   1,   0,   1,   0,   1,   
-      0,  60,  11,  17,  33,  96,  17,  16,  50,  49,   1,   6,  31,  19,  52,  59,  
-     12,   1,  44,  48,  68,  22,   8,  18,   2,  15,   1,   1,   1,   1,   1,   0 
+    177,   2,   2,   2,   2,   2,   2,   3,   2,   2,   2,   2,   2,   2,  10,   2,   
+      2,   2,   2,   2,   2,   2,   2,   2,   2,   2,   2,   3,   1,   2,   1,   2,   
+      1,   3,   3,   2,   2,   2,   2,   2,   3,   6,   2,   2,   2,   3,   2,   2,
+      2,   3,   2,   3,   4,   2,   2,   3,   2,   2,   2,   2,   1,   2,   1,   2,   
+      1,  61,  12,  18,  34,  97,  18,  17,  51,  50,   2,   7,  32,  20,  53,  60,  
+     13,   2,  45,  49,  69,  23,   9,  19,   3,  16,   2,   2,   2,   2,   2,   1 
 };
 
 
@@ -89,7 +91,7 @@ int compare(const void *a, const void *b) {
 
 
 void build() {
-    register unsigned int i, len;
+    register unsigned int i, len, cap;
     unsigned long long int order[] = {0, 7, 6, 4, 5, 3, 2, 1};
     huffman_t dictionary[SIZE];
     node_t *pqueue[SIZE], *n1, *n2, *n0;
@@ -102,15 +104,23 @@ void build() {
     
     qsort(dictionary, SIZE, sizeof(huffman_t), compare);
     
+    
+    
     // create leaf nodes for huffman tree
-    for(i = 0; !(i & SIZE); ++i) {
-        pqueue[i] = (node_t *) malloc(sizeof(node_t));
-        pqueue[i]->data = dictionary[i];
-        pqueue[i]->left = pqueue[i]->right = NULL;
+    for(i = 0; !dictionary[i].freq; ++i);
+    // cap marks the spot where chars with freq 0 start 
+    cap = i;
+    
+    // create tree nodes for every char with frequency > 0
+    for(i = cap; !(i & SIZE); ++i) {
+        pqueue[i-cap] = (node_t *) malloc(sizeof(node_t));
+        pqueue[i-cap]->data = dictionary[i];
+        pqueue[i-cap]->left = pqueue[i-cap]->right = NULL;
     }
     
     // core priority queue huffman tree build loop
-    for(len = SIZE; len > 1; --len) {
+    // offset len by number of nodes which have frequency <= 0
+    for(len = SIZE-cap; len > 1; --len) {
         n1 = pqueue[0];
         n2 = pqueue[1];
         

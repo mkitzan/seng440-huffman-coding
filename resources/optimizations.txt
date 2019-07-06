@@ -1,0 +1,7 @@
+- bit field predicate checks
+- constantly allocated huffman tree/dictionary
+- level three of tree starts the array to skip traversals to min code length
+- register control variables
+- array index "pointers" for huffman tree node links
+- converted recursive traversal to iterative
+- minimized huffman tree/dictionary element data size
