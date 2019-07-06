@@ -2,6 +2,10 @@
 #include "../src/huffman_utils.h"
 #include "../src/huffman.h"
 
+// generally a good value for this is ((number of plain text characters) / 2)
+// other wise result buffer won't have enough memory and you'll get bad output
+#define CODE_COUNT 512
+
 int main() {
     register unsigned int i, j, n;
     char zimmermann[] = 
@@ -18,7 +22,7 @@ int main() {
         "of our submarines now offers the prospect of compelling England in a few months to make peace."
         "Signed, ZIMMERMANN\x03";
                   
-    uint16_t result[512], buffer;
+    uint16_t result[CODE_COUNT], buffer;
     
     // calls hook to build the statically allocated huffman tree
     build();
