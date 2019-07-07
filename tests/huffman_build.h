@@ -42,7 +42,6 @@ struct __attribute__((__packed__)) hheap {
     hnode_t heap[HEAP];
 };
 
-
 hcode_t ALPHABET[SIZE];
 hheap_t HUFFMAN;
 

@@ -15,20 +15,14 @@ int find(char key) {
 
 
 void traverse(hnode_t *n, int lvl, char *code) {
-    if(n->left == NULL && n->right == NULL) {
-        code[lvl] = 0;
-        printf("%c\t%d\t%d\t%s\n", n->letter, lvl, find(n->letter), code);
-        return;
-    }
-    
-    if(n->left) {
+    if(n->letter & SIZE) {
         code[lvl] = '0';
         traverse(n->left, lvl+1, code);
-    }
-    
-    if(n->right) {
         code[lvl] = '1';
         traverse(n->right, lvl+1, code);
+    } else {
+        code[lvl] = 0;
+        printf("%c\t%d\t%d\t%s\n", n->letter, lvl, find(n->letter), code);
     }
 }
 
@@ -40,6 +34,7 @@ int count(hnode_t *n) {
         return 0;
     }
 }
+
 
 // builds a header file for constant data to quick build huffman tree and dictionary from
 void header() {
@@ -54,6 +49,10 @@ void header() {
     for(i = 0; i < SIZE; ++i) {
         fprintf(alpha, "#define C%u { .code=%llu, .len=%u }\n", i, ALPHABET[i].code, ALPHABET[i].len);
     }
+    
+    fprintf(alpha, "\n");
+    
+    // generate lookup table static data
     
     fprintf(alpha, "\n");
     

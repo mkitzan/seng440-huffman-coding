@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include "huffman_lookup.h"
 #include "huffman_build.h"
@@ -105,8 +104,6 @@ void build() {
     
     qsort(dictionary, SIZE, sizeof(huffman_t), compare);
     
-    
-    
     // create leaf nodes for huffman tree
     for(i = 0; !dictionary[i].freq; ++i);
     // cap marks the spot where chars with freq 0 start 
@@ -154,5 +151,5 @@ void build() {
     }
     
     // call hook to generate lookup tables from the huffman tree
-    //generate();
+    generate();
 }
