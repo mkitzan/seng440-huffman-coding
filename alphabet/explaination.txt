@@ -1,0 +1,14 @@
+clean.py
+	takes all files in the "books\raw" dir and removes non ascii chars
+	then writes the resulting files in "books\clean"
+	args: NONE
+
+frequency.py
+	computes the character frequencies of characters in files of argument
+	input directory
+	args: directory modulo
+
+convert.py
+	takes a book file from "clean" as an argument and turns it into the eader file for
+	"huffman_test_perf.c" (do not include "clean/" with argument)
+	args: book-file-name

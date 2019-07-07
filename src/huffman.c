@@ -1,7 +1,5 @@
 #include "huffman.h"
 
-#include <stdio.h>
-
 unsigned int encode(const char *text, uint32_t *code) {
     register unsigned int i = 0, loc = 0, len = 0;
     register uint8_t key;

@@ -2,7 +2,7 @@
 #include "../src/huffman_utils.h"
 #include "../src/huffman.h"
 
-// generally a good value for this is ((number of plain text characters) / 2)
+// generally a good value for this is ((number of plain text characters) / 4)
 // other wise result buffer won't have enough memory and you'll get bad output
 #define CODE_COUNT 256
 

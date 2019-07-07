@@ -3,13 +3,9 @@ from sys import argv
 
 
 def main():
-    if len(argv) == 1:
-        print("Must provide folder location files to clean")
-        return
-    
-    for file in sorted(listdir(argv[1]+ "/raw/")):
-        inf = open(argv[1] + "/raw/" + file, "r", encoding='latin-1')
-        outf = open(argv[1] + "/clean/" + file, "w+", encoding='latin-1')
+    for file in sorted(listdir("books/raw/")):
+        inf = open("books/raw/" + file, "r", encoding='latin-1')
+        outf = open("books/clean/" + file, "w+", encoding='latin-1')
         count = 0
         for line in inf:
             for c in line:
