@@ -97,10 +97,10 @@ hlook_t TABLE7[64] = {
 
 
 htable_t TABLES[8] = { 
-    { .table=TABLE0, .draw=1 }, { .table=TABLE1, .draw=3 }, 
-    { .table=TABLE2, .draw=1 }, { .table=TABLE3, .draw=0 },
-    { .table=TABLE4, .draw=7 }, { .table=TABLE5, .draw=6 },
-    { .table=TABLE6, .draw=6 }, { .table=TABLE7, .draw=6 },
+    { .table=TABLE0, .draw=0x0001 }, { .table=TABLE1, .draw=0x0007 }, 
+    { .table=TABLE2, .draw=0x0001 }, { .table=TABLE3, .draw=0x0000 },
+    { .table=TABLE4, .draw=0x007f }, { .table=TABLE5, .draw=0x003f },
+    { .table=TABLE6, .draw=0x003f }, { .table=TABLE7, .draw=0x003f },
 };
 
 

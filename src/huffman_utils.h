@@ -24,7 +24,7 @@ struct __attribute__((__packed__)) hlook {
 };
 
 
-// pointer to a lookup table which also holds the value of the max code length in the table
+// pointer to a lookup table which also holds the value to help copy input data
 typedef struct htable htable_t;
 struct __attribute__((__packed__)) htable {
     hlook_t *table;

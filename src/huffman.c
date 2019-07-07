@@ -31,8 +31,7 @@ unsigned int encode(const char *text, uint16_t *code) {
 
 unsigned int decode(const uint16_t *code, char *text) {
     register unsigned int loc = 0, pos = 1, bits = 0, seen = 0;
-    uint16_t buffer = code[0], fill = code[1];
-    uint8_t draw;
+    uint16_t buffer = code[0], fill = code[1], draw;
     hlook_t *table;
     
     for(;;) {
@@ -41,8 +40,9 @@ unsigned int decode(const uint16_t *code, char *text) {
         bits = 3;
         table = LOOKUP[draw].table;
         draw = LOOKUP[draw].draw;
+        
+        // shift over stream and copy buffer data
         buffer >>= 3;
-        draw = 0xFF >> (8 - draw);
         draw &= buffer;
         
         // write character to plain text container
