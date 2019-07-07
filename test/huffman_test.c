@@ -4,7 +4,7 @@
 
 // generally a good value for this is ((number of plain text characters) / 2)
 // other wise result buffer won't have enough memory and you'll get bad output
-#define CODE_COUNT 512
+#define CODE_COUNT 256
 
 int main() {
     register unsigned int i, j, n;
@@ -22,7 +22,7 @@ int main() {
         "of our submarines now offers the prospect of compelling England in a few months to make peace."
         "Signed, ZIMMERMANN\x03";
                   
-    uint16_t result[CODE_COUNT], buffer;
+    uint32_t result[CODE_COUNT], buffer;
     
     // calls hook to build the statically allocated huffman tree
     build();
@@ -54,6 +54,6 @@ int main() {
     // print decoded text
     zimmermann[n] = 0;
     printf("\n\nDecoded text\n%s\n", zimmermann);
-
+    
     return 0;
 }

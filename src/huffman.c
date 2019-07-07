@@ -1,9 +1,9 @@
 #include "huffman.h"
 
-unsigned int encode(const char *text, uint16_t *code) {
+unsigned int encode(const char *text, uint32_t *code) {
     register unsigned int i = 0, loc = 0, len = 0;
     register uint8_t key;
-    uint16_t buffer = 0;
+    uint32_t buffer = 0;
     
     // loop through each character of the plain text until null terminator
     while(text[i]) {
@@ -29,9 +29,9 @@ unsigned int encode(const char *text, uint16_t *code) {
 }
 
 
-unsigned int decode(const uint16_t *code, char *text) {
+unsigned int decode(const uint32_t *code, char *text) {
     register unsigned int loc = 0, pos = 1, bits = 0, seen = 0;
-    uint16_t buffer = code[0], fill = code[1], draw;
+    uint32_t buffer = code[0], fill = code[1], draw;
     hlook_t *table;
     
     for(;;) {

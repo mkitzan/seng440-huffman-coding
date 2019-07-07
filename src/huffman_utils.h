@@ -6,7 +6,7 @@
 
 #define HEAP 188
 #define SIZE 128
-#define CODE (sizeof(uint16_t) * 8)
+#define CODE (sizeof(uint32_t) * 8)
 #define TEXT (sizeof(char) * 8)
 
 // dictionary struct to hold code and code length values for each alphabet char

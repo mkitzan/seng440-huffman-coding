@@ -3,8 +3,8 @@
 
 #include "huffman_utils.h"
 
-unsigned int encode(const char *text, uint16_t *code);
+unsigned int encode(const char *text, uint32_t *code);
 
-unsigned int decode(const uint16_t *code, char *text);
+unsigned int decode(const uint32_t *code, char *text);
 
 #endif
