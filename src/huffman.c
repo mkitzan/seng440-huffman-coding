@@ -32,32 +32,29 @@ unsigned int encode(const char *text, uint16_t *code) {
 unsigned int decode(const uint16_t *code, char *text) {
     register unsigned int loc = 0, pos = 1, bits = 0, seen = 0;
     uint16_t buffer = code[0], fill = code[1];
-    hnode_t curr;
+    uint8_t draw;
+    hlook_t *table;
     
-    do {
-        // use next three bits to index the cached third level of the TREE
-        curr = TREE[buffer & 7];
-        buffer >>= 3;
+    for(;;) {
+        // use next three bits to index the LOOKUP table
+        draw = buffer & 7;
         bits = 3;
-        
-        
-        // check if current node is not a leaf node 
-        //      (only internal nodes are have the SIZE bit set)
-        while(curr.letter & SIZE) {
-            // traverse left or right based on least sig bit in buffer
-            if(buffer & 1) {
-                curr = *(curr.right);
-            } else {
-                curr = *(curr.left);
-            }
-            
-            buffer >>= 1;
-            ++bits;
-        }
-        
+        table = LOOKUP[draw].table;
+        draw = LOOKUP[draw].draw;
+        buffer >>= 3;
+        draw = 0xFF >> (8 - draw);
+        draw &= buffer;
         
         // write character to plain text container
-        text[loc++] = curr.letter;
+        text[loc++] = table[draw].letter;
+        
+        // check if EOT has just been read
+        if(table[draw].letter == 0x03) { 
+            break; 
+        }
+        
+        bits += table[draw].contrib;
+        buffer >>= table[draw].contrib;
         
         // fill the buffer with data to replace what was just removed
         seen += bits;
@@ -76,8 +73,7 @@ unsigned int decode(const uint16_t *code, char *text) {
         }
         
         fill >>= bits;
-    // check if EOT has just been read
-    } while(curr.letter != 0x03);
+    }
 
     return loc;
 }
