@@ -1,7 +1,5 @@
 #include "huffman.h"
 
-#include <stdio.h>
-
 unsigned int encode(const char *text, uint32_t *code) {
     register unsigned int i = 0, loc = 0, len = 0;
     register uint8_t key;
@@ -32,10 +30,11 @@ unsigned int encode(const char *text, uint32_t *code) {
 
 
 unsigned int decode(const uint32_t *code, char *text) {
-    register uint32_t buffer = code[0], loc = 0, pos = 1, bits = 0, seen = 0, draw;
+    register unsigned int loc = 0, pos = 1, bits = 0, seen = 0;
+    uint32_t buffer = code[0], fill = code[1], draw;
     hlook_t *table;
     
-    do {
+    for(;;) {
         // use next three bits to index the LOOKUP table
         draw = buffer & 7;
         bits = 3;
@@ -46,27 +45,35 @@ unsigned int decode(const uint32_t *code, char *text) {
         buffer >>= 3;
         draw &= buffer;
         
-        // adjust buffer and control variables
+        // write character to plain text container
+        text[loc++] = table[draw].letter;
+        
+        // check if EOT has just been read
+        if(table[draw].letter == 0x03) { 
+            break; 
+        }
+        
         bits += table[draw].contrib;
         buffer >>= table[draw].contrib;
         
-        // write character to plain text container
-        text[loc] = table[draw].letter;
-        
-        draw = code[pos] >> seen;
-        // record how many bits were seen
+        // fill the buffer with data to replace what was just removed
         seen += bits;
-        buffer |= draw << (CODE - bits);
+        buffer |= fill << (CODE - bits);
         
+        // check if fill pre-buffer is has expired
         if(seen & CODE) {
-            seen -= CODE;
-            ++pos;
-            // shift left is undefined for shifts >= 32, and 32 is a possible value
-            if(seen) {
-                buffer |= code[pos] << (CODE - seen);
+            fill = code[++pos];
+            // adjust control variables 
+            bits = seen - CODE;
+            seen = seen - CODE;
+            // check if there are hang over bits to write
+            if(bits) {
+                buffer |= fill << (CODE - bits);
             }
         }
-    } while(text[loc++] != 0x03);
+        
+        fill >>= bits;
+    }
 
     return loc;
 }
