@@ -15,7 +15,7 @@ def main():
     with open("books/clean/" + argv[1], "r", encoding="latin-1") as infile:
         for line in infile:
             count += len(line)
-            line = line.strip()
+            line = line.strip().replace("\"", "\\\"")
             header.write("\n\t\"" + line + "\\n\"")
     
     header.write("\n\t\"\x03\"")
