@@ -47,32 +47,51 @@ void header() {
     
     // create define statements for values in huffman dictionary
     for(i = 0; i < SIZE; ++i) {
-        fprintf(alpha, "#define C%u { .code=%llu, .len=%u }\n", i, ALPHABET[i].code, ALPHABET[i].len);
+        fprintf(alpha, "#define C%u { .code=0x%04x, .len=%u }\n", i, ALPHABET[i].code, ALPHABET[i].len);
     }
     
     fprintf(alpha, "\n");
     
     // generate lookup table static data
-    
+    for(i = 0; i < BRANCH0; ++i) {
+        fprintf(alpha, "#define L0_%u { .letter=0x%02x, .contrib=%u }\n", i, LOOKUP0[i].letter, LOOKUP0[i].contrib);
+    }
     fprintf(alpha, "\n");
     
-    // create define statements for values in huffman tree array
-    for(i = 0; i < HUFFMAN.next; ++i) {
-        curr = HUFFMAN.heap[i];
-        // only internal nodes have left/right pointers with values
-        if(curr.letter & SIZE) {
-            // value assigned to left and right addresses are the offset from the base of the array
-            fprintf(alpha, "#define N%u { .letter=0x%02x, "
-                    ".left=(hnode_t *)(%u*sizeof(hnode_t)), "
-                    ".right=(hnode_t *)(%u*sizeof(hnode_t)) }\n",
-                i, (unsigned char)curr.letter, (int)(curr.left-HUFFMAN.heap), (int)(curr.right-HUFFMAN.heap));
-        } else {
-            // assign nulls to left/right pointers
-            fprintf(alpha, "#define N%u { .letter=0x%02x, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }\n", 
-                i, (unsigned char)curr.letter);
-        }
+    for(i = 0; i < BRANCH1; ++i) {
+        fprintf(alpha, "#define L1_%u { .letter=0x%02x, .contrib=%u }\n", i, LOOKUP1[i].letter, LOOKUP1[i].contrib);
     }
-        
+    fprintf(alpha, "\n");
+    
+    for(i = 0; i < BRANCH2; ++i) {
+        fprintf(alpha, "#define L2_%u { .letter=0x%02x, .contrib=%u }\n", i, LOOKUP2[i].letter, LOOKUP2[i].contrib);
+    }
+    fprintf(alpha, "\n");
+    
+    for(i = 0; i < BRANCH3; ++i) {
+        fprintf(alpha, "#define L3_%u { .letter=0x%02x, .contrib=%u }\n", i, LOOKUP3[i].letter, LOOKUP3[i].contrib);
+    }
+    fprintf(alpha, "\n");
+    
+    for(i = 0; i < BRANCH4; ++i) {
+        fprintf(alpha, "#define L4_%u { .letter=0x%02x, .contrib=%u }\n", i, LOOKUP4[i].letter, LOOKUP4[i].contrib);
+    }
+    fprintf(alpha, "\n");
+    
+    for(i = 0; i < BRANCH5; ++i) {
+        fprintf(alpha, "#define L5_%u { .letter=0x%02x, .contrib=%u }\n", i, LOOKUP5[i].letter, LOOKUP5[i].contrib);
+    }
+    fprintf(alpha, "\n");
+    
+    for(i = 0; i < BRANCH6; ++i) {
+        fprintf(alpha, "#define L6_%u { .letter=0x%02x, .contrib=%u }\n", i, LOOKUP6[i].letter, LOOKUP6[i].contrib);
+    }
+    fprintf(alpha, "\n");
+    
+    for(i = 0; i < BRANCH7; ++i) {
+        fprintf(alpha, "#define L7_%u { .letter=0x%02x, .contrib=%u }\n", i, LOOKUP7[i].letter, LOOKUP7[i].contrib);
+    }
+    
     fprintf(alpha, "\n#endif\n");
     fclose(alpha);
 }

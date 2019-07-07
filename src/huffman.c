@@ -5,9 +5,9 @@ unsigned int encode(const char *text, uint16_t *code) {
     register uint8_t key;
     uint16_t buffer = 0;
     
-    // loop through each character of the plain text
-    for(; text[i]; ++i) {
-        key = text[i];
+    // loop through each character of the plain text until null terminator
+    while(text[i]) {
+        key = text[i++];
         // write the character's code to buffer shifted by the amount of bits already set
         buffer |= DICT[key].code << len;
         // add the amount of bits written to the current length
@@ -40,6 +40,7 @@ unsigned int decode(const uint16_t *code, char *text) {
         buffer >>= 3;
         bits = 3;
         
+        
         // check if current node is not a leaf node 
         //      (only internal nodes are have the SIZE bit set)
         while(curr.letter & SIZE) {
@@ -53,6 +54,7 @@ unsigned int decode(const uint16_t *code, char *text) {
             buffer >>= 1;
             ++bits;
         }
+        
         
         // write character to plain text container
         text[loc++] = curr.letter;

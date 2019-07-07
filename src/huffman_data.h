@@ -1,322 +1,474 @@
 #ifndef _HUFFMAN_ALPHA_H_
 #define _HUFFMAN_ALPHA_H_
 
-#define C0 { .code=0, .len=0 }
-#define C1 { .code=0, .len=0 }
-#define C2 { .code=0, .len=0 }
-#define C3 { .code=476, .len=10 }
-#define C4 { .code=0, .len=0 }
-#define C5 { .code=0, .len=0 }
-#define C6 { .code=0, .len=0 }
-#define C7 { .code=0, .len=0 }
-#define C8 { .code=0, .len=0 }
-#define C9 { .code=0, .len=0 }
-#define C10 { .code=13, .len=6 }
-#define C11 { .code=0, .len=0 }
-#define C12 { .code=0, .len=0 }
-#define C13 { .code=0, .len=0 }
-#define C14 { .code=0, .len=0 }
-#define C15 { .code=0, .len=0 }
-#define C16 { .code=0, .len=0 }
-#define C17 { .code=0, .len=0 }
-#define C18 { .code=0, .len=0 }
-#define C19 { .code=0, .len=0 }
-#define C20 { .code=0, .len=0 }
-#define C21 { .code=0, .len=0 }
-#define C22 { .code=0, .len=0 }
-#define C23 { .code=0, .len=0 }
-#define C24 { .code=0, .len=0 }
-#define C25 { .code=0, .len=0 }
-#define C26 { .code=0, .len=0 }
-#define C27 { .code=0, .len=0 }
-#define C28 { .code=0, .len=0 }
-#define C29 { .code=0, .len=0 }
-#define C30 { .code=0, .len=0 }
-#define C31 { .code=0, .len=0 }
-#define C32 { .code=3, .len=3 }
-#define C33 { .code=262, .len=9 }
-#define C34 { .code=158, .len=9 }
-#define C35 { .code=126, .len=9 }
-#define C36 { .code=254, .len=9 }
-#define C37 { .code=45, .len=9 }
-#define C38 { .code=92, .len=9 }
-#define C39 { .code=301, .len=9 }
-#define C40 { .code=174, .len=9 }
-#define C41 { .code=430, .len=9 }
-#define C42 { .code=46, .len=9 }
-#define C43 { .code=302, .len=9 }
-#define C44 { .code=238, .len=9 }
-#define C45 { .code=494, .len=9 }
-#define C46 { .code=101, .len=7 }
-#define C47 { .code=366, .len=9 }
-#define C48 { .code=142, .len=9 }
-#define C49 { .code=398, .len=9 }
-#define C50 { .code=14, .len=9 }
-#define C51 { .code=270, .len=9 }
-#define C52 { .code=206, .len=9 }
-#define C53 { .code=462, .len=9 }
-#define C54 { .code=78, .len=9 }
-#define C55 { .code=334, .len=9 }
-#define C56 { .code=190, .len=9 }
-#define C57 { .code=446, .len=9 }
-#define C58 { .code=62, .len=9 }
-#define C59 { .code=167, .len=9 }
-#define C60 { .code=28, .len=10 }
-#define C61 { .code=510, .len=9 }
-#define C62 { .code=796, .len=10 }
-#define C63 { .code=382, .len=9 }
-#define C64 { .code=284, .len=10 }
-#define C65 { .code=39, .len=9 }
-#define C66 { .code=295, .len=9 }
-#define C67 { .code=286, .len=9 }
-#define C68 { .code=222, .len=9 }
-#define C69 { .code=478, .len=9 }
-#define C70 { .code=94, .len=9 }
-#define C71 { .code=350, .len=9 }
-#define C72 { .code=429, .len=9 }
-#define C73 { .code=237, .len=8 }
-#define C74 { .code=38, .len=9 }
-#define C75 { .code=294, .len=9 }
-#define C76 { .code=230, .len=9 }
-#define C77 { .code=423, .len=9 }
-#define C78 { .code=102, .len=9 }
-#define C79 { .code=358, .len=9 }
-#define C80 { .code=134, .len=9 }
-#define C81 { .code=365, .len=9 }
-#define C82 { .code=6, .len=9 }
-#define C83 { .code=109, .len=9 }
-#define C84 { .code=156, .len=8 }
-#define C85 { .code=454, .len=9 }
-#define C86 { .code=70, .len=9 }
-#define C87 { .code=44, .len=8 }
-#define C88 { .code=172, .len=9 }
-#define C89 { .code=428, .len=9 }
-#define C90 { .code=326, .len=9 }
-#define C91 { .code=198, .len=9 }
-#define C92 { .code=732, .len=10 }
-#define C93 { .code=390, .len=9 }
-#define C94 { .code=220, .len=10 }
-#define C95 { .code=486, .len=9 }
-#define C96 { .code=988, .len=10 }
-#define C97 { .code=10, .len=4 }
-#define C98 { .code=103, .len=7 }
-#define C99 { .code=49, .len=6 }
-#define C100 { .code=1, .len=5 }
-#define C101 { .code=15, .len=4 }
-#define C102 { .code=5, .len=6 }
-#define C103 { .code=17, .len=6 }
-#define C104 { .code=8, .len=4 }
-#define C105 { .code=0, .len=4 }
-#define C106 { .code=422, .len=9 }
-#define C107 { .code=108, .len=7 }
-#define C108 { .code=22, .len=5 }
-#define C109 { .code=53, .len=6 }
-#define C110 { .code=4, .len=4 }
-#define C111 { .code=2, .len=4 }
-#define C112 { .code=12, .len=6 }
-#define C113 { .code=166, .len=9 }
-#define C114 { .code=29, .len=5 }
-#define C115 { .code=23, .len=5 }
-#define C116 { .code=9, .len=4 }
-#define C117 { .code=7, .len=6 }
-#define C118 { .code=37, .len=7 }
-#define C119 { .code=21, .len=6 }
-#define C120 { .code=173, .len=9 }
-#define C121 { .code=60, .len=6 }
-#define C122 { .code=30, .len=9 }
-#define C123 { .code=414, .len=9 }
-#define C124 { .code=318, .len=9 }
-#define C125 { .code=110, .len=9 }
-#define C126 { .code=348, .len=9 }
-#define C127 { .code=540, .len=10 }
+#define C0 { .code=0x0000, .len=0 }
+#define C1 { .code=0x0000, .len=0 }
+#define C2 { .code=0x0000, .len=0 }
+#define C3 { .code=0x01dc, .len=10 }
+#define C4 { .code=0x0000, .len=0 }
+#define C5 { .code=0x0000, .len=0 }
+#define C6 { .code=0x0000, .len=0 }
+#define C7 { .code=0x0000, .len=0 }
+#define C8 { .code=0x0000, .len=0 }
+#define C9 { .code=0x0000, .len=0 }
+#define C10 { .code=0x000d, .len=6 }
+#define C11 { .code=0x0000, .len=0 }
+#define C12 { .code=0x0000, .len=0 }
+#define C13 { .code=0x0000, .len=0 }
+#define C14 { .code=0x0000, .len=0 }
+#define C15 { .code=0x0000, .len=0 }
+#define C16 { .code=0x0000, .len=0 }
+#define C17 { .code=0x0000, .len=0 }
+#define C18 { .code=0x0000, .len=0 }
+#define C19 { .code=0x0000, .len=0 }
+#define C20 { .code=0x0000, .len=0 }
+#define C21 { .code=0x0000, .len=0 }
+#define C22 { .code=0x0000, .len=0 }
+#define C23 { .code=0x0000, .len=0 }
+#define C24 { .code=0x0000, .len=0 }
+#define C25 { .code=0x0000, .len=0 }
+#define C26 { .code=0x0000, .len=0 }
+#define C27 { .code=0x0000, .len=0 }
+#define C28 { .code=0x0000, .len=0 }
+#define C29 { .code=0x0000, .len=0 }
+#define C30 { .code=0x0000, .len=0 }
+#define C31 { .code=0x0000, .len=0 }
+#define C32 { .code=0x0003, .len=3 }
+#define C33 { .code=0x0106, .len=9 }
+#define C34 { .code=0x009e, .len=9 }
+#define C35 { .code=0x007e, .len=9 }
+#define C36 { .code=0x00fe, .len=9 }
+#define C37 { .code=0x002d, .len=9 }
+#define C38 { .code=0x005c, .len=9 }
+#define C39 { .code=0x012d, .len=9 }
+#define C40 { .code=0x00ae, .len=9 }
+#define C41 { .code=0x01ae, .len=9 }
+#define C42 { .code=0x002e, .len=9 }
+#define C43 { .code=0x012e, .len=9 }
+#define C44 { .code=0x00ee, .len=9 }
+#define C45 { .code=0x01ee, .len=9 }
+#define C46 { .code=0x0065, .len=7 }
+#define C47 { .code=0x016e, .len=9 }
+#define C48 { .code=0x008e, .len=9 }
+#define C49 { .code=0x018e, .len=9 }
+#define C50 { .code=0x000e, .len=9 }
+#define C51 { .code=0x010e, .len=9 }
+#define C52 { .code=0x00ce, .len=9 }
+#define C53 { .code=0x01ce, .len=9 }
+#define C54 { .code=0x004e, .len=9 }
+#define C55 { .code=0x014e, .len=9 }
+#define C56 { .code=0x00be, .len=9 }
+#define C57 { .code=0x01be, .len=9 }
+#define C58 { .code=0x003e, .len=9 }
+#define C59 { .code=0x00a7, .len=9 }
+#define C60 { .code=0x001c, .len=10 }
+#define C61 { .code=0x01fe, .len=9 }
+#define C62 { .code=0x031c, .len=10 }
+#define C63 { .code=0x017e, .len=9 }
+#define C64 { .code=0x011c, .len=10 }
+#define C65 { .code=0x0027, .len=9 }
+#define C66 { .code=0x0127, .len=9 }
+#define C67 { .code=0x011e, .len=9 }
+#define C68 { .code=0x00de, .len=9 }
+#define C69 { .code=0x01de, .len=9 }
+#define C70 { .code=0x005e, .len=9 }
+#define C71 { .code=0x015e, .len=9 }
+#define C72 { .code=0x01ad, .len=9 }
+#define C73 { .code=0x00ed, .len=8 }
+#define C74 { .code=0x0026, .len=9 }
+#define C75 { .code=0x0126, .len=9 }
+#define C76 { .code=0x00e6, .len=9 }
+#define C77 { .code=0x01a7, .len=9 }
+#define C78 { .code=0x0066, .len=9 }
+#define C79 { .code=0x0166, .len=9 }
+#define C80 { .code=0x0086, .len=9 }
+#define C81 { .code=0x016d, .len=9 }
+#define C82 { .code=0x0006, .len=9 }
+#define C83 { .code=0x006d, .len=9 }
+#define C84 { .code=0x009c, .len=8 }
+#define C85 { .code=0x01c6, .len=9 }
+#define C86 { .code=0x0046, .len=9 }
+#define C87 { .code=0x002c, .len=8 }
+#define C88 { .code=0x00ac, .len=9 }
+#define C89 { .code=0x01ac, .len=9 }
+#define C90 { .code=0x0146, .len=9 }
+#define C91 { .code=0x00c6, .len=9 }
+#define C92 { .code=0x02dc, .len=10 }
+#define C93 { .code=0x0186, .len=9 }
+#define C94 { .code=0x00dc, .len=10 }
+#define C95 { .code=0x01e6, .len=9 }
+#define C96 { .code=0x03dc, .len=10 }
+#define C97 { .code=0x000a, .len=4 }
+#define C98 { .code=0x0067, .len=7 }
+#define C99 { .code=0x0031, .len=6 }
+#define C100 { .code=0x0001, .len=5 }
+#define C101 { .code=0x000f, .len=4 }
+#define C102 { .code=0x0005, .len=6 }
+#define C103 { .code=0x0011, .len=6 }
+#define C104 { .code=0x0008, .len=4 }
+#define C105 { .code=0x0000, .len=4 }
+#define C106 { .code=0x01a6, .len=9 }
+#define C107 { .code=0x006c, .len=7 }
+#define C108 { .code=0x0016, .len=5 }
+#define C109 { .code=0x0035, .len=6 }
+#define C110 { .code=0x0004, .len=4 }
+#define C111 { .code=0x0002, .len=4 }
+#define C112 { .code=0x000c, .len=6 }
+#define C113 { .code=0x00a6, .len=9 }
+#define C114 { .code=0x001d, .len=5 }
+#define C115 { .code=0x0017, .len=5 }
+#define C116 { .code=0x0009, .len=4 }
+#define C117 { .code=0x0007, .len=6 }
+#define C118 { .code=0x0025, .len=7 }
+#define C119 { .code=0x0015, .len=6 }
+#define C120 { .code=0x00ad, .len=9 }
+#define C121 { .code=0x003c, .len=6 }
+#define C122 { .code=0x001e, .len=9 }
+#define C123 { .code=0x019e, .len=9 }
+#define C124 { .code=0x013e, .len=9 }
+#define C125 { .code=0x006e, .len=9 }
+#define C126 { .code=0x015c, .len=9 }
+#define C127 { .code=0x021c, .len=10 }
 
-#define N0 { .letter=0x80, .left=(hnode_t *)(8*sizeof(hnode_t)), .right=(hnode_t *)(9*sizeof(hnode_t)) }
-#define N1 { .letter=0x80, .left=(hnode_t *)(182*sizeof(hnode_t)), .right=(hnode_t *)(183*sizeof(hnode_t)) }
-#define N2 { .letter=0x80, .left=(hnode_t *)(180*sizeof(hnode_t)), .right=(hnode_t *)(181*sizeof(hnode_t)) }
-#define N3 { .letter=0x20, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N4 { .letter=0x80, .left=(hnode_t *)(120*sizeof(hnode_t)), .right=(hnode_t *)(121*sizeof(hnode_t)) }
-#define N5 { .letter=0x80, .left=(hnode_t *)(154*sizeof(hnode_t)), .right=(hnode_t *)(155*sizeof(hnode_t)) }
-#define N6 { .letter=0x80, .left=(hnode_t *)(24*sizeof(hnode_t)), .right=(hnode_t *)(25*sizeof(hnode_t)) }
-#define N7 { .letter=0x80, .left=(hnode_t *)(10*sizeof(hnode_t)), .right=(hnode_t *)(11*sizeof(hnode_t)) }
-#define N8 { .letter=0x69, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N9 { .letter=0x68, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N10 { .letter=0x80, .left=(hnode_t *)(12*sizeof(hnode_t)), .right=(hnode_t *)(13*sizeof(hnode_t)) }
-#define N11 { .letter=0x65, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N12 { .letter=0x80, .left=(hnode_t *)(14*sizeof(hnode_t)), .right=(hnode_t *)(15*sizeof(hnode_t)) }
-#define N13 { .letter=0x73, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N14 { .letter=0x75, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N15 { .letter=0x80, .left=(hnode_t *)(16*sizeof(hnode_t)), .right=(hnode_t *)(17*sizeof(hnode_t)) }
-#define N16 { .letter=0x80, .left=(hnode_t *)(18*sizeof(hnode_t)), .right=(hnode_t *)(19*sizeof(hnode_t)) }
-#define N17 { .letter=0x62, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N18 { .letter=0x80, .left=(hnode_t *)(20*sizeof(hnode_t)), .right=(hnode_t *)(21*sizeof(hnode_t)) }
-#define N19 { .letter=0x80, .left=(hnode_t *)(22*sizeof(hnode_t)), .right=(hnode_t *)(23*sizeof(hnode_t)) }
-#define N20 { .letter=0x41, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N21 { .letter=0x42, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N22 { .letter=0x3b, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N23 { .letter=0x4d, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N24 { .letter=0x80, .left=(hnode_t *)(26*sizeof(hnode_t)), .right=(hnode_t *)(27*sizeof(hnode_t)) }
-#define N25 { .letter=0x80, .left=(hnode_t *)(58*sizeof(hnode_t)), .right=(hnode_t *)(59*sizeof(hnode_t)) }
-#define N26 { .letter=0x80, .left=(hnode_t *)(28*sizeof(hnode_t)), .right=(hnode_t *)(29*sizeof(hnode_t)) }
-#define N27 { .letter=0x6c, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N28 { .letter=0x80, .left=(hnode_t *)(30*sizeof(hnode_t)), .right=(hnode_t *)(31*sizeof(hnode_t)) }
-#define N29 { .letter=0x80, .left=(hnode_t *)(44*sizeof(hnode_t)), .right=(hnode_t *)(45*sizeof(hnode_t)) }
-#define N30 { .letter=0x80, .left=(hnode_t *)(32*sizeof(hnode_t)), .right=(hnode_t *)(33*sizeof(hnode_t)) }
-#define N31 { .letter=0x80, .left=(hnode_t *)(38*sizeof(hnode_t)), .right=(hnode_t *)(39*sizeof(hnode_t)) }
-#define N32 { .letter=0x80, .left=(hnode_t *)(34*sizeof(hnode_t)), .right=(hnode_t *)(35*sizeof(hnode_t)) }
-#define N33 { .letter=0x80, .left=(hnode_t *)(36*sizeof(hnode_t)), .right=(hnode_t *)(37*sizeof(hnode_t)) }
-#define N34 { .letter=0x52, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N35 { .letter=0x21, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N36 { .letter=0x50, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N37 { .letter=0x5d, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N38 { .letter=0x80, .left=(hnode_t *)(40*sizeof(hnode_t)), .right=(hnode_t *)(41*sizeof(hnode_t)) }
-#define N39 { .letter=0x80, .left=(hnode_t *)(42*sizeof(hnode_t)), .right=(hnode_t *)(43*sizeof(hnode_t)) }
-#define N40 { .letter=0x56, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N41 { .letter=0x5a, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N42 { .letter=0x5b, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N43 { .letter=0x55, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N44 { .letter=0x80, .left=(hnode_t *)(46*sizeof(hnode_t)), .right=(hnode_t *)(47*sizeof(hnode_t)) }
-#define N45 { .letter=0x80, .left=(hnode_t *)(52*sizeof(hnode_t)), .right=(hnode_t *)(53*sizeof(hnode_t)) }
-#define N46 { .letter=0x80, .left=(hnode_t *)(48*sizeof(hnode_t)), .right=(hnode_t *)(49*sizeof(hnode_t)) }
-#define N47 { .letter=0x80, .left=(hnode_t *)(50*sizeof(hnode_t)), .right=(hnode_t *)(51*sizeof(hnode_t)) }
-#define N48 { .letter=0x4a, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N49 { .letter=0x4b, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N50 { .letter=0x71, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N51 { .letter=0x6a, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N52 { .letter=0x80, .left=(hnode_t *)(54*sizeof(hnode_t)), .right=(hnode_t *)(55*sizeof(hnode_t)) }
-#define N53 { .letter=0x80, .left=(hnode_t *)(56*sizeof(hnode_t)), .right=(hnode_t *)(57*sizeof(hnode_t)) }
-#define N54 { .letter=0x4e, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N55 { .letter=0x4f, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N56 { .letter=0x4c, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N57 { .letter=0x5f, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N58 { .letter=0x80, .left=(hnode_t *)(60*sizeof(hnode_t)), .right=(hnode_t *)(61*sizeof(hnode_t)) }
-#define N59 { .letter=0x80, .left=(hnode_t *)(90*sizeof(hnode_t)), .right=(hnode_t *)(91*sizeof(hnode_t)) }
-#define N60 { .letter=0x80, .left=(hnode_t *)(62*sizeof(hnode_t)), .right=(hnode_t *)(63*sizeof(hnode_t)) }
-#define N61 { .letter=0x80, .left=(hnode_t *)(76*sizeof(hnode_t)), .right=(hnode_t *)(77*sizeof(hnode_t)) }
-#define N62 { .letter=0x80, .left=(hnode_t *)(64*sizeof(hnode_t)), .right=(hnode_t *)(65*sizeof(hnode_t)) }
-#define N63 { .letter=0x80, .left=(hnode_t *)(70*sizeof(hnode_t)), .right=(hnode_t *)(71*sizeof(hnode_t)) }
-#define N64 { .letter=0x80, .left=(hnode_t *)(66*sizeof(hnode_t)), .right=(hnode_t *)(67*sizeof(hnode_t)) }
-#define N65 { .letter=0x80, .left=(hnode_t *)(68*sizeof(hnode_t)), .right=(hnode_t *)(69*sizeof(hnode_t)) }
-#define N66 { .letter=0x32, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N67 { .letter=0x33, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N68 { .letter=0x30, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N69 { .letter=0x31, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N70 { .letter=0x80, .left=(hnode_t *)(72*sizeof(hnode_t)), .right=(hnode_t *)(73*sizeof(hnode_t)) }
-#define N71 { .letter=0x80, .left=(hnode_t *)(74*sizeof(hnode_t)), .right=(hnode_t *)(75*sizeof(hnode_t)) }
-#define N72 { .letter=0x36, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N73 { .letter=0x37, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N74 { .letter=0x34, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N75 { .letter=0x35, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N76 { .letter=0x80, .left=(hnode_t *)(78*sizeof(hnode_t)), .right=(hnode_t *)(79*sizeof(hnode_t)) }
-#define N77 { .letter=0x80, .left=(hnode_t *)(84*sizeof(hnode_t)), .right=(hnode_t *)(85*sizeof(hnode_t)) }
-#define N78 { .letter=0x80, .left=(hnode_t *)(80*sizeof(hnode_t)), .right=(hnode_t *)(81*sizeof(hnode_t)) }
-#define N79 { .letter=0x80, .left=(hnode_t *)(82*sizeof(hnode_t)), .right=(hnode_t *)(83*sizeof(hnode_t)) }
-#define N80 { .letter=0x2a, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N81 { .letter=0x2b, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N82 { .letter=0x28, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N83 { .letter=0x29, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N84 { .letter=0x80, .left=(hnode_t *)(86*sizeof(hnode_t)), .right=(hnode_t *)(87*sizeof(hnode_t)) }
-#define N85 { .letter=0x80, .left=(hnode_t *)(88*sizeof(hnode_t)), .right=(hnode_t *)(89*sizeof(hnode_t)) }
-#define N86 { .letter=0x7d, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N87 { .letter=0x2f, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N88 { .letter=0x2c, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N89 { .letter=0x2d, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N90 { .letter=0x80, .left=(hnode_t *)(92*sizeof(hnode_t)), .right=(hnode_t *)(93*sizeof(hnode_t)) }
-#define N91 { .letter=0x80, .left=(hnode_t *)(106*sizeof(hnode_t)), .right=(hnode_t *)(107*sizeof(hnode_t)) }
-#define N92 { .letter=0x80, .left=(hnode_t *)(94*sizeof(hnode_t)), .right=(hnode_t *)(95*sizeof(hnode_t)) }
-#define N93 { .letter=0x80, .left=(hnode_t *)(100*sizeof(hnode_t)), .right=(hnode_t *)(101*sizeof(hnode_t)) }
-#define N94 { .letter=0x80, .left=(hnode_t *)(96*sizeof(hnode_t)), .right=(hnode_t *)(97*sizeof(hnode_t)) }
-#define N95 { .letter=0x80, .left=(hnode_t *)(98*sizeof(hnode_t)), .right=(hnode_t *)(99*sizeof(hnode_t)) }
-#define N96 { .letter=0x7a, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N97 { .letter=0x43, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N98 { .letter=0x22, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N99 { .letter=0x7b, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N100 { .letter=0x80, .left=(hnode_t *)(102*sizeof(hnode_t)), .right=(hnode_t *)(103*sizeof(hnode_t)) }
-#define N101 { .letter=0x80, .left=(hnode_t *)(104*sizeof(hnode_t)), .right=(hnode_t *)(105*sizeof(hnode_t)) }
-#define N102 { .letter=0x46, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N103 { .letter=0x47, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N104 { .letter=0x44, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N105 { .letter=0x45, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N106 { .letter=0x80, .left=(hnode_t *)(108*sizeof(hnode_t)), .right=(hnode_t *)(109*sizeof(hnode_t)) }
-#define N107 { .letter=0x80, .left=(hnode_t *)(114*sizeof(hnode_t)), .right=(hnode_t *)(115*sizeof(hnode_t)) }
-#define N108 { .letter=0x80, .left=(hnode_t *)(110*sizeof(hnode_t)), .right=(hnode_t *)(111*sizeof(hnode_t)) }
-#define N109 { .letter=0x80, .left=(hnode_t *)(112*sizeof(hnode_t)), .right=(hnode_t *)(113*sizeof(hnode_t)) }
-#define N110 { .letter=0x3a, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N111 { .letter=0x7c, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N112 { .letter=0x38, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N113 { .letter=0x39, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N114 { .letter=0x80, .left=(hnode_t *)(116*sizeof(hnode_t)), .right=(hnode_t *)(117*sizeof(hnode_t)) }
-#define N115 { .letter=0x80, .left=(hnode_t *)(118*sizeof(hnode_t)), .right=(hnode_t *)(119*sizeof(hnode_t)) }
-#define N116 { .letter=0x23, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N117 { .letter=0x3f, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N118 { .letter=0x24, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N119 { .letter=0x3d, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N120 { .letter=0x6e, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N121 { .letter=0x80, .left=(hnode_t *)(122*sizeof(hnode_t)), .right=(hnode_t *)(123*sizeof(hnode_t)) }
-#define N122 { .letter=0x80, .left=(hnode_t *)(124*sizeof(hnode_t)), .right=(hnode_t *)(125*sizeof(hnode_t)) }
-#define N123 { .letter=0x80, .left=(hnode_t *)(132*sizeof(hnode_t)), .right=(hnode_t *)(133*sizeof(hnode_t)) }
-#define N124 { .letter=0x70, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N125 { .letter=0x80, .left=(hnode_t *)(126*sizeof(hnode_t)), .right=(hnode_t *)(127*sizeof(hnode_t)) }
-#define N126 { .letter=0x80, .left=(hnode_t *)(128*sizeof(hnode_t)), .right=(hnode_t *)(129*sizeof(hnode_t)) }
-#define N127 { .letter=0x6b, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N128 { .letter=0x57, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N129 { .letter=0x80, .left=(hnode_t *)(130*sizeof(hnode_t)), .right=(hnode_t *)(131*sizeof(hnode_t)) }
-#define N130 { .letter=0x58, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N131 { .letter=0x59, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N132 { .letter=0x80, .left=(hnode_t *)(134*sizeof(hnode_t)), .right=(hnode_t *)(135*sizeof(hnode_t)) }
-#define N133 { .letter=0x79, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N134 { .letter=0x80, .left=(hnode_t *)(136*sizeof(hnode_t)), .right=(hnode_t *)(137*sizeof(hnode_t)) }
-#define N135 { .letter=0x80, .left=(hnode_t *)(144*sizeof(hnode_t)), .right=(hnode_t *)(145*sizeof(hnode_t)) }
-#define N136 { .letter=0x80, .left=(hnode_t *)(138*sizeof(hnode_t)), .right=(hnode_t *)(139*sizeof(hnode_t)) }
-#define N137 { .letter=0x54, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N138 { .letter=0x80, .left=(hnode_t *)(140*sizeof(hnode_t)), .right=(hnode_t *)(141*sizeof(hnode_t)) }
-#define N139 { .letter=0x80, .left=(hnode_t *)(142*sizeof(hnode_t)), .right=(hnode_t *)(143*sizeof(hnode_t)) }
-#define N140 { .letter=0x3c, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N141 { .letter=0x7f, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N142 { .letter=0x40, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N143 { .letter=0x3e, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N144 { .letter=0x80, .left=(hnode_t *)(146*sizeof(hnode_t)), .right=(hnode_t *)(147*sizeof(hnode_t)) }
-#define N145 { .letter=0x80, .left=(hnode_t *)(148*sizeof(hnode_t)), .right=(hnode_t *)(149*sizeof(hnode_t)) }
-#define N146 { .letter=0x26, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N147 { .letter=0x7e, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N148 { .letter=0x80, .left=(hnode_t *)(150*sizeof(hnode_t)), .right=(hnode_t *)(151*sizeof(hnode_t)) }
-#define N149 { .letter=0x80, .left=(hnode_t *)(152*sizeof(hnode_t)), .right=(hnode_t *)(153*sizeof(hnode_t)) }
-#define N150 { .letter=0x5e, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N151 { .letter=0x5c, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N152 { .letter=0x03, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N153 { .letter=0x60, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N154 { .letter=0x80, .left=(hnode_t *)(156*sizeof(hnode_t)), .right=(hnode_t *)(157*sizeof(hnode_t)) }
-#define N155 { .letter=0x80, .left=(hnode_t *)(164*sizeof(hnode_t)), .right=(hnode_t *)(165*sizeof(hnode_t)) }
-#define N156 { .letter=0x80, .left=(hnode_t *)(158*sizeof(hnode_t)), .right=(hnode_t *)(159*sizeof(hnode_t)) }
-#define N157 { .letter=0x80, .left=(hnode_t *)(162*sizeof(hnode_t)), .right=(hnode_t *)(163*sizeof(hnode_t)) }
-#define N158 { .letter=0x66, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N159 { .letter=0x80, .left=(hnode_t *)(160*sizeof(hnode_t)), .right=(hnode_t *)(161*sizeof(hnode_t)) }
-#define N160 { .letter=0x76, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N161 { .letter=0x2e, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N162 { .letter=0x77, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N163 { .letter=0x6d, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N164 { .letter=0x80, .left=(hnode_t *)(166*sizeof(hnode_t)), .right=(hnode_t *)(167*sizeof(hnode_t)) }
-#define N165 { .letter=0x72, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N166 { .letter=0x0a, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N167 { .letter=0x80, .left=(hnode_t *)(168*sizeof(hnode_t)), .right=(hnode_t *)(169*sizeof(hnode_t)) }
-#define N168 { .letter=0x80, .left=(hnode_t *)(170*sizeof(hnode_t)), .right=(hnode_t *)(171*sizeof(hnode_t)) }
-#define N169 { .letter=0x80, .left=(hnode_t *)(176*sizeof(hnode_t)), .right=(hnode_t *)(177*sizeof(hnode_t)) }
-#define N170 { .letter=0x80, .left=(hnode_t *)(172*sizeof(hnode_t)), .right=(hnode_t *)(173*sizeof(hnode_t)) }
-#define N171 { .letter=0x80, .left=(hnode_t *)(174*sizeof(hnode_t)), .right=(hnode_t *)(175*sizeof(hnode_t)) }
-#define N172 { .letter=0x25, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N173 { .letter=0x27, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N174 { .letter=0x78, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N175 { .letter=0x48, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N176 { .letter=0x80, .left=(hnode_t *)(178*sizeof(hnode_t)), .right=(hnode_t *)(179*sizeof(hnode_t)) }
-#define N177 { .letter=0x49, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N178 { .letter=0x53, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N179 { .letter=0x51, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N180 { .letter=0x6f, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N181 { .letter=0x61, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N182 { .letter=0x80, .left=(hnode_t *)(184*sizeof(hnode_t)), .right=(hnode_t *)(185*sizeof(hnode_t)) }
-#define N183 { .letter=0x74, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N184 { .letter=0x64, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N185 { .letter=0x80, .left=(hnode_t *)(186*sizeof(hnode_t)), .right=(hnode_t *)(187*sizeof(hnode_t)) }
-#define N186 { .letter=0x67, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
-#define N187 { .letter=0x63, .left=(hnode_t *)(0), .right=(hnode_t *)(0) }
+#define L0_0 { .letter=0x69, .contrib=1 }
+#define L0_1 { .letter=0x68, .contrib=1 }
+
+#define L1_0 { .letter=0x64, .contrib=2 }
+#define L1_1 { .letter=0x74, .contrib=1 }
+#define L1_2 { .letter=0x67, .contrib=3 }
+#define L1_3 { .letter=0x74, .contrib=1 }
+#define L1_4 { .letter=0x64, .contrib=2 }
+#define L1_5 { .letter=0x74, .contrib=1 }
+#define L1_6 { .letter=0x63, .contrib=3 }
+#define L1_7 { .letter=0x74, .contrib=1 }
+
+#define L2_0 { .letter=0x6f, .contrib=1 }
+#define L2_1 { .letter=0x61, .contrib=1 }
+
+#define L3_0 { .letter=0x20, .contrib=0 }
+
+#define L4_0 { .letter=0x6e, .contrib=1 }
+#define L4_1 { .letter=0x70, .contrib=3 }
+#define L4_2 { .letter=0x6e, .contrib=1 }
+#define L4_3 { .letter=0x3c, .contrib=7 }
+#define L4_4 { .letter=0x6e, .contrib=1 }
+#define L4_5 { .letter=0x57, .contrib=5 }
+#define L4_6 { .letter=0x6e, .contrib=1 }
+#define L4_7 { .letter=0x79, .contrib=3 }
+#define L4_8 { .letter=0x6e, .contrib=1 }
+#define L4_9 { .letter=0x70, .contrib=3 }
+#define L4_10 { .letter=0x6e, .contrib=1 }
+#define L4_11 { .letter=0x26, .contrib=6 }
+#define L4_12 { .letter=0x6e, .contrib=1 }
+#define L4_13 { .letter=0x6b, .contrib=4 }
+#define L4_14 { .letter=0x6e, .contrib=1 }
+#define L4_15 { .letter=0x79, .contrib=3 }
+#define L4_16 { .letter=0x6e, .contrib=1 }
+#define L4_17 { .letter=0x70, .contrib=3 }
+#define L4_18 { .letter=0x6e, .contrib=1 }
+#define L4_19 { .letter=0x54, .contrib=5 }
+#define L4_20 { .letter=0x6e, .contrib=1 }
+#define L4_21 { .letter=0x58, .contrib=6 }
+#define L4_22 { .letter=0x6e, .contrib=1 }
+#define L4_23 { .letter=0x79, .contrib=3 }
+#define L4_24 { .letter=0x6e, .contrib=1 }
+#define L4_25 { .letter=0x70, .contrib=3 }
+#define L4_26 { .letter=0x6e, .contrib=1 }
+#define L4_27 { .letter=0x5e, .contrib=7 }
+#define L4_28 { .letter=0x6e, .contrib=1 }
+#define L4_29 { .letter=0x6b, .contrib=4 }
+#define L4_30 { .letter=0x6e, .contrib=1 }
+#define L4_31 { .letter=0x79, .contrib=3 }
+#define L4_32 { .letter=0x6e, .contrib=1 }
+#define L4_33 { .letter=0x70, .contrib=3 }
+#define L4_34 { .letter=0x6e, .contrib=1 }
+#define L4_35 { .letter=0x40, .contrib=7 }
+#define L4_36 { .letter=0x6e, .contrib=1 }
+#define L4_37 { .letter=0x57, .contrib=5 }
+#define L4_38 { .letter=0x6e, .contrib=1 }
+#define L4_39 { .letter=0x79, .contrib=3 }
+#define L4_40 { .letter=0x6e, .contrib=1 }
+#define L4_41 { .letter=0x70, .contrib=3 }
+#define L4_42 { .letter=0x6e, .contrib=1 }
+#define L4_43 { .letter=0x7e, .contrib=6 }
+#define L4_44 { .letter=0x6e, .contrib=1 }
+#define L4_45 { .letter=0x6b, .contrib=4 }
+#define L4_46 { .letter=0x6e, .contrib=1 }
+#define L4_47 { .letter=0x79, .contrib=3 }
+#define L4_48 { .letter=0x6e, .contrib=1 }
+#define L4_49 { .letter=0x70, .contrib=3 }
+#define L4_50 { .letter=0x6e, .contrib=1 }
+#define L4_51 { .letter=0x54, .contrib=5 }
+#define L4_52 { .letter=0x6e, .contrib=1 }
+#define L4_53 { .letter=0x59, .contrib=6 }
+#define L4_54 { .letter=0x6e, .contrib=1 }
+#define L4_55 { .letter=0x79, .contrib=3 }
+#define L4_56 { .letter=0x6e, .contrib=1 }
+#define L4_57 { .letter=0x70, .contrib=3 }
+#define L4_58 { .letter=0x6e, .contrib=1 }
+#define L4_59 { .letter=0x03, .contrib=7 }
+#define L4_60 { .letter=0x6e, .contrib=1 }
+#define L4_61 { .letter=0x6b, .contrib=4 }
+#define L4_62 { .letter=0x6e, .contrib=1 }
+#define L4_63 { .letter=0x79, .contrib=3 }
+#define L4_64 { .letter=0x6e, .contrib=1 }
+#define L4_65 { .letter=0x70, .contrib=3 }
+#define L4_66 { .letter=0x6e, .contrib=1 }
+#define L4_67 { .letter=0x7f, .contrib=7 }
+#define L4_68 { .letter=0x6e, .contrib=1 }
+#define L4_69 { .letter=0x57, .contrib=5 }
+#define L4_70 { .letter=0x6e, .contrib=1 }
+#define L4_71 { .letter=0x79, .contrib=3 }
+#define L4_72 { .letter=0x6e, .contrib=1 }
+#define L4_73 { .letter=0x70, .contrib=3 }
+#define L4_74 { .letter=0x6e, .contrib=1 }
+#define L4_75 { .letter=0x26, .contrib=6 }
+#define L4_76 { .letter=0x6e, .contrib=1 }
+#define L4_77 { .letter=0x6b, .contrib=4 }
+#define L4_78 { .letter=0x6e, .contrib=1 }
+#define L4_79 { .letter=0x79, .contrib=3 }
+#define L4_80 { .letter=0x6e, .contrib=1 }
+#define L4_81 { .letter=0x70, .contrib=3 }
+#define L4_82 { .letter=0x6e, .contrib=1 }
+#define L4_83 { .letter=0x54, .contrib=5 }
+#define L4_84 { .letter=0x6e, .contrib=1 }
+#define L4_85 { .letter=0x58, .contrib=6 }
+#define L4_86 { .letter=0x6e, .contrib=1 }
+#define L4_87 { .letter=0x79, .contrib=3 }
+#define L4_88 { .letter=0x6e, .contrib=1 }
+#define L4_89 { .letter=0x70, .contrib=3 }
+#define L4_90 { .letter=0x6e, .contrib=1 }
+#define L4_91 { .letter=0x5c, .contrib=7 }
+#define L4_92 { .letter=0x6e, .contrib=1 }
+#define L4_93 { .letter=0x6b, .contrib=4 }
+#define L4_94 { .letter=0x6e, .contrib=1 }
+#define L4_95 { .letter=0x79, .contrib=3 }
+#define L4_96 { .letter=0x6e, .contrib=1 }
+#define L4_97 { .letter=0x70, .contrib=3 }
+#define L4_98 { .letter=0x6e, .contrib=1 }
+#define L4_99 { .letter=0x3e, .contrib=7 }
+#define L4_100 { .letter=0x6e, .contrib=1 }
+#define L4_101 { .letter=0x57, .contrib=5 }
+#define L4_102 { .letter=0x6e, .contrib=1 }
+#define L4_103 { .letter=0x79, .contrib=3 }
+#define L4_104 { .letter=0x6e, .contrib=1 }
+#define L4_105 { .letter=0x70, .contrib=3 }
+#define L4_106 { .letter=0x6e, .contrib=1 }
+#define L4_107 { .letter=0x7e, .contrib=6 }
+#define L4_108 { .letter=0x6e, .contrib=1 }
+#define L4_109 { .letter=0x6b, .contrib=4 }
+#define L4_110 { .letter=0x6e, .contrib=1 }
+#define L4_111 { .letter=0x79, .contrib=3 }
+#define L4_112 { .letter=0x6e, .contrib=1 }
+#define L4_113 { .letter=0x70, .contrib=3 }
+#define L4_114 { .letter=0x6e, .contrib=1 }
+#define L4_115 { .letter=0x54, .contrib=5 }
+#define L4_116 { .letter=0x6e, .contrib=1 }
+#define L4_117 { .letter=0x59, .contrib=6 }
+#define L4_118 { .letter=0x6e, .contrib=1 }
+#define L4_119 { .letter=0x79, .contrib=3 }
+#define L4_120 { .letter=0x6e, .contrib=1 }
+#define L4_121 { .letter=0x70, .contrib=3 }
+#define L4_122 { .letter=0x6e, .contrib=1 }
+#define L4_123 { .letter=0x60, .contrib=7 }
+#define L4_124 { .letter=0x6e, .contrib=1 }
+#define L4_125 { .letter=0x6b, .contrib=4 }
+#define L4_126 { .letter=0x6e, .contrib=1 }
+#define L4_127 { .letter=0x79, .contrib=3 }
+
+#define L5_0 { .letter=0x66, .contrib=3 }
+#define L5_1 { .letter=0x0a, .contrib=3 }
+#define L5_2 { .letter=0x77, .contrib=3 }
+#define L5_3 { .letter=0x72, .contrib=2 }
+#define L5_4 { .letter=0x76, .contrib=4 }
+#define L5_5 { .letter=0x25, .contrib=6 }
+#define L5_6 { .letter=0x6d, .contrib=3 }
+#define L5_7 { .letter=0x72, .contrib=2 }
+#define L5_8 { .letter=0x66, .contrib=3 }
+#define L5_9 { .letter=0x0a, .contrib=3 }
+#define L5_10 { .letter=0x77, .contrib=3 }
+#define L5_11 { .letter=0x72, .contrib=2 }
+#define L5_12 { .letter=0x2e, .contrib=4 }
+#define L5_13 { .letter=0x53, .contrib=6 }
+#define L5_14 { .letter=0x6d, .contrib=3 }
+#define L5_15 { .letter=0x72, .contrib=2 }
+#define L5_16 { .letter=0x66, .contrib=3 }
+#define L5_17 { .letter=0x0a, .contrib=3 }
+#define L5_18 { .letter=0x77, .contrib=3 }
+#define L5_19 { .letter=0x72, .contrib=2 }
+#define L5_20 { .letter=0x76, .contrib=4 }
+#define L5_21 { .letter=0x78, .contrib=6 }
+#define L5_22 { .letter=0x6d, .contrib=3 }
+#define L5_23 { .letter=0x72, .contrib=2 }
+#define L5_24 { .letter=0x66, .contrib=3 }
+#define L5_25 { .letter=0x0a, .contrib=3 }
+#define L5_26 { .letter=0x77, .contrib=3 }
+#define L5_27 { .letter=0x72, .contrib=2 }
+#define L5_28 { .letter=0x2e, .contrib=4 }
+#define L5_29 { .letter=0x49, .contrib=5 }
+#define L5_30 { .letter=0x6d, .contrib=3 }
+#define L5_31 { .letter=0x72, .contrib=2 }
+#define L5_32 { .letter=0x66, .contrib=3 }
+#define L5_33 { .letter=0x0a, .contrib=3 }
+#define L5_34 { .letter=0x77, .contrib=3 }
+#define L5_35 { .letter=0x72, .contrib=2 }
+#define L5_36 { .letter=0x76, .contrib=4 }
+#define L5_37 { .letter=0x27, .contrib=6 }
+#define L5_38 { .letter=0x6d, .contrib=3 }
+#define L5_39 { .letter=0x72, .contrib=2 }
+#define L5_40 { .letter=0x66, .contrib=3 }
+#define L5_41 { .letter=0x0a, .contrib=3 }
+#define L5_42 { .letter=0x77, .contrib=3 }
+#define L5_43 { .letter=0x72, .contrib=2 }
+#define L5_44 { .letter=0x2e, .contrib=4 }
+#define L5_45 { .letter=0x51, .contrib=6 }
+#define L5_46 { .letter=0x6d, .contrib=3 }
+#define L5_47 { .letter=0x72, .contrib=2 }
+#define L5_48 { .letter=0x66, .contrib=3 }
+#define L5_49 { .letter=0x0a, .contrib=3 }
+#define L5_50 { .letter=0x77, .contrib=3 }
+#define L5_51 { .letter=0x72, .contrib=2 }
+#define L5_52 { .letter=0x76, .contrib=4 }
+#define L5_53 { .letter=0x48, .contrib=6 }
+#define L5_54 { .letter=0x6d, .contrib=3 }
+#define L5_55 { .letter=0x72, .contrib=2 }
+#define L5_56 { .letter=0x66, .contrib=3 }
+#define L5_57 { .letter=0x0a, .contrib=3 }
+#define L5_58 { .letter=0x77, .contrib=3 }
+#define L5_59 { .letter=0x72, .contrib=2 }
+#define L5_60 { .letter=0x2e, .contrib=4 }
+#define L5_61 { .letter=0x49, .contrib=5 }
+#define L5_62 { .letter=0x6d, .contrib=3 }
+#define L5_63 { .letter=0x72, .contrib=2 }
+
+#define L6_0 { .letter=0x52, .contrib=6 }
+#define L6_1 { .letter=0x32, .contrib=6 }
+#define L6_2 { .letter=0x6c, .contrib=2 }
+#define L6_3 { .letter=0x7a, .contrib=6 }
+#define L6_4 { .letter=0x4a, .contrib=6 }
+#define L6_5 { .letter=0x2a, .contrib=6 }
+#define L6_6 { .letter=0x6c, .contrib=2 }
+#define L6_7 { .letter=0x3a, .contrib=6 }
+#define L6_8 { .letter=0x56, .contrib=6 }
+#define L6_9 { .letter=0x36, .contrib=6 }
+#define L6_10 { .letter=0x6c, .contrib=2 }
+#define L6_11 { .letter=0x46, .contrib=6 }
+#define L6_12 { .letter=0x4e, .contrib=6 }
+#define L6_13 { .letter=0x7d, .contrib=6 }
+#define L6_14 { .letter=0x6c, .contrib=2 }
+#define L6_15 { .letter=0x23, .contrib=6 }
+#define L6_16 { .letter=0x50, .contrib=6 }
+#define L6_17 { .letter=0x30, .contrib=6 }
+#define L6_18 { .letter=0x6c, .contrib=2 }
+#define L6_19 { .letter=0x22, .contrib=6 }
+#define L6_20 { .letter=0x71, .contrib=6 }
+#define L6_21 { .letter=0x28, .contrib=6 }
+#define L6_22 { .letter=0x6c, .contrib=2 }
+#define L6_23 { .letter=0x38, .contrib=6 }
+#define L6_24 { .letter=0x5b, .contrib=6 }
+#define L6_25 { .letter=0x34, .contrib=6 }
+#define L6_26 { .letter=0x6c, .contrib=2 }
+#define L6_27 { .letter=0x44, .contrib=6 }
+#define L6_28 { .letter=0x4c, .contrib=6 }
+#define L6_29 { .letter=0x2c, .contrib=6 }
+#define L6_30 { .letter=0x6c, .contrib=2 }
+#define L6_31 { .letter=0x24, .contrib=6 }
+#define L6_32 { .letter=0x21, .contrib=6 }
+#define L6_33 { .letter=0x33, .contrib=6 }
+#define L6_34 { .letter=0x6c, .contrib=2 }
+#define L6_35 { .letter=0x43, .contrib=6 }
+#define L6_36 { .letter=0x4b, .contrib=6 }
+#define L6_37 { .letter=0x2b, .contrib=6 }
+#define L6_38 { .letter=0x6c, .contrib=2 }
+#define L6_39 { .letter=0x7c, .contrib=6 }
+#define L6_40 { .letter=0x5a, .contrib=6 }
+#define L6_41 { .letter=0x37, .contrib=6 }
+#define L6_42 { .letter=0x6c, .contrib=2 }
+#define L6_43 { .letter=0x47, .contrib=6 }
+#define L6_44 { .letter=0x4f, .contrib=6 }
+#define L6_45 { .letter=0x2f, .contrib=6 }
+#define L6_46 { .letter=0x6c, .contrib=2 }
+#define L6_47 { .letter=0x3f, .contrib=6 }
+#define L6_48 { .letter=0x5d, .contrib=6 }
+#define L6_49 { .letter=0x31, .contrib=6 }
+#define L6_50 { .letter=0x6c, .contrib=2 }
+#define L6_51 { .letter=0x7b, .contrib=6 }
+#define L6_52 { .letter=0x6a, .contrib=6 }
+#define L6_53 { .letter=0x29, .contrib=6 }
+#define L6_54 { .letter=0x6c, .contrib=2 }
+#define L6_55 { .letter=0x39, .contrib=6 }
+#define L6_56 { .letter=0x55, .contrib=6 }
+#define L6_57 { .letter=0x35, .contrib=6 }
+#define L6_58 { .letter=0x6c, .contrib=2 }
+#define L6_59 { .letter=0x45, .contrib=6 }
+#define L6_60 { .letter=0x5f, .contrib=6 }
+#define L6_61 { .letter=0x2d, .contrib=6 }
+#define L6_62 { .letter=0x6c, .contrib=2 }
+#define L6_63 { .letter=0x3d, .contrib=6 }
+
+#define L7_0 { .letter=0x75, .contrib=3 }
+#define L7_1 { .letter=0x65, .contrib=1 }
+#define L7_2 { .letter=0x73, .contrib=2 }
+#define L7_3 { .letter=0x65, .contrib=1 }
+#define L7_4 { .letter=0x41, .contrib=6 }
+#define L7_5 { .letter=0x65, .contrib=1 }
+#define L7_6 { .letter=0x73, .contrib=2 }
+#define L7_7 { .letter=0x65, .contrib=1 }
+#define L7_8 { .letter=0x75, .contrib=3 }
+#define L7_9 { .letter=0x65, .contrib=1 }
+#define L7_10 { .letter=0x73, .contrib=2 }
+#define L7_11 { .letter=0x65, .contrib=1 }
+#define L7_12 { .letter=0x62, .contrib=4 }
+#define L7_13 { .letter=0x65, .contrib=1 }
+#define L7_14 { .letter=0x73, .contrib=2 }
+#define L7_15 { .letter=0x65, .contrib=1 }
+#define L7_16 { .letter=0x75, .contrib=3 }
+#define L7_17 { .letter=0x65, .contrib=1 }
+#define L7_18 { .letter=0x73, .contrib=2 }
+#define L7_19 { .letter=0x65, .contrib=1 }
+#define L7_20 { .letter=0x3b, .contrib=6 }
+#define L7_21 { .letter=0x65, .contrib=1 }
+#define L7_22 { .letter=0x73, .contrib=2 }
+#define L7_23 { .letter=0x65, .contrib=1 }
+#define L7_24 { .letter=0x75, .contrib=3 }
+#define L7_25 { .letter=0x65, .contrib=1 }
+#define L7_26 { .letter=0x73, .contrib=2 }
+#define L7_27 { .letter=0x65, .contrib=1 }
+#define L7_28 { .letter=0x62, .contrib=4 }
+#define L7_29 { .letter=0x65, .contrib=1 }
+#define L7_30 { .letter=0x73, .contrib=2 }
+#define L7_31 { .letter=0x65, .contrib=1 }
+#define L7_32 { .letter=0x75, .contrib=3 }
+#define L7_33 { .letter=0x65, .contrib=1 }
+#define L7_34 { .letter=0x73, .contrib=2 }
+#define L7_35 { .letter=0x65, .contrib=1 }
+#define L7_36 { .letter=0x42, .contrib=6 }
+#define L7_37 { .letter=0x65, .contrib=1 }
+#define L7_38 { .letter=0x73, .contrib=2 }
+#define L7_39 { .letter=0x65, .contrib=1 }
+#define L7_40 { .letter=0x75, .contrib=3 }
+#define L7_41 { .letter=0x65, .contrib=1 }
+#define L7_42 { .letter=0x73, .contrib=2 }
+#define L7_43 { .letter=0x65, .contrib=1 }
+#define L7_44 { .letter=0x62, .contrib=4 }
+#define L7_45 { .letter=0x65, .contrib=1 }
+#define L7_46 { .letter=0x73, .contrib=2 }
+#define L7_47 { .letter=0x65, .contrib=1 }
+#define L7_48 { .letter=0x75, .contrib=3 }
+#define L7_49 { .letter=0x65, .contrib=1 }
+#define L7_50 { .letter=0x73, .contrib=2 }
+#define L7_51 { .letter=0x65, .contrib=1 }
+#define L7_52 { .letter=0x4d, .contrib=6 }
+#define L7_53 { .letter=0x65, .contrib=1 }
+#define L7_54 { .letter=0x73, .contrib=2 }
+#define L7_55 { .letter=0x65, .contrib=1 }
+#define L7_56 { .letter=0x75, .contrib=3 }
+#define L7_57 { .letter=0x65, .contrib=1 }
+#define L7_58 { .letter=0x73, .contrib=2 }
+#define L7_59 { .letter=0x65, .contrib=1 }
+#define L7_60 { .letter=0x62, .contrib=4 }
+#define L7_61 { .letter=0x65, .contrib=1 }
+#define L7_62 { .letter=0x73, .contrib=2 }
+#define L7_63 { .letter=0x65, .contrib=1 }
 
 #endif

@@ -16,16 +16,24 @@ struct __attribute__((__packed__)) hcode {
     uint8_t len;
 };
 
-// binary tree node struct to hold letter and child nodes
-typedef struct hnode hnode_t;
-struct __attribute__((__packed__)) hnode {
+// lookup table entry struct holds letter and contributing bit count
+typedef struct hlook hlook_t;
+struct __attribute__((__packed__)) hlook {
     char letter;
-    hnode_t *left, *right;
+    uint8_t contrib;
 };
 
-// global references to the statically allocated huffman tree and dictionary
+
+// pointer to a lookup table which also holds the value of the max code length in the table
+typedef struct htable htable_t;
+struct __attribute__((__packed__)) htable {
+    hlook_t *table;
+    uint8_t draw;
+};
+
+// global references to the statically allocated huffman dictionary and lookup tables
 hcode_t *DICT;
-hnode_t *TREE;
+htable_t *LOOKUP;
 
 void build();
 
