@@ -1,16 +1,16 @@
-#include <stdio.h>
+//#include <stdio.h>
 #include "../../huffman_test_data.h"
 #include "../src/huffman_utils.h"
 #include "../src/huffman.h"
 
 int main() {
-    uint32_t result[CODE_SIZE];
-    
     // set up statically allocated huffman tree
     build();
     
-    encode(PLAIN_TEXT, result);
-    decode(result, PLAIN_TEXT);
+    encode(PLAIN_TEXT, CODE_TEXT);
+    decode(CODE_TEXT, PLAIN_TEXT);
+    
+    //printf("finished\n");
     
     return 0;
 }

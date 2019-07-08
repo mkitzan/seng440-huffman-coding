@@ -8,6 +8,7 @@ def main():
     
     header = open("../versions/huffman_test_data.h", "w", encoding="latin-1")
     header.write("#ifndef _HUFFMAN_TEST_DATA_H_\n#define _HUFFMAN_TEST_DATA_H_\n\n")
+    header.write("#include <inttypes.h>\n\n")
     header.write("char PLAIN_TEXT[] = ")
     
     count = 0
@@ -20,9 +21,7 @@ def main():
     
     header.write("\n\t\"\x03\"")
     header.write(";\n\n")
-    header.write("// generally a good value for this is ((number of plain text characters) / 4)\n")
-    header.write("// other wise result buffer won't have enough memory and you'll get bad output\n")
-    header.write("#define CODE_SIZE " + str(count // 4) + "\n\n#endif\n")
+    header.write("uint32_t CODE_TEXT[" + str(count // 4) + "];\n\n#endif\n")
     
 
 if __name__=='__main__':

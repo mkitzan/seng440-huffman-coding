@@ -1,6 +1,8 @@
 #ifndef _HUFFMAN_TEST_DATA_H_
 #define _HUFFMAN_TEST_DATA_H_
 
+#include <inttypes.h>
+
 char PLAIN_TEXT[] = 
 	"HEART OF DARKNESS\n"
 	"\n"
@@ -3317,8 +3319,6 @@ char PLAIN_TEXT[] =
 	"sky--seemed to lead into the heart of an immense darkness.\n"
 	"";
 
-// generally a good value for this is ((number of plain text characters) / 4)
-// other wise result buffer won't have enough memory and you'll get bad output
-#define CODE_SIZE 52565
+uint32_t CODE_TEXT[52565];
 
 #endif

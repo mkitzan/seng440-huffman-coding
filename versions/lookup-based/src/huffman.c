@@ -1,9 +1,7 @@
 #include "huffman.h"
 
 unsigned int encode(const char *text, uint32_t *code) {
-    register unsigned int i = 0, loc = 0, len = 0;
-    register uint8_t key;
-    uint32_t buffer = 0;
+    register uint32_t i = 0, loc = 0, len = 0, buffer = 0, key;
     
     // loop through each character of the plain text until null terminator
     while(text[i]) {
@@ -31,7 +29,7 @@ unsigned int encode(const char *text, uint32_t *code) {
 
 unsigned int decode(const uint32_t *code, char *text) {
     register uint32_t buffer = code[0], loc = 0, pos = 1, bits = 0, seen = 0, draw;
-    hlook_t *table;
+    register hlook_t *table;
     
     do {
         // use next three bits to index the LOOKUP table
