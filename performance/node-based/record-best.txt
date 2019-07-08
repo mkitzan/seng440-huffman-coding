@@ -1,0 +1,62 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 90  of event 'cpu-clock'
+# Event count (approx.): 22500000
+#
+# Overhead  Command          Shared Object      Symbol                         
+# ........  ...............  .................  ...............................
+#
+     6.67%  huffman_test_pe  ld-2.28.so         [.] __aeabi_uidiv
+     5.56%  huffman_test_pe  [kernel.kallsyms]  [k] vector_swi
+     4.44%  huffman_test_pe  [kernel.kallsyms]  [k] strnlen_user
+     4.44%  huffman_test_pe  ld-2.28.so         [.] dl_main
+     4.44%  huffman_test_pe  ld-2.28.so         [.] strcmp
+     3.33%  huffman_test_pe  [kernel.kallsyms]  [k] __kunmap_atomic
+     3.33%  huffman_test_pe  [kernel.kallsyms]  [k] _raw_spin_unlock_irqrestore
+     3.33%  huffman_test_pe  ld-2.28.so         [.] _dl_map_object
+     3.33%  huffman_test_pe  ld-2.28.so         [.] _dl_map_object_deps
+     3.33%  huffman_test_pe  ld-2.28.so         [.] _dl_map_object_from_fd
+     3.33%  huffman_test_pe  libc-2.28.so       [.] __memcpy_neon
+     3.33%  huffman_test_pe  libc-2.28.so       [.] _int_malloc
+     2.22%  huffman_test_pe  [kernel.kallsyms]  [k] cpu_v7_set_pte_ext
+     2.22%  huffman_test_pe  [kernel.kallsyms]  [k] do_page_fault
+     2.22%  huffman_test_pe  [kernel.kallsyms]  [k] kmap_atomic
+     2.22%  huffman_test_pe  [kernel.kallsyms]  [k] unlink_file_vma
+     2.22%  huffman_test_pe  ld-2.28.so         [.] _dl_fini
+     2.22%  huffman_test_pe  ld-2.28.so         [.] _dl_important_hwcaps
+     2.22%  huffman_test_pe  ld-2.28.so         [.] _dl_relocate_object
+     2.22%  huffman_test_pe  ld-2.28.so         [.] _dl_start
+     2.22%  huffman_test_pe  ld-2.28.so         [.] _dl_start_user
+     2.22%  huffman_test_pe  ld-2.28.so         [.] do_lookup_x
+     2.22%  huffman_test_pe  ld-2.28.so         [.] open_verify.constprop.8
+     2.22%  huffman_test_pe  libc-2.28.so       [.] _init
+     1.11%  huffman_test_pe  [kernel.kallsyms]  [k] __sync_icache_dcache
+     1.11%  huffman_test_pe  [kernel.kallsyms]  [k] __vm_enough_memory
+     1.11%  huffman_test_pe  [kernel.kallsyms]  [k] __vma_adjust
+     1.11%  huffman_test_pe  [kernel.kallsyms]  [k] down_read_trylock
+     1.11%  huffman_test_pe  [kernel.kallsyms]  [k] exit_mmap
+     1.11%  huffman_test_pe  [kernel.kallsyms]  [k] filemap_map_pages
+     1.11%  huffman_test_pe  [kernel.kallsyms]  [k] memblock_is_map_memory
+     1.11%  huffman_test_pe  [kernel.kallsyms]  [k] page_remove_rmap
+     1.11%  huffman_test_pe  [kernel.kallsyms]  [k] pagevec_lru_move_fn
+     1.11%  huffman_test_pe  [kernel.kallsyms]  [k] perf_event_mmap_output
+     1.11%  huffman_test_pe  [kernel.kallsyms]  [k] up_read
+     1.11%  huffman_test_pe  ld-2.28.so         [.] __GI___close_nocancel
+     1.11%  huffman_test_pe  ld-2.28.so         [.] _dl_discover_osversion
+     1.11%  huffman_test_pe  ld-2.28.so         [.] _dl_load_cache_lookup
+     1.11%  huffman_test_pe  ld-2.28.so         [.] _dl_next_tls_modid
+     1.11%  huffman_test_pe  ld-2.28.so         [.] _dl_sysdep_read_whole_file
+     1.11%  huffman_test_pe  ld-2.28.so         [.] _dl_sysdep_start
+     1.11%  huffman_test_pe  ld-2.28.so         [.] check_match
+     1.11%  huffman_test_pe  ld-2.28.so         [.] strlen
+     1.11%  huffman_test_pe  libc-2.28.so       [.] __sigsetjmp
+     1.11%  huffman_test_pe  libc-2.28.so       [.] _dl_addr
+     1.11%  huffman_test_pe  libc-2.28.so       [.] strrchr
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#

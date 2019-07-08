@@ -1,0 +1,18 @@
+
+ Performance counter stats for './huffman_test_perf':
+
+      21333.113152      task-clock (msec)         #    0.992 CPUs utilized          
+               285      context-switches          #    0.013 K/sec                  
+                 0      cpu-migrations            #    0.000 K/sec                  
+            55,454      page-faults               #    0.003 M/sec                  
+   <not supported>      cycles                                                      
+   <not supported>      instructions                                                
+   <not supported>      branches                                                    
+   <not supported>      branch-misses                                               
+
+      21.500748230 seconds time elapsed
+
+      11.437799000 seconds user
+       6.955253000 seconds sys
+
+
