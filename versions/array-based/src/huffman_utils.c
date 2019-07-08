@@ -55,9 +55,9 @@ void build() {
     for(i = 0; i < HEAP; ++i) {
         if(HUFFMAN[i].letter & SIZE) {
             HUFFMAN[i].left  = 
-                (hnode_t *)((unsigned long long int)HUFFMAN[i].left + (unsigned long long int)HUFFMAN);
+                (hnode_t *)((uint32_t)HUFFMAN[i].left + (uint32_t)HUFFMAN);
             HUFFMAN[i].right = 
-                (hnode_t *)((unsigned long long int)HUFFMAN[i].right + (unsigned long long int)HUFFMAN);
+                (hnode_t *)((uint32_t)HUFFMAN[i].right + (uint32_t)HUFFMAN);
         }
     }
     

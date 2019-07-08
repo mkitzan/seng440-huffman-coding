@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /usr/bin/sh
 
 # Shell script runs performance testing on the three huffman implementations
 # Run this script from the performance directory
@@ -9,15 +9,17 @@ echo
 # CREATE TEST FILES
 echo creating test files
 cd ../alphabet/
-python duplicate.py books/clean/combined.txt books/clean/average.txt 8
-python make_best_and_worst_inputs.py books/clean/average.txt
+python3 duplicate.py books/clean/combined.txt average-duplicate.txt 8
+cp average-duplicate.txt books/clean/average.txt
+rm average-duplicate.txt
+python3 make_best_and_worst_inputs.py books/clean/average.txt
 echo
 
 
 # AVERAGE CASE PERFORMANCE TESTS
 echo AVERAGE CASE TESTS
 echo     generating header file for average case
-python convert.py average.txt
+python3 convert.py average.txt
 
 # NODE AVERAGE
 echo     making node-based huffman code
@@ -72,7 +74,7 @@ echo
 echo BEST CASE TESTS
 echo     generating header file for best case
 cd ../../alphabet/
-python convert.py best.txt best
+python3 convert.py best.txt best
 
 # NODE BEST
 echo     making node-based huffman code
@@ -127,7 +129,7 @@ echo
 echo WORST CASE TESTS
 echo     generating header file for worst case
 cd ../../alphabet/
-python convert.py worst.txt worst
+python3 convert.py worst.txt worst
 
 # NODE WORST
 echo     making node-based huffman code
