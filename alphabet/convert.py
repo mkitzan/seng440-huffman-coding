@@ -6,8 +6,8 @@ def main():
         print("Must provide a file to convert")
         return
     
-    header = open("../test/huffman_test_perf.h", "w", encoding="latin-1")
-    header.write("#ifndef _HUFFMAN_TEST_PERF_H_\n#define _HUFFMAN_TEST_PERF_H_\n\n")
+    header = open("../versions/huffman_test_data.h", "w", encoding="latin-1")
+    header.write("#ifndef _HUFFMAN_TEST_DATA_H_\n#define _HUFFMAN_TEST_DATA_H_\n\n")
     header.write("char PLAIN_TEXT[] = ")
     
     count = 0

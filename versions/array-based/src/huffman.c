@@ -1,9 +1,9 @@
 #include "huffman.h"
 
-unsigned int encode(const char *text, unsigned long long int *code) {
+unsigned int encode(const char *text, uint32_t *code) {
     register unsigned int i = 0, loc = 0, len = 0;
-    register unsigned char key;
-    unsigned long long int buffer = 0;
+    register uint8_t key;
+    uint32_t buffer = 0;
     
     // loop through each character of the plain text
     for(; text[i]; ++i) {
@@ -29,9 +29,9 @@ unsigned int encode(const char *text, unsigned long long int *code) {
 }
 
 
-unsigned int decode(const unsigned long long int *code, char *text) {
-    register unsigned int loc = 0, pos = 1, bits = 0, seen = 0;
-    unsigned long long int buffer = code[0], fill = code[1];
+unsigned int decode(const uint32_t *code, char *text) {
+    register uint32_t loc = 0, pos = 1, bits = 0, seen = 0;
+    uint32_t buffer = code[0], fill = code[1];
     hnode_t curr;
     
     do {

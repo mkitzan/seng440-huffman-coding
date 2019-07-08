@@ -1,5 +1,5 @@
-//#include <stdio.h>
-#include "huffman_test_perf.h"
+#include <stdio.h>
+#include "../../huffman_test_data.h"
 #include "../src/huffman_utils.h"
 #include "../src/huffman.h"
 

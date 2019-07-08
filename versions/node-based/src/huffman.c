@@ -1,14 +1,11 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include "huffman.h"
 
-extern hnode_t *ROOT;
-extern hcode_t DICTIONARY[SIZE];
+#include <stdio.h>
 
-unsigned int encode(const char *text, unsigned long long int *code) {
+unsigned int encode(const char *text, uint32_t *code) {
     unsigned int loc = 0, len = 0;
-    unsigned long long int buffer = 0;
-    unsigned char key;
+    uint32_t buffer = 0;
+    uint8_t key;
 
     for(int i = 0; text[i] != 0; ++i) {
         key = text[i];
@@ -28,9 +25,9 @@ unsigned int encode(const char *text, unsigned long long int *code) {
 }
 
 
-unsigned int decode(const unsigned long long int *code, char *text) {
+unsigned int decode(const uint32_t *code, char *text) {
     unsigned int loc = 0, bit = 0, pos = 0;
-    unsigned long long int buffer = code[0];
+    uint32_t buffer = code[0];
     hnode_t curr, root = *ROOT;
 
     do {
@@ -45,7 +42,7 @@ unsigned int decode(const unsigned long long int *code, char *text) {
             
             buffer >>= 1;
             
-            if(++bit >= 64) {
+            if(++bit >= CODE) {
                 buffer = code[++pos];
                 bit = 0;
             }

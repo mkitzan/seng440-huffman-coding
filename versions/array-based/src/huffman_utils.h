@@ -1,18 +1,19 @@
 #ifndef _HUFFMAN_UTILS_H_
 #define _HUFFMAN_UTILS_H_
 
+#include <inttypes.h>
 #include "huffman_data.h"
 
-#define HEAP 248
+#define HEAP 188
 #define SIZE 128
-#define CODE (sizeof(unsigned long long int) * 8)
+#define CODE (sizeof(uint32_t) * 8)
 #define TEXT (sizeof(char) * 8)
 
 // dictionary struct to hold code and code length values for each alphabet char
 typedef struct hcode hcode_t;
 struct __attribute__((__packed__)) hcode {
-    unsigned long long int code;
-    unsigned char len;
+    uint16_t code;
+    uint8_t len;
 };
 
 // binary tree node struct to hold letter and child nodes

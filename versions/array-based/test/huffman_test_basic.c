@@ -19,7 +19,7 @@ int main() {
         "with the United States of America is certain, and add the suggestion that he should, "
         "on his own initiative, invite Japan to immediate adherence and at the same time mediate between "
         "Japan and ourselves. Please call the President's attention to the fact that the ruthless employment "
-        "of our submarines now offers the prospect of compelling England in a few months to make peace."
+        "of our submarines now offers the prospect of compelling England in a few months to make peace. "
         "Signed, ZIMMERMANN\x03";
                   
     uint32_t result[CODE_COUNT], buffer;
