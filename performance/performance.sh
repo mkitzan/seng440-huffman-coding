@@ -24,9 +24,9 @@ echo     making node-based huffman code
 cd ../versions/node-based/
 make
 echo     performing tests
-perf stat ./huffman_test_perf | node-based-stats-average.txt
+perf stat ./huffman_test_perf > node-based-stats-average.txt
 perf record ./huffman_test_perf
-perf report | node-based-record-average.txt
+perf report > node-based-record-average.txt
 echo     saving report data
 cp node-based-stats-average.txt ../../performance/node-based/node-based-stats-average.txt
 cp node-based-record-average.txt ../../performance/node-based/node-based-record-average.txt
@@ -40,9 +40,9 @@ echo     making array-based huffman code
 cd ../array-based/
 make
 echo     performing tests
-perf stat ./huffman_test_perf | array-based-stats-average.txt
+perf stat ./huffman_test_perf > array-based-stats-average.txt
 perf record ./huffman_test_perf
-perf report | array-based-record-average.txt
+perf report > array-based-record-average.txt
 echo     saving report data
 cp array-based-stats-average.txt ../../performance/array-based/array-based-stats-average.txt
 cp array-based-record-average.txt ../../performance/array-based/array-based-record-average.txt
@@ -56,9 +56,9 @@ echo     making lookup-based huffman code
 cd ../lookup-based/
 make
 echo     performing tests
-perf stat ./huffman_test_perf | lookup-based-stats-average.txt
+perf stat ./huffman_test_perf > lookup-based-stats-average.txt
 perf record ./huffman_test_perf
-perf report | lookup-based-record-average.txt
+perf report > lookup-based-record-average.txt
 echo     saving report data
 cp lookup-based-stats-average.txt ../../performance/lookup-based/lookup-based-stats-average.txt
 cp lookup-based-record-average.txt ../../performance/lookup-based/lookup-based-record-average.txt
@@ -79,9 +79,9 @@ echo     making node-based huffman code
 cd ../versions/node-based/
 make
 echo     performing tests
-perf stat ./huffman_test_perf | node-based-stats-best.txt
+perf stat ./huffman_test_perf > node-based-stats-best.txt
 perf record ./huffman_test_perf
-perf report | node-based-record-best.txt
+perf report > node-based-record-best.txt
 echo     saving report data
 cp node-based-stats-best.txt ../../performance/node-based/node-based-stats-best.txt
 cp node-based-record-best.txt ../../performance/node-based/node-based-record-best.txt
@@ -95,9 +95,9 @@ echo     making array-based huffman code
 cd ../array-based/
 make
 echo     performing tests
-perf stat ./huffman_test_perf | array-based-stats-best.txt
+perf stat ./huffman_test_perf > array-based-stats-best.txt
 perf record ./huffman_test_perf
-perf report | array-based-record-best.txt
+perf report > array-based-record-best.txt
 echo     saving report data
 cp array-based-stats-best.txt ../../performance/array-based/array-based-stats-best.txt
 cp array-based-record-best.txt ../../performance/array-based/array-based-record-best.txt
@@ -111,9 +111,9 @@ echo     making lookup-based huffman code
 cd ../lookup-based/
 make
 echo     performing tests
-perf stat ./huffman_test_perf | lookup-based-stats-best.txt
+perf stat ./huffman_test_perf > lookup-based-stats-best.txt
 perf record ./huffman_test_perf
-perf report | lookup-based-record-best.txt
+perf report > lookup-based-record-best.txt
 echo     saving report data
 cp lookup-based-stats-best.txt ../../performance/lookup-based/lookup-based-stats-best.txt
 cp lookup-based-record-best.txt ../../performance/lookup-based/lookup-based-record-best.txt
@@ -134,9 +134,9 @@ echo     making node-based huffman code
 cd ../versions/node-based/
 make
 echo     performing tests
-perf stat ./huffman_test_perf | node-based-stats-worst.txt
+perf stat ./huffman_test_perf > node-based-stats-worst.txt
 perf record ./huffman_test_perf
-perf report | node-based-record-worst.txt
+perf report > node-based-record-worst.txt
 echo     saving report data
 cp node-based-stats-worst.txt ../../performance/node-based/node-based-stats-worst.txt
 cp node-based-record-worst.txt ../../performance/node-based/node-based-record-worst.txt
@@ -150,9 +150,9 @@ echo     making array-based huffman code
 cd ../array-based/
 make
 echo     performing tests
-perf stat ./huffman_test_perf | array-based-stats-worst.txt
+perf stat ./huffman_test_perf > array-based-stats-worst.txt
 perf record ./huffman_test_perf
-perf report | array-based-record-worst.txt
+perf report > array-based-record-worst.txt
 echo     saving report data
 cp array-based-stats-worst.txt ../../performance/array-based/array-based-stats-worst.txt
 cp array-based-record-worst.txt ../../performance/array-based/array-based-record-worst.txt
@@ -166,9 +166,9 @@ echo     making lookup-based huffman code
 cd ../lookup-based/
 make
 echo     performing tests
-perf stat ./huffman_test_perf | lookup-based-stats-worst.txt
+perf stat ./huffman_test_perf > lookup-based-stats-worst.txt
 perf record ./huffman_test_perf
-perf report | lookup-based-record-worst.txt
+perf report > lookup-based-record-worst.txt
 echo     saving report data
 cp lookup-based-stats-worst.txt ../../performance/lookup-based/lookup-based-stats-worst.txt
 cp lookup-based-record-worst.txt ../../performance/lookup-based/lookup-based-record-worst.txt
