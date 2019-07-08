@@ -42,7 +42,7 @@ make
 echo     performing tests
 perf stat ./huffman_test_perf | array-based-stats-average.txt
 perf record ./huffman_test_perf
-perf report | array-based-record.txt
+perf report | array-based-record-average.txt
 echo     saving report data
 cp array-based-stats-average.txt ../../performance/array-based/array-based-stats-average.txt
 cp array-based-record-average.txt ../../performance/array-based/array-based-record-average.txt
@@ -97,7 +97,7 @@ make
 echo     performing tests
 perf stat ./huffman_test_perf | array-based-stats-best.txt
 perf record ./huffman_test_perf
-perf report | array-based-record.txt
+perf report | array-based-record-best.txt
 echo     saving report data
 cp array-based-stats-best.txt ../../performance/array-based/array-based-stats-best.txt
 cp array-based-record-best.txt ../../performance/array-based/array-based-record-best.txt
@@ -152,7 +152,7 @@ make
 echo     performing tests
 perf stat ./huffman_test_perf | array-based-stats-worst.txt
 perf record ./huffman_test_perf
-perf report | array-based-record.txt
+perf report | array-based-record-worst.txt
 echo     saving report data
 cp array-based-stats-worst.txt ../../performance/array-based/array-based-stats-worst.txt
 cp array-based-record-worst.txt ../../performance/array-based/array-based-record-worst.txt
