@@ -24,7 +24,6 @@ python3 convert.py average.txt
 # NODE AVERAGE
 echo making node-based huffman code
 cd ../versions/node-based/
-echo     performing tests
 make huffman_test
 echo performing tests
 3> stats-average.txt perf stat --log-fd 3 ./huffman_test_perf
