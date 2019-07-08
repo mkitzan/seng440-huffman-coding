@@ -25,7 +25,7 @@ huffman_alphabet.o: build/huffman_alphabet.c
 huffman.o: src/huffman.c src/huffman.h src/huffman_utils.h
 	$(CC) $(CFLAGS) src/huffman.c
 
-huffman_utils.o: src/huffman_utils.c src/huffman_utils.h
+huffman_utils.o: src/huffman_utils.c src/huffman_utils.h src/huffman_data.h
 	$(CC) $(CFLAGS) src/huffman_utils.c
 
 huffman_build.o: build/huffman_build.c build/huffman_build.h
