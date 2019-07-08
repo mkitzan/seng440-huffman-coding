@@ -27,7 +27,7 @@ cd ../versions/node-based/
 echo     performing tests
 make huffman_test
 echo performing tests
-3> stats-average.txt perf stat -log-fd 3 ./huffman_test_perf
+3> stats-average.txt perf stat --log-fd 3 ./huffman_test_perf
 perf record ./huffman_test_perf
 perf report --stdio > record-average.txt
 echo saving report data
@@ -43,7 +43,7 @@ echo making array-based huffman code
 cd ../array-based/
 make huffman_test
 echo performing tests
-3> stats-average.txt perf stat -log-fd 3 ./huffman_test_perf
+3> stats-average.txt perf stat --log-fd 3 ./huffman_test_perf
 perf record ./huffman_test_perf
 perf report --stdio > record-average.txt
 echo saving report data
@@ -59,7 +59,7 @@ echo making lookup-based huffman code
 cd ../lookup-based/
 make huffman_test
 echo performing tests
-3> stats-average.txt perf stat -log-fd 3 ./huffman_test_perf
+3> stats-average.txt perf stat --log-fd 3 ./huffman_test_perf
 perf record ./huffman_test_perf
 perf report --stdio > record-average.txt
 echo saving report data
@@ -82,7 +82,7 @@ echo making node-based huffman code
 cd ../versions/node-based/
 make huffman_test
 echo performing tests
-3> stats-best.txt perf stat -log-fd 3 ./huffman_test_perf
+3> stats-best.txt perf stat --log-fd 3 ./huffman_test_perf
 perf record ./huffman_test_perf
 perf report --stdio > record-best.txt
 echo saving report data
@@ -98,7 +98,7 @@ echo making array-based huffman code
 cd ../array-based/
 make huffman_test
 echo performing tests
-3> stats-best.txt perf stat -log-fd 3 ./huffman_test_perf
+3> stats-best.txt perf stat --log-fd 3 ./huffman_test_perf
 perf record ./huffman_test_perf
 perf report --stdio > record-best.txt
 echo saving report data
@@ -114,7 +114,7 @@ echo making lookup-based huffman code
 cd ../lookup-based/
 make huffman_test
 echo performing tests
-3> stats-best.txt perf stat -log-fd 3 ./huffman_test_perf
+3> stats-best.txt perf stat --log-fd 3 ./huffman_test_perf
 perf record ./huffman_test_perf
 perf report --stdio > record-best.txt
 echo saving report data
@@ -137,7 +137,7 @@ echo making node-based huffman code
 cd ../versions/node-based/
 make huffman_test
 echo performing tests
-3> stats-worst.txt perf stat -log-fd 3 ./huffman_test_perf
+3> stats-worst.txt perf stat --log-fd 3 ./huffman_test_perf
 perf record ./huffman_test_perf
 perf report --stdio > record-worst.txt
 echo saving report data
@@ -153,7 +153,7 @@ echo making array-based huffman code
 cd ../array-based/
 make huffman_test
 echo performing tests
-3> stats-worst.txt perf stat -log-fd 3 ./huffman_test_perf
+3> stats-worst.txt perf stat --log-fd 3 ./huffman_test_perf
 perf record ./huffman_test_perf
 perf report --stdio > record-worst.txt
 echo saving report data
@@ -169,7 +169,7 @@ echo making lookup-based huffman code
 cd ../lookup-based/
 make huffman_test
 echo performing tests
-3> stats-worst.txt perf stat -log-fd 3 ./huffman_test_perf
+3> stats-worst.txt perf stat --log-fd 3 ./huffman_test_perf
 perf record ./huffman_test_perf
 perf report --stdio > record-worst.txt
 echo saving report data
