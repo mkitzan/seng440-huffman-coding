@@ -26,14 +26,12 @@ echo making node-based huffman code
 cd ../versions/node-based/
 make huffman_test
 echo performing tests
-3> stats-average.txt perf stat --log-fd 3 ./huffman_test_perf
 perf record ./huffman_test_perf
 perf report --stdio > record-average.txt
 echo saving report data
-cp stats-average.txt ../../performance/node-based/stats-average.txt
 cp record-average.txt ../../performance/node-based/record-average.txt
 echo cleaning up node-based directory
-rm perf.data stats-average.txt record-average.txt
+rm perf.data record-average.txt
 make clean
 echo
 
@@ -42,14 +40,12 @@ echo making array-based huffman code
 cd ../array-based/
 make huffman_test
 echo performing tests
-3> stats-average.txt perf stat --log-fd 3 ./huffman_test_perf
 perf record ./huffman_test_perf
 perf report --stdio > record-average.txt
 echo saving report data
-cp stats-average.txt ../../performance/array-based/stats-average.txt
 cp record-average.txt ../../performance/array-based/record-average.txt
 echo cleaning up array-based directory
-rm perf.data stats-average.txt record-average.txt
+rm perf.data record-average.txt
 make clean
 echo
 
@@ -58,14 +54,12 @@ echo making lookup-based huffman code
 cd ../lookup-based/
 make huffman_test
 echo performing tests
-3> stats-average.txt perf stat --log-fd 3 ./huffman_test_perf
 perf record ./huffman_test_perf
 perf report --stdio > record-average.txt
 echo saving report data
-cp stats-average.txt ../../performance/lookup-based/stats-average.txt
 cp record-average.txt ../../performance/lookup-based/record-average.txt
 echo cleaning up lookup-based directory
-rm perf.data stats-average.txt record-average.txt
+rm perf.data record-average.txt
 make clean
 echo
 
@@ -81,14 +75,12 @@ echo making node-based huffman code
 cd ../versions/node-based/
 make huffman_test
 echo performing tests
-3> stats-best.txt perf stat --log-fd 3 ./huffman_test_perf
 perf record ./huffman_test_perf
 perf report --stdio > record-best.txt
 echo saving report data
-cp stats-best.txt ../../performance/node-based/stats-best.txt
 cp record-best.txt ../../performance/node-based/record-best.txt
 echo cleaning up node-based directory
-rm perf.data stats-best.txt record-best.txt
+rm perf.data record-best.txt
 make clean
 echo
 
@@ -97,14 +89,12 @@ echo making array-based huffman code
 cd ../array-based/
 make huffman_test
 echo performing tests
-3> stats-best.txt perf stat --log-fd 3 ./huffman_test_perf
 perf record ./huffman_test_perf
 perf report --stdio > record-best.txt
 echo saving report data
-cp stats-best.txt ../../performance/array-based/stats-best.txt
 cp record-best.txt ../../performance/array-based/record-best.txt
 echo cleaning up array-based directory
-rm perf.data stats-best.txt record-best.txt
+rm perf.data record-best.txt
 make clean
 echo
 
@@ -113,14 +103,12 @@ echo making lookup-based huffman code
 cd ../lookup-based/
 make huffman_test
 echo performing tests
-3> stats-best.txt perf stat --log-fd 3 ./huffman_test_perf
 perf record ./huffman_test_perf
 perf report --stdio > record-best.txt
 echo saving report data
-cp stats-best.txt ../../performance/lookup-based/stats-best.txt
 cp record-best.txt ../../performance/lookup-based/record-best.txt
 echo cleaning up lookup-based directory
-rm perf.data stats-best.txt record-best.txt
+rm perf.data record-best.txt
 make clean
 echo
 
@@ -136,14 +124,12 @@ echo making node-based huffman code
 cd ../versions/node-based/
 make huffman_test
 echo performing tests
-3> stats-worst.txt perf stat --log-fd 3 ./huffman_test_perf
 perf record ./huffman_test_perf
 perf report --stdio > record-worst.txt
 echo saving report data
-cp stats-worst.txt ../../performance/node-based/stats-worst.txt
 cp record-worst.txt ../../performance/node-based/record-worst.txt
 echo cleaning up node-based directory
-rm perf.data stats-worst.txt record-worst.txt
+rm perf.data record-worst.txt
 make clean
 echo
 
@@ -152,14 +138,12 @@ echo making array-based huffman code
 cd ../array-based/
 make huffman_test
 echo performing tests
-3> stats-worst.txt perf stat --log-fd 3 ./huffman_test_perf
 perf record ./huffman_test_perf
 perf report --stdio > record-worst.txt
 echo saving report data
-cp stats-worst.txt ../../performance/array-based/stats-worst.txt
 cp record-worst.txt ../../performance/array-based/record-worst.txt
 echo cleaning up array-based directory
-rm perf.data stats-worst.txt record-worst.txt
+rm perf.data record-worst.txt
 make clean
 echo
 
@@ -168,14 +152,12 @@ echo making lookup-based huffman code
 cd ../lookup-based/
 make huffman_test
 echo performing tests
-3> stats-worst.txt perf stat --log-fd 3 ./huffman_test_perf
 perf record ./huffman_test_perf
 perf report --stdio > record-worst.txt
 echo saving report data
-cp stats-worst.txt ../../performance/lookup-based/stats-worst.txt
 cp record-worst.txt ../../performance/lookup-based/record-worst.txt
 echo cleaning up lookup-based directory
-rm perf.data stats-worst.txt record-worst.txt
+rm perf.data record-worst.txt
 make clean
 echo
 
