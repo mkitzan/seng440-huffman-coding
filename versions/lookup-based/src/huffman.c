@@ -1,6 +1,6 @@
 #include "huffman.h"
 
-unsigned int encode(const char *text, uint32_t *code) {
+unsigned int encode(const char *restrict text, uint32_t *restrict code) {
     register uint32_t i = 0, loc = 0, len = 0, buffer = 0, key;
     
     // loop through each character of the plain text until null terminator
@@ -27,8 +27,9 @@ unsigned int encode(const char *text, uint32_t *code) {
 }
 
 
-unsigned int decode(const uint32_t *code, char *text) {
-    register uint32_t buffer = code[0], loc = 0, pos = 1, bits = 0, seen = 0, draw;
+unsigned int decode(const uint32_t *restrict code, char *restrict text) {
+    register uint32_t buffer = code[0], loc = 0, pos = 1, bits = 0, seen = 0;
+    register uint32_t draw, temp;
     register hlook_t *table;
     
     do {
@@ -43,11 +44,14 @@ unsigned int decode(const uint32_t *code, char *text) {
         draw &= buffer;
         
         // adjust buffer and control variables
-        bits += table[draw].contrib;
-        buffer >>= table[draw].contrib;
+        temp = table[draw].contrib;
+        bits += temp;
+        buffer >>= temp;
         
         // write character to plain text container
-        text[loc] = table[draw].letter;
+        // preserve value to check against in while predicate
+        temp = table[draw].letter;
+        text[loc++] = temp;
         
         draw = code[pos] >> seen;
         // record how many bits were seen
@@ -62,7 +66,7 @@ unsigned int decode(const uint32_t *code, char *text) {
                 buffer |= code[pos] << (CODE - seen);
             }
         }
-    } while(text[loc++] != 0x03);
+    } while(temp != 0x03);
 
     return loc;
 }
