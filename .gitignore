@@ -1,2 +1,6 @@
 *.o
 *.exe
+alphabet/books/clean/*duplicate*
+alphabet/books/clean/best.txt
+alphabet/books/clean/worst.txt
+verions/huffman_test_data.h
