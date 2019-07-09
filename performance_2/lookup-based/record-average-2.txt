@@ -1,0 +1,154 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 26K of event 'cpu-clock'
+# Event count (approx.): 6701500000
+#
+# Overhead  Command          Shared Object      Symbol                                 
+# ........  ...............  .................  .......................................
+#
+    32.06%  huffman_test_pe  huffman_test_perf  [.] decode
+    15.42%  huffman_test_pe  huffman_test_perf  [.] encode
+     7.20%  huffman_test_pe  [kernel.kallsyms]  [k] __kunmap_atomic
+     6.97%  huffman_test_pe  [kernel.kallsyms]  [k] kmap_atomic
+     6.57%  huffman_test_pe  [kernel.kallsyms]  [k] do_page_fault
+     3.80%  huffman_test_pe  [kernel.kallsyms]  [k] handle_mm_fault
+     2.88%  huffman_test_pe  [kernel.kallsyms]  [k] flush_tlb_page
+     2.29%  huffman_test_pe  [kernel.kallsyms]  [k] cpu_v7_set_pte_ext
+     1.95%  huffman_test_pe  [kernel.kallsyms]  [k] wp_page_copy
+     1.88%  huffman_test_pe  [kernel.kallsyms]  [k] get_page_from_freelist
+     1.33%  huffman_test_pe  [kernel.kallsyms]  [k] mem_cgroup_commit_charge
+     1.27%  huffman_test_pe  [kernel.kallsyms]  [k] copy_page
+     1.01%  huffman_test_pe  [kernel.kallsyms]  [k] _raw_spin_unlock_irqrestore
+     0.99%  huffman_test_pe  [kernel.kallsyms]  [k] get_mem_cgroup_from_mm
+     0.87%  huffman_test_pe  [kernel.kallsyms]  [k] __alloc_pages_nodemask
+     0.80%  huffman_test_pe  [kernel.kallsyms]  [k] mmioset
+     0.74%  huffman_test_pe  [kernel.kallsyms]  [k] erratum_a15_798181_broadcast
+     0.71%  huffman_test_pe  [kernel.kallsyms]  [k] __lock_text_start
+     0.70%  huffman_test_pe  [kernel.kallsyms]  [k] do_wp_page
+     0.64%  huffman_test_pe  [kernel.kallsyms]  [k] mem_cgroup_try_charge
+     0.64%  huffman_test_pe  [kernel.kallsyms]  [k] try_charge
+     0.50%  huffman_test_pe  [kernel.kallsyms]  [k] _cond_resched
+     0.46%  huffman_test_pe  [kernel.kallsyms]  [k] v6_copy_user_highpage_nonaliasing
+     0.46%  huffman_test_pe  [kernel.kallsyms]  [k] free_unref_page_list
+     0.40%  huffman_test_pe  [kernel.kallsyms]  [k] __mod_node_page_state
+     0.40%  huffman_test_pe  [kernel.kallsyms]  [k] add_mm_counter_fast
+     0.40%  huffman_test_pe  [kernel.kallsyms]  [k] vmacache_find
+     0.39%  huffman_test_pe  [kernel.kallsyms]  [k] page_remove_rmap
+     0.34%  huffman_test_pe  [kernel.kallsyms]  [k] ptep_clear_flush
+     0.32%  huffman_test_pe  [kernel.kallsyms]  [k] v6_clear_user_highpage_nonaliasing
+     0.31%  huffman_test_pe  [kernel.kallsyms]  [k] lru_cache_add_active_or_unevictable
+     0.30%  huffman_test_pe  [kernel.kallsyms]  [k] _vm_normal_page
+     0.26%  huffman_test_pe  [kernel.kallsyms]  [k] rcu_all_qs
+     0.24%  huffman_test_pe  [kernel.kallsyms]  [k] unlock_page_memcg
+     0.23%  huffman_test_pe  [kernel.kallsyms]  [k] bad_range
+     0.22%  huffman_test_pe  [kernel.kallsyms]  [k] _set_bit
+     0.22%  huffman_test_pe  [kernel.kallsyms]  [k] run_timer_softirq
+     0.22%  huffman_test_pe  [kernel.kallsyms]  [k] page_add_new_anon_rmap
+     0.21%  huffman_test_pe  [kernel.kallsyms]  [k] up_read
+     0.20%  huffman_test_pe  [kernel.kallsyms]  [k] alloc_set_pte
+     0.20%  huffman_test_pe  [kernel.kallsyms]  [k] find_vma
+     0.19%  huffman_test_pe  [kernel.kallsyms]  [k] __sync_icache_dcache
+     0.19%  huffman_test_pe  [kernel.kallsyms]  [k] __lru_cache_add
+     0.19%  huffman_test_pe  [kernel.kallsyms]  [k] mem_cgroup_from_task
+     0.15%  huffman_test_pe  [kernel.kallsyms]  [k] filemap_map_pages
+     0.14%  huffman_test_pe  [kernel.kallsyms]  [k] ret_from_exception
+     0.13%  huffman_test_pe  [kernel.kallsyms]  [k] page_address
+     0.13%  huffman_test_pe  [kernel.kallsyms]  [k] do_DataAbort
+     0.12%  huffman_test_pe  [kernel.kallsyms]  [k] __dabt_usr
+     0.12%  huffman_test_pe  [kernel.kallsyms]  [k] lock_page_memcg
+     0.10%  huffman_test_pe  [kernel.kallsyms]  [k] __page_set_anon_rmap
+     0.08%  huffman_test_pe  [kernel.kallsyms]  [k] down_read_trylock
+     0.08%  huffman_test_pe  [kernel.kallsyms]  [k] page_counter_try_charge
+     0.08%  huffman_test_pe  [kernel.kallsyms]  [k] __unlock_page_memcg
+     0.08%  huffman_test_pe  [kernel.kallsyms]  [k] lru_cache_add
+     0.07%  huffman_test_pe  [kernel.kallsyms]  [k] finish_task_switch
+     0.07%  huffman_test_pe  [kernel.kallsyms]  [k] flush_cache_page
+     0.06%  huffman_test_pe  [kernel.kallsyms]  [k] page_add_file_rmap
+     0.06%  huffman_test_pe  [kernel.kallsyms]  [k] uncharge_page
+     0.06%  huffman_test_pe  [kernel.kallsyms]  [k] unmap_page_range
+     0.05%  huffman_test_pe  [kernel.kallsyms]  [k] __zone_watermark_ok
+     0.05%  huffman_test_pe  [kernel.kallsyms]  [k] _test_and_set_bit
+     0.05%  huffman_test_pe  [kernel.kallsyms]  [k] pagevec_lru_move_fn
+     0.04%  huffman_test_pe  [kernel.kallsyms]  [k] free_unref_page_prepare
+     0.04%  huffman_test_pe  [kernel.kallsyms]  [k] ret_to_user
+     0.04%  huffman_test_pe  [kernel.kallsyms]  [k] __dec_node_page_state
+     0.04%  huffman_test_pe  [kernel.kallsyms]  [k] do_memsw_account
+     0.04%  huffman_test_pe  [kernel.kallsyms]  [k] mem_cgroup_uncharge_list
+     0.04%  huffman_test_pe  [kernel.kallsyms]  [k] unlock_page
+     0.03%  huffman_test_pe  [kernel.kallsyms]  [k] __softirqentry_text_start
+     0.03%  huffman_test_pe  [kernel.kallsyms]  [k] _raw_spin_lock_irqsave
+     0.02%  huffman_test_pe  [kernel.kallsyms]  [k] _clear_bit
+     0.02%  huffman_test_pe  [kernel.kallsyms]  [k] radix_tree_load_root
+     0.02%  huffman_test_pe  [kernel.kallsyms]  [k] radix_tree_next_chunk
+     0.02%  huffman_test_pe  [kernel.kallsyms]  [k] release_pages
+     0.02%  huffman_test_pe  ld-2.28.so         [.] _dl_map_object_from_fd
+     0.01%  huffman_test_pe  [kernel.kallsyms]  [k] flush_tlb_mm
+     0.01%  huffman_test_pe  [kernel.kallsyms]  [k] free_pages_and_swap_cache
+     0.01%  huffman_test_pe  [kernel.kallsyms]  [k] propagate_protected_usage
+     0.01%  huffman_test_pe  [kernel.kallsyms]  [k] refill_stock
+     0.01%  huffman_test_pe  ld-2.28.so         [.] calloc@plt
+     0.01%  huffman_test_pe  ld-2.28.so         [.] dl_main
+     0.01%  huffman_test_pe  [kernel.kallsyms]  [k] sync_mm_rss
+     0.01%  huffman_test_pe  ld-2.28.so         [.] do_lookup_x
+     0.01%  huffman_test_pe  [kernel.kallsyms]  [k] __remove_shared_vm_struct
+     0.01%  huffman_test_pe  [kernel.kallsyms]  [k] broadcast_tlb_mm_a15_erratum
+     0.01%  huffman_test_pe  [kernel.kallsyms]  [k] cpumask_next_and
+     0.01%  huffman_test_pe  [kernel.kallsyms]  [k] free_unref_page
+     0.01%  huffman_test_pe  [kernel.kallsyms]  [k] generic_fillattr
+     0.01%  huffman_test_pe  [kernel.kallsyms]  [k] kmem_cache_alloc
+     0.01%  huffman_test_pe  [kernel.kallsyms]  [k] nsecs_to_jiffies
+     0.01%  huffman_test_pe  [kernel.kallsyms]  [k] perf_event_mmap
+     0.01%  huffman_test_pe  [kernel.kallsyms]  [k] perf_output_begin
+     0.01%  huffman_test_pe  [kernel.kallsyms]  [k] smp_call_function_many
+     0.01%  huffman_test_pe  [kernel.kallsyms]  [k] strnlen_user
+     0.01%  huffman_test_pe  ld-2.28.so         [.] __aeabi_uidiv
+     0.01%  huffman_test_pe  ld-2.28.so         [.] _dl_important_hwcaps
+     0.01%  huffman_test_pe  ld-2.28.so         [.] _dl_relocate_object
+     0.01%  huffman_test_pe  ld-2.28.so         [.] allocate_dtv
+     0.01%  huffman_test_pe  ld-2.28.so         [.] check_match
+     0.01%  huffman_test_pe  ld-2.28.so         [.] memset
+     0.01%  huffman_test_pe  ld-2.28.so         [.] openaux
+     0.01%  huffman_test_pe  ld-2.28.so         [.] strcmp
+     0.01%  huffman_test_pe  libc-2.28.so       [.] __libc_start_main
+     0.00%  huffman_test_pe  [kernel.kallsyms]  [k] __dec_node_state
+     0.00%  huffman_test_pe  [kernel.kallsyms]  [k] __fput
+     0.00%  huffman_test_pe  [kernel.kallsyms]  [k] __legitimize_mnt
+     0.00%  huffman_test_pe  [kernel.kallsyms]  [k] __pagevec_lru_add
+     0.00%  huffman_test_pe  [kernel.kallsyms]  [k] __pte_alloc
+     0.00%  huffman_test_pe  [kernel.kallsyms]  [k] __se_sys_fstat64
+     0.00%  huffman_test_pe  [kernel.kallsyms]  [k] __split_vma
+     0.00%  huffman_test_pe  [kernel.kallsyms]  [k] __vma_link_file
+     0.00%  huffman_test_pe  [kernel.kallsyms]  [k] __vma_link_rb
+     0.00%  huffman_test_pe  [kernel.kallsyms]  [k] do_mmap
+     0.00%  huffman_test_pe  [kernel.kallsyms]  [k] kmem_cache_free
+     0.00%  huffman_test_pe  [kernel.kallsyms]  [k] load_elf_binary
+     0.00%  huffman_test_pe  [kernel.kallsyms]  [k] lru_add_drain
+     0.00%  huffman_test_pe  [kernel.kallsyms]  [k] mark_page_accessed
+     0.00%  huffman_test_pe  [kernel.kallsyms]  [k] memblock_is_map_memory
+     0.00%  huffman_test_pe  [kernel.kallsyms]  [k] mod_timer
+     0.00%  huffman_test_pe  [kernel.kallsyms]  [k] page_counter_cancel
+     0.00%  huffman_test_pe  [kernel.kallsyms]  [k] path_get
+     0.00%  huffman_test_pe  [kernel.kallsyms]  [k] perf_event_mmap_output
+     0.00%  huffman_test_pe  [kernel.kallsyms]  [k] rwb_arm_timer
+     0.00%  huffman_test_pe  ld-2.28.so         [.] __GI___tunables_init
+     0.00%  huffman_test_pe  ld-2.28.so         [.] _dl_add_to_slotinfo
+     0.00%  huffman_test_pe  ld-2.28.so         [.] _dl_allocate_tls_init
+     0.00%  huffman_test_pe  ld-2.28.so         [.] _dl_catch_exception@plt
+     0.00%  huffman_test_pe  ld-2.28.so         [.] _dl_fini
+     0.00%  huffman_test_pe  ld-2.28.so         [.] _dl_init_paths
+     0.00%  huffman_test_pe  ld-2.28.so         [.] _dl_map_object_deps
+     0.00%  huffman_test_pe  ld-2.28.so         [.] _dl_start
+     0.00%  huffman_test_pe  ld-2.28.so         [.] access
+     0.00%  huffman_test_pe  ld-2.28.so         [.] memcmp
+     0.00%  huffman_test_pe  ld-2.28.so         [.] strchr
+     0.00%  huffman_test_pe  libc-2.28.so       [.] _IO_cleanup
+     0.00%  huffman_test_pe  libc-2.28.so       [.] __init_misc
+     0.00%  huffman_test_pe  libc-2.28.so       [.] _init
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#
