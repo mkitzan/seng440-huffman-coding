@@ -21,55 +21,55 @@
 encode:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
-	movw	r2, #:lower16:DICT
+	movw	r2, #:lower16:DICT ; r2 is temp var storing DICT addr
 	push	{r4, r5, r6, r7, r8, r9, lr}
-	ldrb	r3, [r0]	@ zero_extendqisi2
-	movt	r2, #:upper16:DICT
-	cmp	r3, #0
-	ldr	r9, [r2]
+	ldrb	r3, [r0]	@ zero_extendqisi2 ; load r3 (key) with first char in text
+	movt	r2, #:upper16:DICT ; r2 is temp var storing DICT addr
+	cmp	r3, #0 ; check if first car is null
+	ldr	r9, [r2] ; copy DICT addr
 	beq	.L6
-	mov	lr, #0
-	mov	r6, r0
-	mov	r2, lr
-	mov	r8, lr
-	mov	r7, r1
-	mov	r4, #1
+	mov	lr, #0 ; lr is buffer
+	mov	r6, r0 ; temp var for text
+	mov	r2, lr ; r2 is len
+	mov	r8, lr ; r8 is 
+	mov	r7, r1 ; r7 is 
+	mov	r4, #1 ; r4 is loc
 .L3:
-	add	r3, r3, r3, lsl #1
-	add	r3, r9, r3
-	ldrh	r5, [r3]	@ unaligned
-	ldrb	ip, [r3, #2]	@ zero_extendqisi2
-	orr	lr, lr, r5, lsl r2
-	add	r2, r2, ip
-	tst	r2, #32
+	add	r3, r3, r3, lsl #1 ; turn key char into DICT index
+	add	r3, r9, r3 ; offset DICT by index
+	ldrh	r5, [r3]	@ unaligned ; load DICT[key].code
+	ldrb	ip, [r3, #2]	@ zero_extendqisi2 ; load DICT[key].len
+	orr	lr, lr, r5, lsl r2 ; copy bits to buffer
+	add	r2, r2, ip ; add DICT[key].len to len counter
+	tst	r2, #32 ; len & CODE
 	beq	.L4
-	str	lr, [r7]
+	str	lr, [r7] ; write buffer to code
 	ldrb	r3, [r6, #1]!	@ zero_extendqisi2
-	sub	r2, r2, #32
-	sub	ip, ip, r2
-	cmp	r3, #0
-	asr	lr, r5, ip
-	add	r7, r1, r4, lsl #2
-	add	r0, r4, #1
+	sub	r2, r2, #32 ; len -= CODE
+	sub	ip, ip, r2 ; DICT[key].len - len
+	cmp	r3, #0 ; compare letter to 0
+	asr	lr, r5, ip ; DICT[key].code >> (DICT[key].len - len)
+	add	r7, r1, r4, lsl #2 ; move code addr by one code[pos++]
+	add	r0, r4, #1 ; increment pos
 	beq	.L2
-	mov	r8, r4
-	mov	r4, r0
+	mov	r8, r4 ; copy pos-1 to r8
+	mov	r4, r0 ; copy pos to r4
 	b	.L3
 .L4:
 	ldrb	r3, [r6, #1]!	@ zero_extendqisi2
-	add	r7, r1, r8, lsl #2
-	cmp	r3, #0
-	add	r4, r8, #1
+	add	r7, r1, r8, lsl #2 ; move code addr by one code[pos++]
+	cmp	r3, #0 ; check if char is null
+	add	r4, r8, #1 ; increment loc
 	bne	.L3
-	mov	r0, r4
+	mov	r0, r4 ; store loc in return register
 .L2:
-	str	lr, [r7]
+	str	lr, [r7] ; write remaining buffer
 	pop	{r4, r5, r6, r7, r8, r9, pc}
 .L6:
-	mov	r7, r1
-	mov	lr, r3
-	mov	r0, #1
-	str	lr, [r7]
+	mov	r7, r1 ; seems unneeded
+	mov	lr, r3 ; seems unneeded
+	mov	r0, #1 ; set return value 
+	str	lr, [r7] ; write 0 to code[0]
 	pop	{r4, r5, r6, r7, r8, r9, pc}
 	.size	encode, .-encode
 	.align	2
@@ -114,7 +114,7 @@ decode:
 	add	r2, r2, #1  ; increment loc
 	lsl	lr, r5, #2 ; setting up offset/index for code
 	beq	.L11 ; break on earlier seen test
-	subs	ip, ip, #32 ; seen -= CODE and 
+	subs	ip, ip, #32 ; seen -= CODE and set predicate flag
 	addne	lr, r7, lr ; IF(seen==0) -> offset code addr with lr (pos)
 	rsbne	r4, ip, #32 ; IF(seen==0) -> 32 - seen
 	ldrne	r9, [lr, #4] ; IF(seen==0) -> load code[pos]
