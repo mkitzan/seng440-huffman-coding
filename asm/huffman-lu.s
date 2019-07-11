@@ -82,48 +82,48 @@ decode:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, r7, r8, r9, lr}
-	movw	r8, #:lower16:LOOKUP
-	mov	r7, r0
-	mov	ip, #0
-	mov	r5, #1
-	ldr	r3, [r0]
-	sub	r2, r1, #1
-	movt	r8, #:upper16:LOOKUP
+	movw	r8, #:lower16:LOOKUP ; r8 is temp var storing LOOKUP addr
+	mov	r7, r0 ; r7 takes copy of input "code" addr
+	mov	ip, #0 ; ip is seen
+	mov	r5, #1 ; r5 is variable pos
+	ldr	r3, [r0] ; r3 is buffer
+	sub	r2, r1, #1 ; seems to be storing one less the input "text" addr
+	movt	r8, #:upper16:LOOKUP ; r8 is temp var storing LOOKUP addr
 .L12:
-	and	lr, r3, #7
-	ldr	r0, [r8]
-	add	lr, lr, lr, lsl #2
-	add	r0, r0, lr
-	ldrb	r4, [r0, #4]	@ zero_extendqisi2
-	ldr	lr, [r0]	@ unaligned
-	lsr	r9, r3, #3
-	and	r4, r4, r9
-	ldrb	r6, [lr, r4, lsl #1]	@ zero_extendqisi2
-	add	lr, lr, r4, lsl #1
-	ldrb	lr, [lr, #1]	@ zero_extendqisi2
-	strb	r6, [r2, #1]
-	ldr	r3, [r7, r5, lsl #2]
-	add	r0, lr, #3
-	lsr	r3, r3, ip
-	rsb	r4, r0, #32
-	add	ip, ip, r0
-	lsl	r3, r3, r4
-	tst	ip, #32
-	add	r0, r2, #2
-	orr	r3, r3, r9, lsr lr
-	add	r2, r2, #1
-	lsl	lr, r5, #2
-	beq	.L11
-	subs	ip, ip, #32
-	addne	lr, r7, lr
-	rsbne	r4, ip, #32
-	ldrne	r9, [lr, #4]
-	movne	lr, r4
-	add	r5, r5, #1
-	orrne	r3, r3, r9, lsl lr
+	and	lr, r3, #7 ; lr is draw
+	ldr	r0, [r8] ; get base addr of LOOKUP
+	add	lr, lr, lr, lsl #2 ; adjust draw to be proper offset for LOOKUP to index correctly
+	add	r0, r0, lr ; add index offset to base addr of LOOKUP
+	ldrb	r4, [r0, #4]	@ zero_extendqisi2 ; load draw value from struct
+	ldr	lr, [r0]	@ unaligned ; load table addr from struct
+	lsr	r9, r3, #3 ; shift buffer by 3 store in r9
+	and	r4, r4, r9 ; drawing n-bits from buffer
+	ldrb	r6, [lr, r4, lsl #1]	@ zero_extendqisi2 ; load letter at table entry
+	add	lr, lr, r4, lsl #1 ; shift table entry pointer over to point at contrib member
+	ldrb	lr, [lr, #1]	@ zero_extendqisi2 ; load contrib member
+	strb	r6, [r2, #1] ; store letter into text array
+	ldr	r3, [r7, r5, lsl #2] ; load code[pos] into temp r3
+	add	r0, lr, #3 ; adjust r0 (bits) with contrib and +3
+	lsr	r3, r3, ip ; shift code[pos] temp by seen (ip)
+	rsb	r4, r0, #32 ; store CODE - bits into temp r4
+	add	ip, ip, r0 ; add bits to seen
+	lsl	r3, r3, r4 ; shifting over temp storing code[pos] 
+	tst	ip, #32 ; test if MSB is set in seen
+	add	r0, r2, #2 ; incrementing text addr to next value text[loc] -> text[loc+1]
+	orr	r3, r3, r9, lsr lr ; filling buffer with remiaing bits
+	add	r2, r2, #1  ; increment loc
+	lsl	lr, r5, #2 ; setting up offset/index for code
+	beq	.L11 ; break on earlier seen test
+	subs	ip, ip, #32 ; seen -= CODE and 
+	addne	lr, r7, lr ; IF(seen==0) -> offset code addr with lr (pos)
+	rsbne	r4, ip, #32 ; IF(seen==0) -> 32 - seen
+	ldrne	r9, [lr, #4] ; IF(seen==0) -> load code[pos]
+	movne	lr, r4 ; IF(seen==0) -> copy 32 - seen :: UNEEDED lr usage at line 123 could be r4
+	add	r5, r5, #1 ; increment pos
+	orrne	r3, r3, r9, lsl lr ; IF(seen==0) -> fill buffer with shifted value
 .L11:
-	cmp	r6, #3
-	sub	r0, r0, r1
+	cmp	r6, #3 ; comp letter decoded in this iteration 
+	sub	r0, r0, r1 ; determines loc by (text[loc] - text)
 	bne	.L12
 	pop	{r4, r5, r6, r7, r8, r9, pc}
 	.size	decode, .-decode
