@@ -35,7 +35,6 @@ unsigned int decode(const uint32_t *restrict code, char *restrict text) {
     do {
         // use next three bits to index the LOOKUP table
         draw = buffer & 7;
-        bits = 3;
         table = LOOKUP[draw].table;
         draw = LOOKUP[draw].draw;
         
@@ -45,7 +44,7 @@ unsigned int decode(const uint32_t *restrict code, char *restrict text) {
         
         // adjust buffer and control variables
         temp = table[draw].contrib;
-        bits += temp;
+        bits = temp + 3;
         buffer >>= temp;
         
         // write character to plain text container
