@@ -1,30 +1,30 @@
-	.arch armv7-a
-	.eabi_attribute 28, 1
-	.eabi_attribute 20, 1
-	.eabi_attribute 21, 1
-	.eabi_attribute 23, 3
-	.eabi_attribute 24, 1
-	.eabi_attribute 25, 1
-	.eabi_attribute 26, 2
-	.eabi_attribute 30, 2
-	.eabi_attribute 34, 1
-	.eabi_attribute 18, 4
-	.file	"huffman.c"
-	.text
-	.align	2
-	.global	encode
-	.arch armv7-a
-	.syntax unified
-	.arm
-	.fpu vfpv3-d16
-	.type	encode, %function
+    .arch armv7-a
+    .eabi_attribute 28, 1
+    .eabi_attribute 20, 1
+    .eabi_attribute 21, 1
+    .eabi_attribute 23, 3
+    .eabi_attribute 24, 1
+    .eabi_attribute 25, 1
+    .eabi_attribute 26, 2
+    .eabi_attribute 30, 2
+    .eabi_attribute 34, 1
+    .eabi_attribute 18, 4
+    .file	"huffman.c"
+    .text
+    .align	2
+    .global	encode
+    .arch armv7-a
+    .syntax unified
+    .arm
+    .fpu vfpv3-d16
+    .type	encode, %function
 encode:
-	; args = 0, pretend = 0, frame = 0
-	; frame_needed = 0, uses_anonymous_args = 0
-	movw r2, #:lower16:DICT ; r2 is temp var storing DICT addr
-	push {r4, r5, r6, r7, r8, r9, lr}
-	ldrb r3, [r0] ; [zero_extendqisi2] load r3 (key) with first char in text
-	movt r2, #:upper16:DICT ; r2 is temp var storing DICT addr
+    ; args = 0, pretend = 0, frame = 0
+    ; frame_needed = 0, uses_anonymous_args = 0
+    movw r2, #:lower16:DICT ; r2 is temp var storing DICT addr
+    push {r4, r5, r6, r7, r8, r9, lr}
+    ldrb r3, [r0] ; [zero_extendqisi2] load r3 (key) with first char in text
+    movt r2, #:upper16:DICT ; r2 is temp var storing DICT addr
     mov  r4, #0 ; loc = 0
     mov  r5, #0 ; len = 0
     mov  r6, #0 ; buffer = 0
@@ -36,7 +36,7 @@ encode:
     add  r0, r0, #1 ; text = text + 1
     add  r3, r7, r3 ; get DICT[key] addr
     ldrh r8, [r3] ; load DICT[key].code
-	ldrb r9, [r3, #2] ; load DICT[key].len
+    ldrb r9, [r3, #2] ; load DICT[key].len
     orr	 r6, r6, r8, lsl r5 ; buffer |= DICT[key].code << len
     add  r5, r5, r9 ; len += DICT[key].len
     ldrb r3, [r0] ; load text[i]
@@ -53,13 +53,13 @@ encode:
     str  r6, [r1] ; store fence post buffer
     mov  r0, r4 ; return loc
     pop  {r4, r5, r6, r7, r8, r9, pc}
-	.size	encode, .-encode
-	.align	2
-	.global	decode
-	.syntax unified
-	.arm
-	.fpu vfpv3-d16
-	.type	decode, %function
+    .size encode, .-encode
+    .align	2
+    .global	decode
+    .syntax unified
+    .arm
+    .fpu vfpv3-d16
+    .type decode, %function
 decode:
     ; args = 0, pretend = 0, frame = 0
     ; frame_needed = 0, uses_anonymous_args = 0
@@ -106,8 +106,8 @@ decode:
     sub   r0, r2, r1 ; determines loc by (text[loc] - text)
     bne   .L12
     pop   {r4, r5, r6, r7, r8, r9, pc}
-	.size	decode, .-decode
-	.comm	LOOKUP,4,4
-	.comm	DICT,4,4
-	.ident	"GCC: (GNU) 8.2.1 20180801 (Red Hat 8.2.1-2)"
-	.section	.note.GNU-stack,"",%progbits
+    .size decode, .-decode
+    .comm LOOKUP,4,4
+    .comm DICT,4,4
+    .ident "GCC: (GNU) 8.2.1 20180801 (Red Hat 8.2.1-2)"
+    .section .note.GNU-stack,"",%progbits
