@@ -31,8 +31,8 @@ encode:
 	mov	lr, #0 @ lr is buffer
 	mov	r6, r0 @ temp var for text
 	mov	r2, lr @ r2 is len
-	mov	r8, lr @ r8 is 
-	mov	r7, r1 @ r7 is 
+	mov	r8, lr @ r8 is temp variable
+	mov	r7, r1 @ r7 is code
 	mov	r4, #1 @ r4 is loc
 .L3:
 	add	r3, r3, r3, lsl #1 @ turn key char into DICT index
