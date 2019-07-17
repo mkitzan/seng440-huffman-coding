@@ -5,7 +5,7 @@ encode:
     push   {r4, r5, r6, r7, r8, r9, lr}
     ldrb   r3, [r0] ; [zero_extendqisi2] load r3 (key) with first char in text
     movt   r2, #:upper16:DICT ; r2 = DICT addr
-    mov    r4, r1 ; loc = 0
+    mov    r4, r1 ; copy code addr
     mov    r5, #0 ; len = 0
     mov    r6, #0 ; buffer = 0
 .L3
