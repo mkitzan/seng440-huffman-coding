@@ -36,14 +36,14 @@ int main() {
             printf("%c", (char)('0' + (buffer & 1)));
             buffer >>= 1;
         }
-    }
-    
+    }    
+
     n = encode(zimmermann, result);
-    
+ 
     printf("\n\nEncoded text binary\n");
     // print binary of encoded text
     for(i = 0; i < n; ++i) {
-        buffer = result[i];
+        buffer = result[i];      
         for(j = 0; !(j & CODE); ++j) {
             printf("%c", (char)('0' + (buffer & 1)));
             buffer >>= 1;
@@ -51,6 +51,7 @@ int main() {
     }
     
     n = decode(result, zimmermann);
+
     // print decoded text
     zimmermann[n] = 0;
     printf("\n\nDecoded text\n%s\n", zimmermann);
