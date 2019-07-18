@@ -68,7 +68,7 @@ decode:
     movt  r8, #:upper16:LOOKUP @ r8 is temp var storing LOOKUP addr
 .L12:
     and   lr, r3, #7 @ draw = buffer & 7
-    mov   r0, r8 @ r0 = LOOKUP addr
+    ldr   r0, [r8] @ r0 = LOOKUP addr
     add   lr, lr, lr, lsl #2 @ turn draw into index offset for LOOKUP
     add   r0, r0, lr @ get LOOKUP[draw] addr
     lsr   r9, r3, #3 @ buffer >>= 3
