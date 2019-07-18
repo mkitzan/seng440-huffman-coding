@@ -40,8 +40,8 @@ encode:
     add   r5, r5, r9 @ len += DICT[key].len
     ldrb  r3, [r0, #1]! @ [zero_extendqisi2] load text[i]
     tst	  r5, #32 @ len & CODE
-    strne r6, [r1], #4 @ code[loc] = buffer, code = code + 1
     subne r5, r5, #32 @ len -= CODE
+    strne r6, [r1], #4 @ code[loc] = buffer, code = code + 1
     subne r9, r9, r5 @ DICT[key].len - len 
     lsrne r6, r8, r9 @ buffer = DICT[key].code >> (DICT[key].len - len)
     cmp   r3, #0 @ text[i] == 0
