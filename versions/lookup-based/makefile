@@ -34,8 +34,12 @@ huffman_build.o: build/huffman_build.c build/huffman_build.h
 huffman_lookup.o: build/huffman_lookup.c build/huffman_lookup.h
 	$(CC) $(CFLAGS) build/huffman_lookup.c
 
-asm:
+gen_asm:
 	$(CC) -O3 -S src/huffman.c
+
+opt_asm:
+	$(CC) -c ../../assembly/huffman-opt.s -o huffman.o
+	make all
 
 clean:
 	rm huffman*
