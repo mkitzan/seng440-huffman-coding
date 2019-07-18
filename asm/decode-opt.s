@@ -28,7 +28,7 @@ decode:
     add   r5, r5, r7 ; seen += bits
     lsl   r3, r3, r4 ; draw << (CODE - bits) 
     tst   r5, #32 ; if(seen & CODE)
-    orr   r9, r9, r3, lsr l4 ; buffer |= draw << (CODE - bits)
+    orr   r9, r9, r3, lsr r4 ; buffer |= draw << (CODE - bits)
     beq   .L11
     subs  r5, r5, #32 ; seen -= CODE and if(seen)
     ldrne r3, [r0, #4]! ; if(seen) load code[++pos]

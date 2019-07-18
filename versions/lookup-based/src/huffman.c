@@ -61,9 +61,9 @@ unsigned int decode(const uint32_t *restrict code, char *restrict text) {
             seen -= CODE;
             ++pos;
             // shift left is undefined for shifts >= 32, and 32 is a possible value
-            if(seen) {
+           if(seen) {
                 buffer |= code[pos] << (CODE - seen);
-            }
+           }
         }
     } while(temp != 0x03);
 
