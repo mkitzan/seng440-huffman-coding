@@ -1,20 +1,25 @@
 # SENG 440 Embedded Systems Term Project
 
-Implemented three different versions of Huffman encoding/decoding functions: 
-node based, array based, and full lookup table.
+Implemented three different executable versions of Huffman encoding/decoding functions
+an one unexecutable version utilizing a hypothetical functional unit: 
+node based, array based, full lookup table, and functional unit.
 
 Node based: standard implementation with a malloced Huffman tree for decoding and lookup table for encoding.
 
 Array based: similar to node based, but the Huffman tree is statically allocated in memory.
 
-Lookup base: lookup tables are used to decode. 
+Lookup based: lookup tables are used to decode. 
 Two layers of lookup tables searching is required to decode a character.
+
+Functional based: uses a hypothetical lookup table cache to eliminate page faults when decoding.
+
+
 
 ---
 
 # File Structure
 
-**alphabet** contains the text processed to generated character frequency data used 
+**alphabet** contains the texts processed to generated character frequency data used 
 to construct the Huffman decoding tree for the three implementations. 
 It also contains Python scripts used to generate and analyze text files.
 
