@@ -1,7 +1,0 @@
-TODO:
-    - README
-    - Test compression from file for performance stats
-    - C level optimizations of encode and decode functions
-    - ASM level optimizations of encode and decode functions
-    - specify functional unit to address bottle neck in decode
-    - write report

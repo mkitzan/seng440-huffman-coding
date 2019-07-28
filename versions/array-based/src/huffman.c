@@ -14,10 +14,10 @@ unsigned int encode(const char *text, uint32_t *code) {
         len += DICT[key].len;
 
         if(len & CODE) {
-            // write full buffer to the encoded text container
-            code[loc++] = buffer;
             // determine the number of bits remaining in the current code
             len -= CODE;
+            // write full buffer to the encoded text container
+            code[loc++] = buffer;
             // set up buffer with remaining bits of the current code
             buffer = DICT[key].code >> (DICT[key].len - len);
         }

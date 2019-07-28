@@ -1,6 +1,6 @@
 #include <stdlib.h>
-#include <string.h>
-#include "huffman_utils.h"
+#include "huffman_lookup.h"
+#include "huffman_build.h"
 
 // frequency of ascii characters in the books data
 // double freq[SIZE] = {  
@@ -36,48 +36,57 @@ uint8_t freq[SIZE] = {
 };
 
 
-void rebuild(hnode_t *hn, node_t *n) {
-    if(n == NULL) {
-        return;
+void alphabet(hnode_t *n, uint16_t loc, uint8_t lvl) {
+    // internal node check
+    if(n->letter & SIZE) {
+        loc >>= 1; 
+        ++lvl;
+        // traverse with adjusted code
+        alphabet(n->left, loc, lvl);
+        alphabet(n->right, loc | MSB, lvl);        
+    } else {
+        // write code and code length to alphabet
+        ALPHABET[(uint8_t)n->letter].code = loc >> (CODE - lvl);
+        ALPHABET[(uint8_t)n->letter].len = lvl;
     }
+}
 
+
+void tree(hnode_t *hn, node_t *n, uint8_t lvl) {
     hn->letter = n->data.letter;
-    hn->left = hn->right = NULL;
-
-    if(n->left) {
-        hn->left = (hnode_t *) malloc(sizeof(hnode_t));
-        rebuild(hn->left, n->left);
+    
+    if(n->data.letter & SIZE) {
+        // pseudo malloc assigning addresses to preallocated data
+        hn->left = &HUFFMAN.heap[HUFFMAN.next++];
+        hn->right = &HUFFMAN.heap[HUFFMAN.next++];
+        ++lvl;
+        tree(hn->left, n->left, lvl);
+        tree(hn->right, n->right, lvl);
+    } else {
+        // leaf node
+        hn->left = hn->right = NULL;
     }
-    if(n->right) {
-        hn->right = (hnode_t *) malloc(sizeof(hnode_t));
-        rebuild(hn->right, n->right);
-    }
-
+    
     free(n);
 }
 
 
-void alphabet(hnode_t *n, uint16_t loc, uint8_t lvl) {
-    if(n->left == NULL && n->right == NULL) {
-        DICT[(uint8_t)n->letter].code = loc >> (WIDTH - lvl);
-        DICT[(uint8_t)n->letter].len = lvl;
-        return;
-    }
-    
-    loc >>= 1; 
-    if(n->left) {
-        alphabet(n->left, loc, lvl + 1);
-    }
-    if(n->right) {
-        alphabet(n->right, loc | MSB, lvl + 1);
+void rebuild(node_t *n, uint16_t loc, uint8_t lvl, node_t *pqueue[]) {
+    if(lvl == 3) {
+        // record level three to build subtrees 
+        pqueue[loc] = n;
+    } else {
+        // recursive traverse to level three
+        loc >>= 1;
+        rebuild(n->left, loc, lvl + 1, pqueue);
+        rebuild(n->right, loc | 4, lvl + 1, pqueue);
+        free(n);
     }
 }
 
 
 int compare(const void *a, const void *b) {
-    if(((huffman_t *)a)->freq < ((huffman_t *)b)->freq) return -1;
-    if(((huffman_t *)a)->freq > ((huffman_t *)b)->freq) return  1;
-    return 0;
+    return ((huffman_t *)a)->freq - ((huffman_t *)b)->freq;
 }
 
 
@@ -130,7 +139,17 @@ void build() {
         }
     }
     
-    ROOT = (hnode_t *) malloc(sizeof(hnode_t));
-    rebuild(ROOT, pqueue[0]);
-    alphabet(ROOT, 0, 0);
+    // set aside indexes 0-7 to cache level 3 of the tree
+    HUFFMAN.next = 8;    
+    // rebuild the huffman tree in an array
+    rebuild(pqueue[0], 0, 0, pqueue);
+    
+    // build sub trees in order of size of sub tree
+    for(i = 0; i < 8; ++i) {
+        tree(&HUFFMAN.heap[order[i]], pqueue[order[i]], 3);
+        alphabet(&HUFFMAN.heap[order[i]], order[i] << 13, 3);
+    }
+    
+    // call hook to generate lookup tables from the huffman tree
+    generate();
 }

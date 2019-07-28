@@ -1,21 +1,19 @@
 #include "huffman.h"
 
-#include <stdio.h>
-
 unsigned int encode(const char *text, uint32_t *code) {
-    unsigned int loc = 0, len = 0;
+    unsigned int loc = 0, len = 0, i = 0;
     uint32_t buffer = 0;
     uint8_t key;
 
-    for(int i = 0; text[i] != 0; ++i) {
+    for(; text[i]; ++i) {
         key = text[i];
-        buffer |= DICTIONARY[key].code << len;
-        len += DICTIONARY[key].len;
+        buffer |= DICT[key].code << len;
+        len += DICT[key].len;
 
         if(len >= CODE) {
-            len -= CODE;
             code[loc++] = buffer;
-            buffer = DICTIONARY[key].code >> (DICTIONARY[key].len - len);
+            len -= CODE;
+            buffer = DICT[key].code >> (DICT[key].len - len);
         }
     }
 

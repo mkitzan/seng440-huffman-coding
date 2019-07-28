@@ -1,7 +1,0 @@
-http://www.brendangregg.com/perf.html#Examples
-https://www.tecmint.com/perf-performance-monitoring-and-analysis-tool-for-linux/
-https://en.wikipedia.org/wiki/Perf_%28Linux%29
-https://perf.wiki.kernel.org/index.php/Tutorial
-
-"perf stat" for cpu and cache stats
-"perf record" for run time analysis

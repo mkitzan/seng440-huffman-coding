@@ -34,7 +34,7 @@ struct __attribute__((__packed__)) node {
 };
 
 hnode_t *ROOT;
-hcode_t DICTIONARY[SIZE];
+hcode_t DICT[SIZE];
 
 void build();
 
