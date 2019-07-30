@@ -34,12 +34,12 @@ unsigned int decode(const uint32_t *restrict code, char *restrict text) {
     do {
         entry = lookup_unit(buffer); 
         temp = code[pos] >> seen;        
-        buffer >>= entry.contib;
+        buffer >>= entry.contrib;
         text[loc++] = entry.letter;        
         
         // record how many bits were seen and refill buffer
-        seen += entry.contib;
-        buffer |= temp << (CODE - entry.contib);
+        seen += entry.contrib;
+        buffer |= temp << (CODE - entry.contrib);
         
         if(seen & CODE) {
             seen -= CODE;
