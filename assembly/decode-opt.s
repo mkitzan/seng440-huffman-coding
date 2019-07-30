@@ -39,5 +39,5 @@ decode:
     ldr   r7, [r8] ; r7 is LOOKUP addr
     add   lr, lr, lr, lsl #2 ; turn draw into index offset for LOOKUP
     bne   .L12
-    sub   r0, r1, r2 ; retutn loc = (text[loc] - text)
+    sub   r0, r1, r2 ; return loc = (text[loc] - text)
     pop   {r4, r5, r6, r7, r8, r9, pc}
